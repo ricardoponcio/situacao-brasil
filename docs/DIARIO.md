@@ -10,14 +10,19 @@ Formato de cada entrada: data · o que foi feito · decisões (com o porquê) ·
 ## 2026-10-27 · Sessão 5: publicação em brasil.poncio.dev com deploy a cada push
 
 ### O que foi feito
-- **Imagens Docker** no repo: `Dockerfile` (raiz) para API e coleta, rodando TypeScript direto pelo tsx;
-  `apps/web/Dockerfile` gera o front e serve com nginx (`apps/web/nginx/default.conf`), que repassa `/api/` para a API.
+- **`Dockerfile` único com estágios**: `deps` (um `npm ci` só) → `check` (typecheck + build do front) → alvo `node`
+  (API e coleta, só dependências de produção, TypeScript direto pelo tsx) e alvo `web` (nginx com
+  `apps/web/nginx/default.conf`, que repassa `/api/` para a API). O `tsx` passou a ser dependência de `@sb/api` e
+  `@sb/ingest`, porque roda em produção.
 - **`docker-compose.yml`**: `api`, `ingest` e `web` (porta 8090) sobre o volume `data` (`SB_DATA_DIR=/data`).
   O `ingest` coleta todas as fontes ao subir e depois a cada `INGEST_INTERVAL` segundos (padrão 6 h). Isso cumpre o
   "agendar a coleta" dos próximos passos.
 - O servidor acompanha a `main` e reconstrói as imagens quando o commit muda: um push aparece no ar em poucos minutos.
 
 ### Decisões
+- **Build leve para servidor pequeno (1 GB)**: a primeira versão tinha dois Dockerfiles, e o mesmo `npm ci` rodava duas
+  vezes em paralelo, com a imagem Node gravada duas vezes (api e ingest). Agora as dependências são instaladas uma
+  vez, só a `api` constrói a imagem e o `ingest` a reaproveita (`pull_policy: never`).
 - **typecheck dentro do build** da imagem da API: se falhar, o build falha e o container antigo continua no ar.
 - **index.html sem cache, `/assets/` com cache longo**: o deploy novo aparece na hora, sem baixar tudo de novo.
 - **O volume `data` entra no backup.** O banco se refaz coletando de novo, mas os brutos (`data/raw`) são a trilha
@@ -25,6 +30,7 @@ Formato de cada entrada: data · o que foi feito · decisões (com o porquê) ·
 
 ### Verificado
 - Build e subida locais: front, `/api/sources`, `/api/feed` e a coleta (Câmara, IBGE) ok. typecheck ok.
+- Um erro de tipo proposital faz o build falhar (`failed to solve`), sem trocar nada.
 
 ### Próximos passos
 1. Conferir `https://brasil.poncio.dev` depois do primeiro deploy.

@@ -1,28 +1,32 @@
 name: situacao-brasil
 
-x-node: &node
-  build:
-    context: .
-    dockerfile: Dockerfile
-  image: situacao-brasil-node
-  restart: unless-stopped
-  volumes:
-    - data:/data
-
 services:
   api:
-    <<: *node
+    build:
+      context: .
+      target: node
+    image: situacao-brasil-node
+    restart: unless-stopped
+    volumes:
+      - data:/data
 
+  # Mesma imagem da API (construída uma vez só, pelo serviço api).
   # Coleta todas as fontes ao subir e depois a cada INGEST_INTERVAL segundos (padrão 6 h).
   # A gravação é idempotente (upsert), então recoletar não duplica nada.
   ingest:
-    <<: *node
+    image: situacao-brasil-node
+    pull_policy: never
+    restart: unless-stopped
+    depends_on:
+      - api
+    volumes:
+      - data:/data
     command: ["sh", "-c", "while true; do node_modules/.bin/tsx apps/ingest/src/cli.ts; sleep $${INGEST_INTERVAL:-21600}; done"]
 
   web:
     build:
       context: .
-      dockerfile: apps/web/Dockerfile
+      target: web
     restart: unless-stopped
     depends_on:
       - api

@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@sb/core": "*",
-    "@sb/storage": "*"
+    "@sb/storage": "*",
+    "tsx": "^4.23.15"
   }
 }

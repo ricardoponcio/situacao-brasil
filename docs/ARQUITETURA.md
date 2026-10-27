@@ -59,8 +59,8 @@ Brutos em `data/raw/<sha256>`. A pasta `data/` fica fora do git e é recriada pe
 - `lib/api.ts`: cache em memória por URL (vários componentes pedem os mesmos registros).
 
 ## Produção (`brasil.poncio.dev`)
-- `docker-compose.yml`: `api` + `ingest` (mesma imagem, `Dockerfile` da raiz) e `web` (nginx, `apps/web/Dockerfile`,
-  porta 8090), todos sobre o volume `data`. O `ingest` recoleta tudo a cada `INGEST_INTERVAL` s (padrão 6 h).
+- `Dockerfile` (estágios `deps` → `check` → alvos `node` e `web`) e `docker-compose.yml`: `api` + `ingest` (mesma
+  imagem, alvo `node`) e `web` (nginx, alvo `web`, porta 8090), sobre o volume `data`. O `ingest` recoleta tudo a cada `INGEST_INTERVAL` s (padrão 6 h).
 - O servidor acompanha a `main` e reconstrói as imagens a cada push. O typecheck roda no build: se falhar, nada muda
   no ar.
 
