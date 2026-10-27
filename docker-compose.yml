@@ -1,0 +1,33 @@
+name: situacao-brasil
+
+x-node: &node
+  build:
+    context: .
+    dockerfile: Dockerfile
+  image: situacao-brasil-node
+  restart: unless-stopped
+  volumes:
+    - data:/data
+
+services:
+  api:
+    <<: *node
+
+  # Coleta todas as fontes ao subir e depois a cada INGEST_INTERVAL segundos (padrão 6 h).
+  # A gravação é idempotente (upsert), então recoletar não duplica nada.
+  ingest:
+    <<: *node
+    command: ["sh", "-c", "while true; do node_modules/.bin/tsx apps/ingest/src/cli.ts; sleep $${INGEST_INTERVAL:-21600}; done"]
+
+  web:
+    build:
+      context: .
+      dockerfile: apps/web/Dockerfile
+    restart: unless-stopped
+    depends_on:
+      - api
+    ports:
+      - "8090:80"
+
+volumes:
+  data:

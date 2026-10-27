@@ -7,6 +7,31 @@ Formato de cada entrada: data · o que foi feito · decisões (com o porquê) ·
 
 ---
 
+## 2026-10-27 · Sessão 5: publicação em brasil.poncio.dev com deploy a cada push
+
+### O que foi feito
+- **Imagens Docker** no repo: `Dockerfile` (raiz) para API e coleta, rodando TypeScript direto pelo tsx;
+  `apps/web/Dockerfile` gera o front e serve com nginx (`apps/web/nginx/default.conf`), que repassa `/api/` para a API.
+- **`docker-compose.yml`**: `api`, `ingest` e `web` (porta 8090) sobre o volume `data` (`SB_DATA_DIR=/data`).
+  O `ingest` coleta todas as fontes ao subir e depois a cada `INGEST_INTERVAL` segundos (padrão 6 h). Isso cumpre o
+  "agendar a coleta" dos próximos passos.
+- O servidor acompanha a `main` e reconstrói as imagens quando o commit muda: um push aparece no ar em poucos minutos.
+
+### Decisões
+- **typecheck dentro do build** da imagem da API: se falhar, o build falha e o container antigo continua no ar.
+- **index.html sem cache, `/assets/` com cache longo**: o deploy novo aparece na hora, sem baixar tudo de novo.
+- **O volume `data` entra no backup.** O banco se refaz coletando de novo, mas os brutos (`data/raw`) são a trilha
+  de auditoria, e a fonte pode mudar ou tirar o dado do ar.
+
+### Verificado
+- Build e subida locais: front, `/api/sources`, `/api/feed` e a coleta (Câmara, IBGE) ok. typecheck ok.
+
+### Próximos passos
+1. Conferir `https://brasil.poncio.dev` depois do primeiro deploy.
+2. Continuar a lista de próximos passos da sessão 3 (o item "agendar a coleta" está feito).
+
+---
+
 ## 2026-10-26 · Sessão 4: votações legíveis e "como funciona" recolhido
 
 ### Feedback do autor

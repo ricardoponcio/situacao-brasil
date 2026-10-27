@@ -58,6 +58,12 @@ Brutos em `data/raw/<sha256>`. A pasta `data/` fica fora do git e é recriada pe
 - `lib/api.ts` passa descriptors pelo schema zod do core (os padrões se aplicam a dados gravados por versões antigas).
 - `lib/api.ts`: cache em memória por URL (vários componentes pedem os mesmos registros).
 
+## Produção (`brasil.poncio.dev`)
+- `docker-compose.yml`: `api` + `ingest` (mesma imagem, `Dockerfile` da raiz) e `web` (nginx, `apps/web/Dockerfile`,
+  porta 8090), todos sobre o volume `data`. O `ingest` recoleta tudo a cada `INGEST_INTERVAL` s (padrão 6 h).
+- O servidor acompanha a `main` e reconstrói as imagens a cada push. O typecheck roda no build: se falhar, nada muda
+  no ar.
+
 ## Extensões previstas
 - **Processadores derivados** (por exemplo, nota por camada): leem registros do storage e emitem novos registros
   com proveniência apontando para os de origem.
