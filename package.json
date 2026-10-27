@@ -1,0 +1,25 @@
+{
+  "name": "situacao-brasil",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Situação do Brasil: dados públicos oficiais, explicados e auditáveis.",
+  "type": "module",
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "ingest": "npm run start -w @sb/ingest --",
+    "api": "npm run dev -w @sb/api",
+    "web": "npm run dev -w @sb/web",
+    "typecheck": "tsc -p packages/core && tsc -p packages/storage && tsc -p apps/ingest && tsc -p apps/api && tsc -p apps/web"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "tsx": "^4.20.0",
+    "typescript": "~5.9.0"
+  },
+  "engines": {
+    "node": ">=24"
+  }
+}
