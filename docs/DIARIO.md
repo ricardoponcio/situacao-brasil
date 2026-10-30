@@ -7,7 +7,7 @@ Formato de cada entrada: data · o que foi feito · decisões (com o porquê) ·
 
 ---
 
-## 2026-10-30 · Sessão 6: 502 em /api no ar
+## 2026-10-30 · Sessão 6: 502 em /api no ar e coleta do IBGE no servidor
 
 ### O que foi feito
 - `/api/*` dava 502 desde 28/10. Causa: a parada noturna do backup reinicia `api` e `ingest`, e os dois voltaram com
@@ -17,9 +17,21 @@ Formato de cada entrada: data · o que foi feito · decisões (com o porquê) ·
   `api` a cada requisição. Testado localmente recriando a API com outro IP.
 - No ar, reiniciar o `web` resolveu na hora; o ajuste evita que volte.
 
-### Problemas em aberto
-- No servidor, a coleta do IBGE (`ibge-localidades`, `ibge-sidra`) falha com `fetch failed`; a Câmara funciona.
-  Investigar (rede/IPv6, tempo de resposta ou bloqueio do lado do IBGE; não contornar bloqueio).
+- **Coleta do IBGE falhava no ar** (`fetch failed` = `UND_ERR_CONNECT_TIMEOUT`). O `servicodados.ibge.gov.br` não
+  aceita conexão do servidor (fora do Brasil): nem abre o TCP, com ou sem IPv6. De conexão no Brasil responde na hora.
+  A Câmara funciona de qualquer lugar.
+- `docker-compose.yml`: `INGEST_HTTPS_PROXY` opcional no `ingest` (vira `HTTPS_PROXY` + `NODE_USE_ENV_PROXY=1`, que o
+  `fetch` do Node 24 entende sem dependência nova). No ar, aponta para um proxy de saída num servidor nosso no
+  Brasil, liberado só para domínios `gov.br`/`leg.br`. Depois disso: IBGE localidades 5598 registros, SIDRA 600, 0
+  problemas.
+
+### Decisões
+- **Proxy de saída não é "contornar bloqueio"** no sentido do `CLAUDE.md`: a regra existe para não depender de truque
+  que a fonte possa fechar a qualquer momento (retrabalho a cada correção do lado deles). Aqui a requisição sai de
+  verdade de uma máquina nossa no Brasil, com o User-Agent honesto do projeto, como sairia de qualquer usuário daqui.
+  Proxy comercial, rodízio de IP ou disfarce de navegador continuam proibidos.
+- Todas as fontes da coleta passam pelo proxy quando ele está ligado (são todas brasileiras); se entrar fonte de fora,
+  rever (`NO_PROXY`).
 
 ---
 

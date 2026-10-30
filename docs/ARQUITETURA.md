@@ -61,6 +61,8 @@ Brutos em `data/raw/<sha256>`. A pasta `data/` fica fora do git e é recriada pe
 ## Produção (`brasil.poncio.dev`)
 - `Dockerfile` (estágios `deps` → `check` → alvos `node` e `web`) e `docker-compose.yml`: `api` + `ingest` (mesma
   imagem, alvo `node`) e `web` (nginx, alvo `web`, porta 8090), sobre o volume `data`. O `ingest` recoleta tudo a cada `INGEST_INTERVAL` s (padrão 6 h).
+  `INGEST_HTTPS_PROXY` (opcional) faz a coleta sair por um proxy HTTP: algumas fontes (o IBGE) recusam conexão de
+  servidor fora do Brasil. O nginx resolve o nome `api` a cada requisição (o IP muda quando a API reinicia).
 - O servidor acompanha a `main` e reconstrói as imagens a cada push. O typecheck roda no build: se falhar, nada muda
   no ar.
 
