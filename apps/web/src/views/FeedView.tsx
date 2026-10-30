@@ -30,6 +30,42 @@ function DecidedByChip({ who }: { who?: Event['decidedBy'] }) {
   return who ? <span className={`actor-chip actor-${who}`}>{ACTORS[who].label}</span> : null;
 }
 
+type Status = NonNullable<NonNullable<Event['subject']>['status']>;
+
+/** Onde a proposta está agora e o que falta. Aprovar uma votação não é o fim do caminho. */
+function SubjectProgress({ status }: { status: Status }) {
+  const rows: [string, Status['now']][] = [['Agora', status.now]];
+  if (status.next) rows.push(['Próximo passo', status.next]);
+  return (
+    <dl className={`vote-progress ${status.done ? 'is-done' : ''}`}>
+      {rows.map(([term, stage]) => (
+        <div key={term} className="vote-progress-row">
+          <dt>{term}</dt>
+          <dd>
+            <span className={`actor-chip actor-${stage.where}`}>{ACTORS[stage.where].label}</span>
+            <span>{stage.label}</span>
+          </dd>
+        </div>
+      ))}
+      {status.done && (
+        <div className="vote-progress-row">
+          <dt>Próximo passo</dt>
+          <dd className="muted">Nenhum. O caminho desta proposta terminou.</dd>
+        </div>
+      )}
+    </dl>
+  );
+}
+
+/** A situação mais recente entre as votações do grupo (cada coleta grava a situação do momento). */
+function latestStatus(events: Event[]): Status | undefined {
+  let best: Event | undefined;
+  for (const e of events) {
+    if (e.subject?.status && (!best || e.provenance.fetchedAt > best.provenance.fetchedAt)) best = e;
+  }
+  return best?.subject?.status;
+}
+
 /** Selo cinza com a sigla. Se existir diagrama para o tipo, abre a explicação na aba certa. */
 export function TypeBadge({ kind }: { kind: string }) {
   const t = PROPOSITION_TYPES[kind];
@@ -87,16 +123,21 @@ interface Group {
 function SubjectGroup({ g }: { g: Group }) {
   const last = g.events[0]!;
   const gist = ementaGist(g.subject.title);
+  const status = latestStatus(g.events);
   return (
-    <li className={`vote-group actor-${last.decidedBy ?? 'proponente'}`}>
+    <li className={`vote-group actor-${status?.now.where ?? last.decidedBy ?? 'proponente'}`}>
       <div className="vote-meta">
         <TypeBadge kind={g.subject.kind} />
         <span className="muted">{g.subject.label}</span>
       </div>
       <p className="vote-title">{gist ?? g.subject.title}</p>
+      {status && <SubjectProgress status={status} />}
       <div className="vote-status">
         <DecidedByChip who={last.decidedBy} />
-        <span>Última votação em {formatDate(last.occurredAt.slice(0, 10))}:</span>
+        <span>
+          Última votação em {formatDate(last.occurredAt.slice(0, 10))}
+          {last.category === 'procedimento' ? ' (um pedido sobre o andamento, não o texto)' : ''}:
+        </span>
         <OutcomePill outcome={last.outcome} />
       </div>
       {gist && (

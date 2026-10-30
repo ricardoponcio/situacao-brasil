@@ -296,6 +296,11 @@ button.link { font: inherit; background: none; border: 0; padding: 0; color: var
 .vote-group::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 5px; border-radius: var(--radius) 0 0 var(--radius); background: var(--actor-bar); }
 .vote-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; font-size: 14px; }
 .vote-title { margin: 0; font-size: 17px; font-weight: 600; line-height: 1.4; }
+.vote-progress { margin: 0; display: flex; flex-direction: column; gap: 6px; font-size: 15px; }
+.vote-progress-row { display: grid; grid-template-columns: 7.5em 1fr; gap: 8px; align-items: baseline; }
+.vote-progress dt { font-size: 13px; font-weight: 600; color: var(--text-secondary); }
+.vote-progress dd { margin: 0; display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 8px; }
+@media (max-width: 480px) { .vote-progress-row { grid-template-columns: 1fr; gap: 2px; } }
 .vote-status { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; font-size: 14px; color: var(--text-secondary); }
 .vote-more { font-size: 14px; }
 .vote-more > summary { cursor: pointer; color: var(--accent); }

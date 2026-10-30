@@ -36,7 +36,8 @@ export const TOPICS: Topic[] = [
     id: 'politica',
     title: 'Política',
     question: 'O que o Congresso decidiu?',
-    intro: 'O que foi votado em Brasília, com o resultado de cada votação e o link para o registro oficial.',
+    intro:
+      'O que foi votado em Brasília, em que passo cada proposta está agora e o que ainda falta para virar lei, com o link para o registro oficial.',
     themes: ['politica'],
     modules: ['processo-legislativo'],
   },

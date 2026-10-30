@@ -56,6 +56,8 @@ Brutos em `data/raw/<sha256>`. A pasta `data/` fica fora do git e é recriada pe
 - `config/topics.ts` → `modules`: blocos editoriais por assunto. Hoje existe `processo-legislativo`
   (`content/legislativeProcesses.ts` + `components/ProcessFlow.tsx`).
 - `lib/api.ts` passa descriptors pelo schema zod do core (os padrões se aplicam a dados gravados por versões antigas).
+- Eventos com assunto (`Event.subject`) podem trazer `subject.status` ("agora" e "próximo passo", com o texto oficial).
+  A tradução da situação de cada origem fica na coleta (ex.: `sources/camara-votacoes/status.ts`); o `FeedView` só exibe.
 - `lib/api.ts`: cache em memória por URL (vários componentes pedem os mesmos registros).
 
 ## Produção (`brasil.poncio.dev`)

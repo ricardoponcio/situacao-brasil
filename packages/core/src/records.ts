@@ -73,6 +73,38 @@ export type Actor = z.infer<typeof Actor>;
 export const Link = z.object({ label: z.string(), url: z.string().url() });
 export type Link = z.infer<typeof Link>;
 
+/** Instância que decidiu, no vocabulário do site (mesmas cores do diagrama de tramitação). */
+export const DecidedBy = z.enum(['camara', 'senado', 'congresso', 'presidencia']);
+export type DecidedBy = z.infer<typeof DecidedBy>;
+
+/** Um passo do caminho do assunto: onde está (ou vai estar) e o que acontece ali. */
+export const SubjectStage = z.object({
+  /** Em linguagem simples: "No Senado, esperando votação" */
+  label: z.string(),
+  /** Quem cuida deste passo. "resultado" = o caminho terminou (virou lei, foi arquivado...) */
+  where: z.enum([...DecidedBy.options, 'resultado']),
+  /** Id da etapa no diagrama "Como uma lei é feita", quando houver correspondência */
+  step: z.string().optional(),
+});
+export type SubjectStage = z.infer<typeof SubjectStage>;
+
+/**
+ * Em que pé está o assunto agora, independentemente do resultado de cada votação.
+ * Ex.: a Câmara aprovou, mas ainda falta o Senado.
+ */
+export const SubjectStatus = z.object({
+  now: SubjectStage,
+  /** O que falta. Ausente quando o caminho terminou ou quando não dá para saber. */
+  next: SubjectStage.optional(),
+  /** O caminho terminou (virou lei, foi arquivado, retirado...) */
+  done: z.boolean().default(false),
+  /** Texto oficial da situação, como a origem publica */
+  official: z.string(),
+  /** Data da situação (ISO) */
+  since: z.string().optional(),
+});
+export type SubjectStatus = z.infer<typeof SubjectStatus>;
+
 /**
  * Do que trata o evento. Ex.: a proposição votada. Permite agrupar vários eventos
  * (votações de emendas, requerimentos, texto final) sob o mesmo assunto.
@@ -86,12 +118,10 @@ export const EventSubject = z.object({
   /** Descrição oficial (ex.: ementa) */
   title: z.string(),
   url: z.string().url().optional(),
+  /** Situação do assunto quando o evento foi coletado */
+  status: SubjectStatus.optional(),
 });
 export type EventSubject = z.infer<typeof EventSubject>;
-
-/** Instância que decidiu, no vocabulário do site (mesmas cores do diagrama de tramitação). */
-export const DecidedBy = z.enum(['camara', 'senado', 'congresso', 'presidencia']);
-export type DecidedBy = z.infer<typeof DecidedBy>;
 
 export const Event = RecordBase.extend({
   kind: z.literal('event'),

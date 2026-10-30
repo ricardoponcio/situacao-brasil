@@ -7,6 +7,52 @@ Formato de cada entrada: data · o que foi feito · decisões (com o porquê) ·
 
 ---
 
+## 2026-10-30 · Sessão 7: "agora" e "próximo passo" de cada proposta votada
+
+### Pedido do autor
+"Aprovada" na lista da Câmara não dizia se a proposta estava aprovada de verdade ou se ainda faltava, por exemplo, o
+Senado. Pedido: mostrar o passo atual e o próximo.
+
+### O que se viu nos dados
+- Das 14 propostas da coleta anterior, **5 marcadas "Aprovada" continuavam paradas em comissões da Câmara**: o que
+  tinha sido aprovado era só um pedido de urgência. Outras já estavam no Senado, uma com o Presidente e uma já tinha
+  virado lei.
+- A API da Câmara informa a situação atual (`/proposicoes/{id}` → `statusProposicao`: código, texto oficial, órgão,
+  data). O destino depois do Plenário aparece no despacho "A matéria vai ao Senado Federal / à sanção / à
+  promulgação" (`/proposicoes/{id}/tramitacoes`). A situação sozinha às vezes não basta: o PL 1.435/2023 aparece
+  como "Aguardando Autógrafos na Mesa", mas o despacho diz que ele vai à sanção.
+- O campo `descricaoSituacao` de cada tramitação antiga não é histórico (vem com a situação de agora); por isso só
+  o texto do despacho é usado.
+
+### O que foi feito
+- **Contrato** (`packages/core/src/records.ts`): `EventSubject.status` com `now` e `next` (`SubjectStage`: texto
+  simples, `where` = Câmara/Senado/Congresso/Presidência/resultado, e `step` = id da etapa no diagrama), `done` e
+  `official` (o texto da origem, sem reescrever). Serve para o Senado quando ele entrar.
+- **Coleta da Câmara** (versão 0.2.0): busca a situação e as tramitações uma vez por proposição em cada execução.
+  `camara-votacoes/status.ts` traduz o código de situação em "agora/próximo" (arquivada, virou lei, no Senado, com o
+  Presidente, pronta para o Plenário, em comissão...). Se a consulta falhar, a votação segue sem a situação.
+- **Lista**: cada proposta mostra "Agora" e "Próximo passo" com o selo de quem cuida. A barra lateral passou a ter a
+  cor de **onde a proposta está agora** (antes: quem fez a última votação). Votação de requerimento ganhou o aviso
+  "(um pedido sobre o andamento, não o texto)".
+
+### Decisões
+- A tradução fica **na coleta** e o front só exibe: é a regra das DTOs genéricas (o front não conhece a Câmara).
+- Simplificação assumida, igual à do diagrama: "Senado vota; se mudar o texto, volta para a Câmara". Para projetos que
+  começaram no Senado e voltam para lá, o "se mudar" não se aplica; o texto oficial continua disponível.
+- Depois que vai ao Senado, a Câmara só atualiza a situação quando o texto volta ou vira lei. Isso está nas
+  limitações da fonte. A coleta do Senado resolve.
+
+### Verificado
+- Coleta: 39 registros, 0 problemas. typecheck, `ingest --list` e build ok. Tela no desktop e a 375 px (Chrome
+  headless) sem rolagem horizontal.
+
+### Próximos passos
+1. Clicar no passo e abrir o diagrama já na etapa (`step` já vem no dado).
+2. Senado: votações e situação das propostas que saíram da Câmara.
+3. Itens anteriores: significância estatística nas variações da PNAD; camada 1 (necessidades básicas).
+
+---
+
 ## 2026-10-30 · Sessão 6: 502 em /api no ar e coleta do IBGE no servidor
 
 ### O que foi feito
