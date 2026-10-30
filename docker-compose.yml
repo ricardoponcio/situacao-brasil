@@ -21,6 +21,11 @@ services:
       - api
     volumes:
       - data:/data
+    # Opcional: proxy HTTP de saída para a coleta (ex.: fonte que recusa conexão de servidor fora do Brasil).
+    # Vazio = conexão direta. O fetch do Node 24 só usa HTTPS_PROXY com NODE_USE_ENV_PROXY=1.
+    environment:
+      HTTPS_PROXY: ${INGEST_HTTPS_PROXY:-}
+      NODE_USE_ENV_PROXY: ${INGEST_HTTPS_PROXY:+1}
     command: ["sh", "-c", "while true; do node_modules/.bin/tsx apps/ingest/src/cli.ts; sleep $${INGEST_INTERVAL:-21600}; done"]
 
   web:
