@@ -7,6 +7,22 @@ Formato de cada entrada: data · o que foi feito · decisões (com o porquê) ·
 
 ---
 
+## 2026-10-30 · Sessão 6: 502 em /api no ar
+
+### O que foi feito
+- `/api/*` dava 502 desde 28/10. Causa: a parada noturna do backup reinicia `api` e `ingest`, e os dois voltaram com
+  IPs trocados. O nginx do `web` só resolve o nome `api` quando sobe, então seguiu mandando para o IP antigo (agora do
+  `ingest`), que recusa a conexão.
+- `apps/web/nginx/default.conf`: `resolver 127.0.0.11` (DNS do Docker) e `proxy_pass` com variável, para resolver
+  `api` a cada requisição. Testado localmente recriando a API com outro IP.
+- No ar, reiniciar o `web` resolveu na hora; o ajuste evita que volte.
+
+### Problemas em aberto
+- No servidor, a coleta do IBGE (`ibge-localidades`, `ibge-sidra`) falha com `fetch failed`; a Câmara funciona.
+  Investigar (rede/IPv6, tempo de resposta ou bloqueio do lado do IBGE; não contornar bloqueio).
+
+---
+
 ## 2026-10-27 · Sessão 5: publicação em brasil.poncio.dev com deploy a cada push
 
 ### O que foi feito
