@@ -301,6 +301,13 @@ button.link { font: inherit; background: none; border: 0; padding: 0; color: var
 .vote-progress dt { font-size: 13px; font-weight: 600; color: var(--text-secondary); }
 .vote-progress dd { margin: 0; display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 8px; }
 @media (max-width: 480px) { .vote-progress-row { grid-template-columns: 1fr; gap: 2px; } }
+/* No celular, cada proposta deixa de ser um card dentro do card: vira um item de lista com a barra de cor. */
+@media (max-width: 600px) {
+  .vote-groups { gap: 0; }
+  .vote-group { padding: 14px 0 14px 14px; border: 0; border-bottom: 1px solid var(--border); border-radius: 0; background: none; }
+  .vote-group:last-child { border-bottom: 0; }
+  .vote-group::before { top: 14px; bottom: 14px; width: 4px; border-radius: 2px; }
+}
 .vote-status { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; font-size: 14px; color: var(--text-secondary); }
 .vote-more { font-size: 14px; }
 .vote-more > summary { cursor: pointer; color: var(--accent); }

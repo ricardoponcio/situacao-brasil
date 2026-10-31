@@ -119,7 +119,7 @@ Decisão do autor necessária: criar as contas e guardar as chaves (variável de
 ## Ordem sugerida
 
 1. ~~**SIDRA**: as tabelas de necessidades básicas~~. Feito na sessão 9 (9552, 6731, 6732, 7192).
-2. **Senado**: situação e votações. Completa o "agora / próximo passo".
+2. ~~**Senado**: situação e votações~~. Feito na sessão 10 (API nova `/processo` e `/votacao`; a antiga `/materia` e `/plenario/lista` está descontinuada).
 3. **Banco Central**: Selic, dólar e Focus. Pendente desde a sessão 1.
 4. **Calendário do IBGE**: mostrar "próxima atualização em ..." em cada dado.
 5. **Ipeadata** como processador parametrizável.

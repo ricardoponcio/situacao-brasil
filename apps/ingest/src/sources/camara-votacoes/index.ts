@@ -2,6 +2,8 @@ import type { DatasetDescriptor, SubjectStatus } from '@sb/core';
 import { BaseProcessor, type Emission } from '../../framework/BaseProcessor.ts';
 import type { FetchResult } from '../../framework/HttpClient.ts';
 import type { RunContext } from '../../framework/Processor.ts';
+import { findFromCamara, senadoPage } from '../senado/api.ts';
+import { senadoStatus } from '../senado/status.ts';
 import { camaraStatus, destinoFromDespacho, type Destino } from './status.ts';
 
 const API = 'https://dadosabertos.camara.leg.br/api/v2';
@@ -33,6 +35,8 @@ interface VotacaoDetalhe {
 
 interface ProposicaoDetalhe {
   siglaTipo: string;
+  numero: number;
+  ano: number;
   statusProposicao: {
     dataHora: string;
     siglaOrgao: string;
@@ -44,6 +48,12 @@ interface ProposicaoDetalhe {
 interface Tramitacao {
   sequencia: number;
   despacho: string | null;
+}
+
+/** Situação atual e, quando a proposta já está no Senado, o link para ela lá. */
+interface Situacao {
+  status: SubjectStatus;
+  senadoUrl?: string;
 }
 
 interface Page<T> {
@@ -71,10 +81,11 @@ class CamaraVotacoesProcessor extends BaseProcessor {
           'Votações simbólicas registram só o resultado, não o voto de cada deputado.',
           'A descrição é o texto técnico do sistema da Câmara; a versão em linguagem simples ainda não existe.',
           'Uma mesma proposta passa por várias votações (requerimentos, emendas, texto final).',
-          'A situação atual ("agora" e "próximo passo") vem do sistema da Câmara. Depois que a proposta vai ao Senado, ela só é atualizada quando o Senado devolve o texto ou a Câmara registra o resultado.',
+          'A situação atual ("agora" e "próximo passo") vem do sistema da Câmara. Depois que a proposta vai ao Senado, vem do sistema do Senado.',
+          'Propostas de emenda à Constituição (PEC) ganham outro número no Senado; para elas, a situação depois da Câmara ainda não é acompanhada.',
         ],
       },
-      '0.2.0',
+      '0.3.0',
     );
   }
 
@@ -90,7 +101,7 @@ class CamaraVotacoesProcessor extends BaseProcessor {
           simple:
             'Tudo o que foi colocado em votação no Plenário da Câmara, onde todos os 513 deputados podem votar. Para cada proposta, mostra em que passo ela está agora e o que ainda falta: aprovar na Câmara nem sempre quer dizer que virou lei.',
           technical:
-            'Endpoint /votacoes da API de Dados Abertos da Câmara, filtrado por idOrgao=180 (Plenário). Inclui votações nominais e simbólicas, de proposições principais e acessórias (requerimentos, emendas, destaques). A situação atual de cada proposição vem de /proposicoes/{id} (statusProposicao) e o destino depois do Plenário, do último despacho "A matéria vai ao/à ..." em /proposicoes/{id}/tramitacoes.',
+            'Endpoint /votacoes da API de Dados Abertos da Câmara, filtrado por idOrgao=180 (Plenário). Inclui votações nominais e simbólicas, de proposições principais e acessórias (requerimentos, emendas, destaques). A situação atual de cada proposição vem de /proposicoes/{id} (statusProposicao) e o destino depois do Plenário, do último despacho "A matéria vai ao/à ..." em /proposicoes/{id}/tramitacoes. Quando a proposição está no Senado, a situação vem de /processo da API de Dados Abertos do Senado (mesma sigla, número e ano, confirmados pela identificação de origem).',
         },
         view: { type: 'feed', options: { groupBySubject: true } },
         caveats: [
@@ -111,7 +122,7 @@ class CamaraVotacoesProcessor extends BaseProcessor {
     const end = new Date();
     let cursor = new Date(end.getTime() - dias * 86_400_000);
     // Situação de cada proposição, buscada uma vez por execução (várias votações por proposta).
-    const statuses = new Map<number, Promise<SubjectStatus | undefined>>();
+    const statuses = new Map<number, Promise<Situacao | undefined>>();
     const statusOf = (id: number) => {
       if (!statuses.has(id)) statuses.set(id, this.fetchStatus(ctx, id));
       return statuses.get(id)!;
@@ -145,10 +156,10 @@ class CamaraVotacoesProcessor extends BaseProcessor {
   }
 
   /** Situação atual da proposição. Se a consulta falhar, a votação segue sem ela. */
-  private async fetchStatus(ctx: RunContext, id: number): Promise<SubjectStatus | undefined> {
+  private async fetchStatus(ctx: RunContext, id: number): Promise<Situacao | undefined> {
     try {
       const { data } = await ctx.http.getJson<{ dados: ProposicaoDetalhe }>(`${API}/proposicoes/${id}`);
-      const { siglaTipo, statusProposicao: s } = data.dados;
+      const { siglaTipo, numero, ano, statusProposicao: s } = data.dados;
       const tram = await ctx.http.getJson<{ dados: Tramitacao[] }>(`${API}/proposicoes/${id}/tramitacoes`);
       // O despacho mais recente que diz para onde o texto vai depois do Plenário.
       let destino: Destino | undefined;
@@ -156,9 +167,25 @@ class CamaraVotacoesProcessor extends BaseProcessor {
         destino = t.despacho ? destinoFromDespacho(t.despacho) : undefined;
         if (destino) break;
       }
-      return camaraStatus({ siglaTipo, ...s, destino });
+      const status = camaraStatus({ siglaTipo, ...s, destino });
+      // Saiu da Câmara para o Senado: a Câmara só volta a atualizar quando o texto voltar.
+      if (status.now.where !== 'senado' && status.next?.where !== 'senado') return { status };
+      return (await this.senadoSituacao(ctx, siglaTipo, numero, ano)) ?? { status };
     } catch (err) {
       ctx.issue(`situação da proposição ${id}: ${(err as Error).message}`);
+      return undefined;
+    }
+  }
+
+  /** Situação no Senado. Ausente se o Senado ainda não registrou a proposta ou se a consulta falhar. */
+  private async senadoSituacao(ctx: RunContext, sigla: string, numero: number, ano: number): Promise<Situacao | undefined> {
+    try {
+      const found = await findFromCamara(ctx, sigla, numero, ano);
+      if (!found) return undefined;
+      const p = found.data;
+      return { status: senadoStatus(p), senadoUrl: p.codigoMateria ? senadoPage(p.codigoMateria) : undefined };
+    } catch (err) {
+      ctx.issue(`situação no Senado de ${sigla} ${numero}/${ano}: ${(err as Error).message}`);
       return undefined;
     }
   }
@@ -167,7 +194,7 @@ class CamaraVotacoesProcessor extends BaseProcessor {
     v: VotacaoResumo,
     d: VotacaoDetalhe | undefined,
     origin: Emission['origin'],
-    status: SubjectStatus | undefined,
+    situacao: Situacao | undefined,
   ): Emission {
     // Proposição principal: a primeira "afetada" (o projeto em si, não emendas/pareceres).
     const p = d?.proposicoesAfetadas?.[0];
@@ -175,6 +202,7 @@ class CamaraVotacoesProcessor extends BaseProcessor {
     const links = [{ label: 'Registro da votação (API da Câmara)', url: v.uri }];
     if (idEvento) links.push({ label: 'Sessão na Câmara', url: `https://www.camara.leg.br/evento-legislativo/${idEvento}` });
     if (p) links.push({ label: 'Situação atual da proposta (API da Câmara)', url: `${API}/proposicoes/${p.id}` });
+    if (situacao?.senadoUrl) links.push({ label: 'A proposta no site do Senado', url: situacao.senadoUrl });
 
     const subject = p
       ? {
@@ -183,7 +211,7 @@ class CamaraVotacoesProcessor extends BaseProcessor {
           label: `${p.siglaTipo} ${p.numero.toLocaleString('pt-BR')}/${p.ano}`,
           title: p.ementa,
           url: `https://www.camara.leg.br/proposicoesWeb/fichadetramitacao?idProposicao=${p.id}`,
-          status,
+          status: situacao?.status,
         }
       : undefined;
 

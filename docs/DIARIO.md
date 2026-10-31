@@ -7,6 +7,40 @@ Formato de cada entrada: data · o que foi feito · decisões (com o porquê) ·
 
 ---
 
+## 2026-10-31 · Sessão 10: Senado e votações no celular
+
+### O que foi feito
+- **Celular:** cada proposta nas votações deixou de ser um card dentro do card. Até 600 px vira item de lista com
+  divisória e a barra de cor de quem decide (só CSS em `.vote-group`). No computador continua igual.
+- **Fonte nova `senado`**, dataset `senado-plenario` ("Decisões no Plenário do Senado", tema política):
+  - decisões finais: `/processo?dataInicioDeliberacao&dataFimDeliberacao` (inclui votações simbólicas);
+  - votações nominais: `/votacao?dataInicio&dataFim`, com a contagem de Sim e Não no resumo;
+  - só PL, PLP, PEC, PDL, PRS, MPV e PLN (requerimentos e autoridades ficam de fora por ora);
+  - cada proposta agrupada pelo id do processo, com "agora / próximo passo" vindo de `senadoStatus`.
+- **Câmara completa o caminho:** quando a situação na Câmara aponta o Senado, a coleta acha a proposta no Senado
+  (sigla, número e ano, conferidos pela identificação de origem) e usa a situação de lá. Link novo "A proposta no
+  site do Senado". Ex.: a MPV 1370/2026 aparecia "aguardando o Senado" na Câmara; o Senado mostra que já foi à sanção.
+- Site: resultados novos (perdeu a validade, prejudicada, retirada), "Decisão final em" e o link de tramitação aponta
+  para a Casa certa. Tipos PRS e PLN no glossário.
+
+### Decisões
+- **API nova do Senado** (`/processo`, `/votacao`). A antiga (`/materia`, `/plenario/lista/votacao`) ainda responde,
+  mas se declara descontinuada desde 2025.
+- A consulta ao Senado mora na coleta da Câmara (e não no site) para que o registro já saia com a situação certa e
+  com o link de origem. O código de tradução é um só (`sources/senado/status.ts`), usado pelas duas fontes.
+- Medidas provisórias que perdem a validade entram no feed do Senado sem "quem decidiu": ninguém votou, o prazo acabou.
+
+### Problemas em aberto
+- **PEC** ganha outro número no Senado; a busca por sigla/número/ano não acha. Falta um jeito confiável de ligar as duas.
+- A mesma proposta aparece no feed da Câmara e no do Senado como assuntos separados (ids diferentes).
+- A situação do Senado para de mudar quando o texto vai ao Presidente; sanção e veto ainda não são acompanhados.
+
+### Próximos passos
+- Vetos (`/materia/vetos/{ano}` ou equivalente na API nova) e "virou lei" vindo da sanção.
+- Banco Central (item 3 de `FONTES-CANDIDATAS.md`).
+
+---
+
 ## 2026-10-31 · Sessão 9: camada 1, comida, água e esgoto
 
 ### O que foi feito

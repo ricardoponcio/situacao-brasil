@@ -12,6 +12,15 @@ const OUTCOME: Record<string, { tone: Tone; icon: string; label: string }> = {
   rejeitado: { tone: 'bad', icon: '✕', label: 'Rejeitado' },
   mantido: { tone: 'neutral', icon: '•', label: 'Veto mantido' },
   derrubado: { tone: 'neutral', icon: '•', label: 'Veto derrubado' },
+  'perdeu-validade': { tone: 'neutral', icon: '•', label: 'Perdeu a validade' },
+  prejudicada: { tone: 'neutral', icon: '•', label: 'Prejudicada' },
+  retirada: { tone: 'neutral', icon: '•', label: 'Retirada' },
+};
+
+/** Site onde a proposta tem a tramitação completa, pelo prefixo do id do assunto. */
+const SUBJECT_SITE: Record<string, string> = {
+  'camara-proposicao': 'Tramitação completa no site da Câmara',
+  'senado-processo': 'Tramitação completa no site do Senado',
 };
 
 function OutcomePill({ outcome }: { outcome?: string }) {
@@ -135,7 +144,7 @@ function SubjectGroup({ g }: { g: Group }) {
       <div className="vote-status">
         <DecidedByChip who={last.decidedBy} />
         <span>
-          Última votação em {formatDate(last.occurredAt.slice(0, 10))}
+          {last.category === 'decisao-final' ? 'Decisão final em' : 'Última votação em'} {formatDate(last.occurredAt.slice(0, 10))}
           {last.category === 'procedimento' ? ' (um pedido sobre o andamento, não o texto)' : ''}:
         </span>
         <OutcomePill outcome={last.outcome} />
@@ -154,7 +163,7 @@ function SubjectGroup({ g }: { g: Group }) {
       </details>
       {g.subject.url && (
         <a className="vote-link" href={g.subject.url} target="_blank" rel="noreferrer">
-          Tramitação completa no site da Câmara
+          {SUBJECT_SITE[g.subject.id.split(':')[0]!] ?? 'Tramitação completa'}
         </a>
       )}
     </li>

@@ -58,6 +58,8 @@ Brutos em `data/raw/<sha256>`. A pasta `data/` fica fora do git e é recriada pe
 - `lib/api.ts` passa descriptors pelo schema zod do core (os padrões se aplicam a dados gravados por versões antigas).
 - Eventos com assunto (`Event.subject`) podem trazer `subject.status` ("agora" e "próximo passo", com o texto oficial).
   A tradução da situação de cada origem fica na coleta (ex.: `sources/camara-votacoes/status.ts`); o `FeedView` só exibe.
+  Quando a proposta da Câmara está no Senado, a coleta da Câmara consulta o Senado (`sources/senado/api.ts`,
+  `findFromCamara`) e usa `senadoStatus` (`sources/senado/status.ts`), compartilhado com a fonte `senado`.
 - `lib/api.ts`: cache em memória por URL (vários componentes pedem os mesmos registros).
 
 ## Produção (`brasil.poncio.dev`)

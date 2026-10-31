@@ -39,16 +39,16 @@ const APROVADA_NA_CAMARA = new Set([900, 929, 1270, 1293]);
 const AGUARDANDO_ENVIO_SANCAO = new Set([1160, 1070]);
 
 /** Tipos que, aprovados nas duas Casas, terminam em promulgação (sem sanção do Presidente). */
-const PROMULGA = new Set(['PEC', 'PDL', 'PRC']);
+export const PROMULGA = new Set(['PEC', 'PDL', 'PRC']);
 
 /** Etapa final quando o Congresso termina de aprovar o texto. */
-function afterCongress(tipo: string): SubjectStage {
+export function afterCongress(tipo: string): SubjectStage {
   if (tipo === 'PRC') return { label: 'Câmara promulga a resolução', where: 'camara' };
   if (PROMULGA.has(tipo)) return { label: 'Câmara e Senado promulgam o texto', where: 'congresso', step: 'promulgacao' };
   return { label: 'Presidente sanciona (assina) ou veta', where: 'presidencia', step: tipo === 'MPV' ? 'sancao' : 'presidente' };
 }
 
-function result(label: string, step?: string): SubjectStage {
+export function result(label: string, step?: string): SubjectStage {
   return { label, where: 'resultado', step };
 }
 

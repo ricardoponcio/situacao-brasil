@@ -8,6 +8,8 @@ export const PROPOSITION_TYPES: Record<string, { name: string; processId?: strin
   VET: { name: 'Veto', processId: 'vet' },
   PDL: { name: 'Projeto de Decreto Legislativo' },
   PRC: { name: 'Projeto de Resolução' },
+  PRS: { name: 'Projeto de Resolução do Senado' },
+  PLN: { name: 'Projeto de Lei do Congresso (orçamento)' },
   REQ: { name: 'Requerimento' },
 };
 
