@@ -7,6 +7,52 @@ Formato de cada entrada: data · o que foi feito · decisões (com o porquê) ·
 
 ---
 
+## 2026-10-31 · Sessão 9: camada 1, comida, água e esgoto
+
+### O que foi feito
+- Primeiro item da ordem de `FONTES-CANDIDATAS.md`. Assunto novo **"Comida, água e esgoto"** ("Falta o básico para
+  muita gente?"), primeiro da home, com o tema novo `condicoes-de-vida` e `layer: 'necessidades-basicas'`.
+- 5 indicadores da PNAD Contínua anual, só configuração em `series.ts` (Brasil e UFs):
+
+  | id | tabela | último valor (Brasil) |
+  |---|---|---|
+  | `inseguranca-alimentar-grave` (fome, destaque da home) | 9552 | 3,1% (2024) |
+  | `inseguranca-alimentar` (todos os níveis) | 9552 | 25,8% (2024) |
+  | `agua-rede-geral` | 6731 | 85,3% (2025) |
+  | `agua-todo-dia` (entre quem tem rede) | 6732 | 88,0% (2025) |
+  | `esgoto-rede` | 7192 | 69,7% (2025) |
+- Pares "leia junto": fome ↔ insegurança alimentar; água da rede ↔ água todo dia.
+- `SidraProcessor` ganhou `somarCategorias`: esgoto pela rede = "rede geral ou pluvial" + "fossa séptica ligada à
+  rede", que é como o IBGE conta. A soma é arredondada para não carregar erro de ponto flutuante. Se vier mais de uma
+  categoria sem a opção ligada, a coleta registra um problema em vez de gravar um valor por cima do outro.
+
+### Decisões
+- **Percentual de pessoas, não de domicílios.** "De cada 100 pessoas" é mais fácil de ler.
+- **A tabela 7190, do levantamento, estava errada para "a água chega todo dia?"**: ela mede só quem tem rede mas
+  usa outra fonte. A certa é a 6732. O documento de fontes foi corrigido.
+- Fome primeiro e em destaque: é a necessidade mais básica. Sem `bands`, porque não há meta oficial com o mesmo
+  recorte. O Marco do Saneamento (90% de esgoto coletado e tratado até 2033) mede outra coisa (tratamento), então não
+  vira linha de referência no gráfico.
+- Cuidados escritos em cada indicador: falta 2020 e 2021 (o IBGE não divulgou o tema na pandemia), rede não garante
+  água todo dia, ligação à rede não garante tratamento, fossa séptica pode ser adequada no campo, margem de erro.
+
+### Problemas em aberto
+- **"Caiu 0,4 ponto (piorou)"** na água da rede (85,7 → 85,3) provavelmente está dentro da margem de erro. As tabelas
+  trazem o coeficiente de variação (variáveis "Coeficiente de variação - ..."). Isso torna a ideia da sessão 3
+  (variação com significância) mais urgente, agora para as séries anuais também.
+- Gráfico com 2 pontos (insegurança alimentar 2023–2024) mostra só um rótulo de ano no eixo.
+- O print do Chrome headless desenha o gráfico com largura errada no celular. Medido no Playwright: o gráfico tem
+  305 px e a página não rola para o lado. Para conferir celular, usar Playwright.
+
+### Verificado
+- Coleta: 1300 registros, 0 problemas. typecheck, `ingest --list` e build ok. Home, assunto (desktop) e celular.
+
+### Próximos passos
+1. Senado (item 2 da ordem de `FONTES-CANDIDATAS.md`).
+2. Significância das variações usando o coeficiente de variação do IBGE.
+
+---
+
 ## 2026-10-30 · Sessão 8: levantamento de fontes para ampliar a coleta
 
 ### O que foi feito

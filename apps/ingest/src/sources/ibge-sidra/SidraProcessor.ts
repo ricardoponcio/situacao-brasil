@@ -1,4 +1,4 @@
-import type { DatasetDescriptor, DatasetDescriptorInput, TerritoryLevel } from '@sb/core';
+import type { DatasetDescriptor, DatasetDescriptorInput, RecordDraft, TerritoryLevel } from '@sb/core';
 import { BaseProcessor, type Emission } from '../../framework/BaseProcessor.ts';
 import type { RunContext } from '../../framework/Processor.ts';
 
@@ -16,8 +16,13 @@ export interface SidraSeries {
   periodos: string;
   niveis: (keyof typeof NIVEIS)[];
   periodType: SidraPeriodType;
-  /** Ex.: "315[7169]" (classificação[categoria]) */
+  /** Ex.: "315[7169]" (classificação[categoria]). Várias: "1[6795]|11558[47930,47931]" */
   classificacao?: string;
+  /**
+   * Soma as categorias pedidas em `classificacao` num valor só (só faz sentido para percentuais da
+   * mesma distribuição ou contagens). Ex.: esgoto pela rede = "rede geral" + "fossa ligada à rede".
+   */
+  somarCategorias?: boolean;
 }
 
 interface SidraVariable {
@@ -122,27 +127,41 @@ export class SidraProcessor extends BaseProcessor {
         continue;
       }
 
-      let n = 0;
+      // Uma observação por território × período. Com `somarCategorias`, as categorias se somam;
+      // se alguma não tiver valor, a soma também fica sem valor.
+      const points = new Map<string, Extract<RecordDraft, { kind: 'observation' }>>();
       for (const variable of res.data) {
         for (const result of variable.resultados) {
           for (const serie of result.series) {
             const level = NIVEIS[serie.localidade.nivel.id];
             if (!level) continue;
             for (const [code, raw] of Object.entries(serie.serie)) {
-              n++;
-              yield this.emit(datasetId, res.origin, {
+              const id = `${datasetId}:${level}:${serie.localidade.id}:${code}`;
+              const value = parseValue(raw);
+              const prev = points.get(id);
+              if (prev && s.somarCategorias) {
+                prev.value = prev.value === null || value === null ? null : prev.value + value;
+                continue;
+              }
+              if (prev) ctx.issue(`${datasetId}: mais de uma categoria para ${id}; use somarCategorias ou filtre a classificação`);
+              points.set(id, {
                 kind: 'observation',
-                id: `${datasetId}:${level}:${serie.localidade.id}:${code}`,
+                id,
                 period: parsePeriod(code, s.periodType),
                 territory: { level, code: serie.localidade.id, name: serie.localidade.nome },
-                value: parseValue(raw),
+                value,
                 dimensions: { sidraPeriodo: code, unidadeOrigem: variable.unidade },
               });
             }
           }
         }
       }
-      ctx.log(`${datasetId}: ${n} observações`);
+      for (const point of points.values()) {
+        // Soma de decimais (0,1 + 0,2) não pode virar 0,30000000000000004.
+        if (point.value !== null && s.somarCategorias) point.value = Math.round(point.value * 1e6) / 1e6;
+        yield this.emit(datasetId, res.origin, point);
+      }
+      ctx.log(`${datasetId}: ${points.size} observações`);
     }
   }
 }

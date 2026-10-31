@@ -6,6 +6,11 @@
 2. Acrescente um item em `apps/ingest/src/sources/ibge-sidra/series.ts` com `agregado`, `variavel`, `periodos`,
    `niveis`, `periodType` e o `descriptor` (título, explicação simples **e** técnica, unidade, polaridade, cuidados).
 3. `npm run ingest -- ibge-sidra`. Ele aparece sozinho no site.
+- Tabelas com classificação (situação do domicílio, tipo de esgoto...): fixe as categorias em `classificacao`, por
+  exemplo `1[6795]|825[46285]`. Sem isso, o IBGE devolve uma série por categoria.
+- Para somar categorias de uma mesma distribuição (esgoto pela rede = "rede geral" + "fossa ligada à rede"), liste as
+  categorias e use `somarCategorias: true`.
+- Prefira o percentual de **moradores** (pessoas) ao de domicílios: "de cada 100 pessoas" é mais fácil de ler.
 
 ## Caso 2: fonte nova
 1. Crie `apps/ingest/src/sources/<id-da-fonte>/index.ts`.

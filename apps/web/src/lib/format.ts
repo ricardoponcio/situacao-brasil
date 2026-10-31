@@ -54,6 +54,7 @@ export const FREQUENCY_LABEL: Record<string, string> = {
 export const THEME_LABEL: Record<string, string> = {
   economia: 'Economia',
   trabalho: 'Trabalho e renda',
+  'condicoes-de-vida': 'Comida, água e esgoto',
   saude: 'Saúde',
   educacao: 'Educação',
   seguranca: 'Segurança',

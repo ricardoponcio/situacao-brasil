@@ -40,7 +40,7 @@ voltar. Com a situação do Senado, o "agora / próximo passo" acompanha a propo
 | 9552 | Segurança alimentar dos domicílios (fome) | 2023–2024 | necessidades básicas | renda per capita |
 | 6731 | Fonte de abastecimento de água | 2016–2025 | necessidades básicas | esgoto |
 | 7192 | Banheiro e tipo de esgoto | 2019–2025 | necessidades básicas | água |
-| 7190 | Tem rede de água, mas ela falha | 2019–2025 | necessidades básicas | 6731 (ter rede ≠ ter água) |
+| 6732 | A água da rede chega todo dia? (a 7190, listada antes, era o recorte errado) | 2016–2025 | necessidades básicas | 6731 (ter rede ≠ ter água) |
 | 7113 / 7125 | Analfabetismo (por idade, sexo, cor) | até 2025 | fundamentos | escolarização |
 | 7138 / 7139 | Taxa de escolarização | 2016–2025 | fundamentos | analfabetismo |
 | 7307 | Domicílios com internet | 2016–2025 | fundamentos | – |
@@ -118,7 +118,7 @@ Decisão do autor necessária: criar as contas e guardar as chaves (variável de
 
 ## Ordem sugerida
 
-1. **SIDRA**: as tabelas de necessidades básicas (9552, 6731, 7192, 7190). Abre a camada 1 só com configuração.
+1. ~~**SIDRA**: as tabelas de necessidades básicas~~. Feito na sessão 9 (9552, 6731, 6732, 7192).
 2. **Senado**: situação e votações. Completa o "agora / próximo passo".
 3. **Banco Central**: Selic, dólar e Focus. Pendente desde a sessão 1.
 4. **Calendário do IBGE**: mostrar "próxima atualização em ..." em cada dado.

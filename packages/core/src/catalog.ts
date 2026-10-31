@@ -11,6 +11,7 @@ import { TerritoryLevel } from './records.ts';
 export const Theme = z.enum([
   'economia',
   'trabalho',
+  'condicoes-de-vida',
   'saude',
   'educacao',
   'seguranca',

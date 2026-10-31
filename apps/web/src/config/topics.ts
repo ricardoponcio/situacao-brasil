@@ -19,6 +19,14 @@ export interface Topic {
 
 export const TOPICS: Topic[] = [
   {
+    id: 'o-basico',
+    title: 'Comida, água e esgoto',
+    question: 'Falta o básico para muita gente?',
+    intro:
+      'Se as pessoas têm comida na mesa, água chegando em casa e esgoto ligado à rede. É a base: sem isso, o resto fica difícil.',
+    themes: ['condicoes-de-vida'],
+  },
+  {
     id: 'custo-de-vida',
     title: 'Custo de vida',
     question: 'Os preços estão subindo muito?',
