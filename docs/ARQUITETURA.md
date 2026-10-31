@@ -38,6 +38,7 @@ Brutos em `data/raw/<sha256>`. A pasta `data/` fica fora do git e é recriada pe
 | `GET /api/datasets?theme=&layer=` | descriptors + estatísticas |
 | `GET /api/datasets/:id` | descriptor + fonte + estatísticas |
 | `GET /api/datasets/:id/records?level=&territory=&from=&to=&order=&limit=` | registros de qualquer tipo |
+| `GET /api/propostas/:ref` | eventos de todas as fontes sobre uma proposta (`subject.ref`), do mais antigo ao mais recente |
 | `GET /api/feed?limit=` | eventos de todas as fontes, mais recentes primeiro |
 | `GET /api/raw/:hash[?info]` | resposta bruta exatamente como veio da origem |
 
@@ -49,6 +50,8 @@ Brutos em `data/raw/<sha256>`. A pasta `data/` fica fora do git e é recriada pe
   1. Início: "O Brasil hoje, em poucas frases" (uma frase por assunto) + cartões de assunto (pergunta, número, tendência)
   2. Assunto (`#/assunto/:id`, definido em `config/topics.ts`, agrupado por `theme`): frase → número → gráfico → explicação
   3. Dado (`#/dados/:id`): frase, gráfico, explicação e cuidados; ficha técnica e auditoria recolhidas
+  - Proposta (`#/proposta/:ref`, `pages/PropostaPage.tsx`): situação atual, veto e linha do tempo juntando
+     Câmara, Senado e vetos
   4. Fontes / Fonte: manifesto, limitações, histórico de coletas
 - `lib/summarize.ts`: gera as frases a partir de `descriptor.summary` (template + faixas + comparação com o histórico).
 - `components/ReadWith.tsx`: aviso "leia junto" a partir de `descriptor.readWith` (nenhum número aparece sozinho
@@ -63,6 +66,11 @@ Brutos em `data/raw/<sha256>`. A pasta `data/` fica fora do git e é recriada pe
 - `DatasetDescriptor.nextRelease` liga um indicador a um dataset de calendário (eventos futuros com `attributes.chave`).
   O componente `NextRelease` mostra "Próximo dado: dd/mm/aaaa" abaixo do valor. Datasets de apoio, como o
   calendário, usam o tema `referencia` e não aparecem nos assuntos.
+- **Chave comum da proposta** (`subject.ref`, `packages/core/src/proposition.ts`): a identificação na Casa onde a
+  proposta começou ("PL-2162-2023"), que o Senado publica em `identificacaoProcessoInicial`. Câmara, Senado e vetos
+  gravam a mesma chave (num veto, a do projeto vetado; PLV aponta para a MPV). PEC e PDL têm numeração separada em
+  cada Casa e ganham o sufixo `-cd`/`-sf`. O storage indexa `json_extract(payload, '$.subject.ref')`. Os cards
+  mostram o veto do projeto (`VetoNote`, lendo o dataset `congresso-vetos`) e o link para a página da proposta.
 - Listas de propostas (`SubjectFeed`) mostram 8 assuntos e um botão "Mostrar mais".
 - `lib/api.ts`: cache em memória por URL (vários componentes pedem os mesmos registros).
 

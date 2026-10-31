@@ -58,6 +58,8 @@ export const api = {
     );
     return get<RecordsResponse>(`/datasets/${encodeURIComponent(id)}/records?${qs}`);
   },
+  /** Eventos de todas as fontes sobre uma proposta (chave de `subject.ref`), do mais antigo ao mais recente. */
+  proposta: (ref: string) => get<SbRecord[]>(`/propostas/${encodeURIComponent(ref)}`),
   feed: (limit = 50) => get<SbRecord[]>(`/feed?limit=${limit}`),
   sources: () => get<SourceSummary[]>('/sources'),
   source: (id: string) => get<SourceSummary & { runs: RunSummary[] }>(`/sources/${encodeURIComponent(id)}`),

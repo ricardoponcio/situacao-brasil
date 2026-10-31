@@ -1,6 +1,9 @@
-import { useState } from 'react';
-import type { Event } from '@sb/core';
+import { useMemo, useState } from 'react';
+import { refLabel, type Event } from '@sb/core';
 import { Pill, type Tone } from '../components/ui.tsx';
+import { api } from '../lib/api.ts';
+import { href } from '../lib/router.ts';
+import { useAsync } from '../lib/useAsync.ts';
 import { formatDate, formatDateTime } from '../lib/format.ts';
 import { ACTORS } from '../content/legislativeProcesses.ts';
 import { PROPOSITION_TYPES, ementaGist, openProcess } from '../content/propositionTypes.ts';
@@ -29,12 +32,12 @@ const LAST_LABEL: Record<string, string> = {
 const VOTE_CATEGORIES = new Set(['votacao-plenario', 'procedimento', 'votacao-nominal']);
 
 /** Site onde a proposta tem a tramitação completa, pelo prefixo do id do assunto. */
-const SUBJECT_SITE: Record<string, string> = {
+export const SUBJECT_SITE: Record<string, string> = {
   'camara-proposicao': 'Tramitação completa no site da Câmara',
   'senado-processo': 'Tramitação completa no site do Senado',
 };
 
-function OutcomePill({ outcome }: { outcome?: string }) {
+export function OutcomePill({ outcome }: { outcome?: string }) {
   if (!outcome) return null;
   const o = OUTCOME[outcome];
   return o ? (
@@ -46,14 +49,14 @@ function OutcomePill({ outcome }: { outcome?: string }) {
   );
 }
 
-function DecidedByChip({ who }: { who?: Event['decidedBy'] }) {
+export function DecidedByChip({ who }: { who?: Event['decidedBy'] }) {
   return who ? <span className={`actor-chip actor-${who}`}>{ACTORS[who].label}</span> : null;
 }
 
 type Status = NonNullable<NonNullable<Event['subject']>['status']>;
 
 /** Onde a proposta está agora e o que falta. Aprovar uma votação não é o fim do caminho. */
-function SubjectProgress({ status }: { status: Status }) {
+export function SubjectProgress({ status }: { status: Status }) {
   const rows: [string, Status['now']][] = [['Agora', status.now]];
   if (status.next) rows.push(['Próximo passo', status.next]);
   return (
@@ -78,12 +81,53 @@ function SubjectProgress({ status }: { status: Status }) {
 }
 
 /** A situação mais recente entre as votações do grupo (cada coleta grava a situação do momento). */
-function latestStatus(events: Event[]): Status | undefined {
+export function latestStatus(events: Event[]): Status | undefined {
   let best: Event | undefined;
   for (const e of events) {
     if (e.subject?.status && (!best || e.provenance.fetchedAt > best.provenance.fetchedAt)) best = e;
   }
   return best?.subject?.status;
+}
+
+const VETOS_DATASET = 'congresso-vetos';
+
+/** Eventos de veto agrupados pelo projeto vetado (`subject.ref`). Só busca quando a lista tem propostas com chave. */
+function useVetosByRef(enabled: boolean): Map<string, Event[]> {
+  const state = useAsync(() => (enabled ? api.records(VETOS_DATASET, { limit: 1000 }) : Promise.resolve(null)), [enabled]);
+  return useMemo(() => {
+    const map = new Map<string, Event[]>();
+    if (state.status !== 'ok' || !state.data) return map;
+    for (const r of state.data.records) {
+      if (r.kind !== 'event' || !r.subject?.ref) continue;
+      map.set(r.subject.ref, [...(map.get(r.subject.ref) ?? []), r]);
+    }
+    return map;
+  }, [state]);
+}
+
+/** "Vetado em parte (VET 3/2026). Esperando o Congresso analisar o veto." Uma linha por veto do projeto. */
+export function VetoNote({ events }: { events: Event[] }) {
+  const byVeto = new Map<string, Event[]>();
+  for (const e of events) byVeto.set(e.subject!.id, [...(byVeto.get(e.subject!.id) ?? []), e]);
+  return (
+    <>
+      {[...byVeto.values()].map((evs) => {
+        const aposto = evs.find((e) => e.category === 'veto');
+        const status = latestStatus(evs);
+        const what = aposto?.outcome === 'veto-total' ? 'O Presidente vetou o projeto inteiro' : 'O Presidente vetou parte do projeto';
+        return (
+          <p key={evs[0]!.subject!.id} className="veto-note">
+            <span className="actor-chip actor-presidencia">Veto</span>
+            <span>
+              {what} ({evs[0]!.subject!.label}
+              {aposto ? `, em ${formatDate(aposto.occurredAt.slice(0, 10))}` : ''}).{' '}
+              {status && `${status.now.label}.`}
+            </span>
+          </p>
+        );
+      })}
+    </>
+  );
 }
 
 /** Selo cinza com a sigla. Se existir diagrama para o tipo, abre a explicação na aba certa. */
@@ -140,8 +184,10 @@ interface Group {
 }
 
 /** Um assunto (ex.: um projeto de lei) com todas as votações sobre ele. */
-function SubjectGroup({ g }: { g: Group }) {
+function SubjectGroup({ g, vetos }: { g: Group; vetos?: Event[] }) {
   const last = g.events[0]!;
+  const ref = g.subject.ref;
+  const isVeto = g.subject.kind === 'VET';
   const gist = ementaGist(g.subject.title);
   const status = latestStatus(g.events);
   return (
@@ -149,9 +195,15 @@ function SubjectGroup({ g }: { g: Group }) {
       <div className="vote-meta">
         <TypeBadge kind={g.subject.kind} />
         <span className="muted">{g.subject.label}</span>
+        {isVeto && ref && (
+          <span>
+            Projeto vetado: <a href={href.proposta(ref)}>{refLabel(ref)}</a>
+          </span>
+        )}
       </div>
       <p className="vote-title">{gist ?? g.subject.title}</p>
       {status && <SubjectProgress status={status} />}
+      {!isVeto && vetos && <VetoNote events={vetos} />}
       <div className="vote-status">
         <DecidedByChip who={last.decidedBy} />
         <span>
@@ -178,11 +230,18 @@ function SubjectGroup({ g }: { g: Group }) {
         </summary>
         <EventList events={g.events} />
       </details>
-      {g.subject.url && (
-        <a className="vote-link" href={g.subject.url} target="_blank" rel="noreferrer">
-          {SUBJECT_SITE[g.subject.id.split(':')[0]!] ?? 'Tramitação completa'}
-        </a>
-      )}
+      <div className="vote-links">
+        {ref && (
+          <a className="vote-link" href={href.proposta(ref)}>
+            {isVeto ? 'Ver a história do projeto vetado' : 'Ver tudo sobre esta proposta (Câmara, Senado e vetos)'}
+          </a>
+        )}
+        {g.subject.url && (
+          <a className="vote-link" href={g.subject.url} target="_blank" rel="noreferrer">
+            {SUBJECT_SITE[g.subject.id.split(':')[0]!] ?? 'Tramitação completa'}
+          </a>
+        )}
+      </div>
     </li>
   );
 }
@@ -204,12 +263,14 @@ export function SubjectFeed({ events }: { events: Event[] }) {
     g.events.push(e);
     groups.set(e.subject.id, g);
   }
+  const all = [...groups.values()];
+  const vetos = useVetosByRef(all.some((g) => g.subject.ref && g.subject.kind !== 'VET'));
   if (!groups.size) return <EventList events={loose} />;
   return (
     <>
       <ul className="vote-groups">
-        {[...groups.values()].slice(0, shown).map((g) => (
-          <SubjectGroup key={g.subject.id} g={g} />
+        {all.slice(0, shown).map((g) => (
+          <SubjectGroup key={g.subject.id} g={g} vetos={g.subject.ref ? vetos.get(g.subject.ref) : undefined} />
         ))}
       </ul>
       {groups.size > shown && (

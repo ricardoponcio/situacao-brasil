@@ -6,12 +6,14 @@ import { HomePage } from './pages/HomePage.tsx';
 import { DatasetPage } from './pages/DatasetPage.tsx';
 import { TopicPage } from './pages/TopicPage.tsx';
 import { SourcePage, SourcesPage } from './pages/SourcesPage.tsx';
+import { PropostaPage } from './pages/PropostaPage.tsx';
 
 function App() {
   const [section, id] = useRoute();
   let page;
   if (section === 'dados' && id) page = <DatasetPage id={id} />;
   else if (section === 'assunto' && id) page = <TopicPage id={id} />;
+  else if (section === 'proposta' && id) page = <PropostaPage refKey={id} />;
   else if (section === 'fontes' && id) page = <SourcePage id={id} />;
   else if (section === 'fontes') page = <SourcesPage />;
   else page = <HomePage />;

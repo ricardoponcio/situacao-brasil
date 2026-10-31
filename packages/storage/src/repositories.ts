@@ -67,6 +67,8 @@ export interface RecordQuery {
   kind?: RecordKind;
   territoryLevel?: TerritoryLevel;
   territoryCode?: string;
+  /** Eventos sobre a mesma proposta, de qualquer dataset (EventSubject.ref) */
+  subjectRef?: string;
   from?: string;
   to?: string;
   order?: 'asc' | 'desc';
@@ -117,6 +119,7 @@ export class RecordRepository {
     add('kind = ?', q.kind);
     add('territory_level = ?', q.territoryLevel);
     add('territory_code = ?', q.territoryCode);
+    add("json_extract(payload, '$.subject.ref') = ?", q.subjectRef);
     add('time_key >= ?', q.from);
     add('time_key <= ?', q.to);
     const order = q.order === 'asc' ? 'ASC' : 'DESC';

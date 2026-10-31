@@ -1,4 +1,4 @@
-import type { DatasetDescriptor, SubjectStatus } from '@sb/core';
+import { propositionRef, type DatasetDescriptor, type SubjectStatus } from '@sb/core';
 import { BaseProcessor, type Emission } from '../../framework/BaseProcessor.ts';
 import type { FetchResult } from '../../framework/HttpClient.ts';
 import type { RunContext } from '../../framework/Processor.ts';
@@ -9,6 +9,8 @@ import { camaraStatus, destinoFromDespacho, type Destino } from './status.ts';
 const API = 'https://dadosabertos.camara.leg.br/api/v2';
 const PLENARIO = 180;
 const DATASET = 'camara-votacoes-plenario';
+/** Tipos que ganham a chave comum da proposta (`subject.ref`), para juntar com o Senado e os vetos. */
+const COM_REF = new Set(['PL', 'PLP', 'PEC', 'PDL', 'MPV', 'PLN']);
 
 interface VotacaoResumo {
   id: string;
@@ -83,9 +85,10 @@ class CamaraVotacoesProcessor extends BaseProcessor {
           'Uma mesma proposta passa por várias votações (requerimentos, emendas, texto final).',
           'A situação atual ("agora" e "próximo passo") vem do sistema da Câmara. Depois que a proposta vai ao Senado, vem do sistema do Senado.',
           'Propostas de emenda à Constituição (PEC) ganham outro número no Senado; para elas, a situação depois da Câmara ainda não é acompanhada.',
+          'Projetos que começaram no Senado antes de 2019 têm outro número na Câmara; a página da proposta não junta as duas partes.',
         ],
       },
-      '0.3.0',
+      '0.4.0',
     );
   }
 
@@ -211,6 +214,7 @@ class CamaraVotacoesProcessor extends BaseProcessor {
           label: `${p.siglaTipo} ${p.numero.toLocaleString('pt-BR')}/${p.ano}`,
           title: p.ementa,
           url: `https://www.camara.leg.br/proposicoesWeb/fichadetramitacao?idProposicao=${p.id}`,
+          ref: COM_REF.has(p.siglaTipo) ? propositionRef(p.siglaTipo, p.numero, p.ano, 'CD') : undefined,
           status: situacao?.status,
         }
       : undefined;

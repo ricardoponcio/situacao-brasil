@@ -32,6 +32,8 @@ CREATE TABLE IF NOT EXISTS records (
 CREATE INDEX IF NOT EXISTS idx_records_dataset_time ON records(dataset_id, time_key);
 CREATE INDEX IF NOT EXISTS idx_records_kind_time ON records(kind, time_key);
 CREATE INDEX IF NOT EXISTS idx_records_territory ON records(dataset_id, territory_level, territory_code);
+-- Eventos da mesma proposta em fontes diferentes (EventSubject.ref).
+CREATE INDEX IF NOT EXISTS idx_records_subject_ref ON records(json_extract(payload, '$.subject.ref'));
 
 CREATE TABLE IF NOT EXISTS runs (
   id            INTEGER PRIMARY KEY AUTOINCREMENT,

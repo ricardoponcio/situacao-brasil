@@ -22,8 +22,8 @@ export interface SenadoProcesso {
   siglaCasaIniciadora?: string;
   identificacaoProcessoInicial?: string;
   tramitando: string;
-  situacaoAtual: string;
-  siglaSituacaoAtual: string;
+  situacaoAtual?: string;
+  siglaSituacaoAtual?: string;
   dataSituacaoAtual?: string;
   conteudo?: { ementa?: string };
   deliberacao?: { data?: string; siglaTipo?: string; tipoDeliberacao?: string; siglaDestino?: string };
@@ -64,8 +64,8 @@ export function senadoOutcome(siglaTipo: string | undefined): string | undefined
 
 export function senadoStatus(p: SenadoProcesso): SubjectStatus {
   const tipo = p.sigla;
-  const sit = p.siglaSituacaoAtual;
-  const base = { official: `Senado: ${p.situacaoAtual.trim()}`, since: p.dataSituacaoAtual };
+  const sit = p.siglaSituacaoAtual ?? '';
+  const base = { official: p.situacaoAtual ? `Senado: ${p.situacaoAtual.trim()}` : 'Senado: sem situação registrada', since: p.dataSituacaoAtual };
   const status = (now: SubjectStage, next?: SubjectStage, done = false): SubjectStatus => ({ ...base, now, next, done });
   const veioDaCamara = p.siglaCasaIniciadora === 'CD' || p.objetivo === 'Revisora';
   const d = p.deliberacao ?? {};

@@ -63,6 +63,11 @@ const router = new Router()
   // "O que aconteceu": eventos de todas as fontes, mais recentes primeiro
   .get('/api/feed', ({ query }) => records.query({ kind: 'event', limit: Number(query.get('limit') ?? 50) }))
 
+  // Tudo sobre uma proposta (Câmara, Senado, veto), em ordem de data
+  .get('/api/propostas/:ref', ({ params }) =>
+    records.query({ kind: 'event', subjectRef: params.ref, order: 'asc', limit: 2000 }),
+  )
+
   // Payload bruto exatamente como veio da origem
   .get('/api/raw/:hash', ({ params, query }) => {
     const blob = raw.read(params.hash!);

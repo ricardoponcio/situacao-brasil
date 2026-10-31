@@ -118,6 +118,11 @@ export const EventSubject = z.object({
   /** Descrição oficial (ex.: ementa) */
   title: z.string(),
   url: z.string().url().optional(),
+  /**
+   * Proposta a que o assunto se refere, igual em todas as fontes (ver proposition.ts): "PL-2162-2023".
+   * Num veto, é o projeto vetado.
+   */
+  ref: z.string().optional(),
   /** Situação do assunto quando o evento foi coletado */
   status: SubjectStatus.optional(),
 });

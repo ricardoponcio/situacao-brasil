@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { OPEN_PROCESS_EVENT } from '../content/propositionTypes.ts';
+import { OPEN_PROCESS_EVENT, pendingProcessRequest } from '../content/propositionTypes.ts';
 import { ACTORS, type Actor, type LegislativeProcess, type Step } from '../content/legislativeProcesses.ts';
 
 /** Caminho "mais comum": segue sempre o primeiro caminho de cada etapa até um resultado. */
@@ -22,7 +22,10 @@ function ActorChip({ actor }: { actor: Actor }) {
 
 /** Diagrama de tramitação: abas por tipo, mapa resumido e etapas com os caminhos possíveis. */
 export function ProcessFlow({ processes }: { processes: LegislativeProcess[] }) {
-  const [selected, setSelected] = useState(processes[0]!.id);
+  const [selected, setSelected] = useState(() => {
+    const pending = pendingProcessRequest();
+    return processes.some((x) => x.id === pending) ? pending! : processes[0]!.id;
+  });
   const [flash, setFlash] = useState<string | null>(null);
 
   useEffect(() => {

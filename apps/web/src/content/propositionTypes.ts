@@ -17,7 +17,24 @@ export const PROPOSITION_TYPES: Record<string, { name: string; processId?: strin
 export const OPEN_PROCESS_EVENT = 'sb:open-process';
 
 export function openProcess(processId: string) {
+  // Fora da página de Política o diagrama não existe: vai até lá e abre quando montar.
+  if (!window.location.hash.startsWith(PROCESS_PAGE)) {
+    pendingProcess = processId;
+    window.location.hash = PROCESS_PAGE;
+    return;
+  }
   window.dispatchEvent(new CustomEvent(OPEN_PROCESS_EVENT, { detail: processId }));
+}
+
+/** Página onde fica o diagrama "Como uma lei é feita". */
+const PROCESS_PAGE = '#/assunto/politica';
+let pendingProcess: string | undefined;
+
+/** Aba pedida antes de a página do diagrama existir. `take` consome o pedido. */
+export function pendingProcessRequest(take = false): string | undefined {
+  const id = pendingProcess;
+  if (take) pendingProcess = undefined;
+  return id;
 }
 
 /**

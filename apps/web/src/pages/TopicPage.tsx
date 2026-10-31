@@ -6,7 +6,7 @@ import { useAsync } from '../lib/useAsync.ts';
 import { TOPICS, type TopicModule } from '../config/topics.ts';
 import { ProcessFlow } from '../components/ProcessFlow.tsx';
 import { PROCESSES } from '../content/legislativeProcesses.ts';
-import { OPEN_PROCESS_EVENT } from '../content/propositionTypes.ts';
+import { OPEN_PROCESS_EVENT, pendingProcessRequest } from '../content/propositionTypes.ts';
 
 /** Bloco explicativo recolhido: não pesa na primeira leitura. Abre sozinho quando pedido (ex.: selo "PEC ?"). */
 function ModuleAccordion({ m }: { m: TopicModule }) {
@@ -19,6 +19,8 @@ function ModuleAccordion({ m }: { m: TopicModule }) {
       ref.current.open = true;
       requestAnimationFrame(() => ref.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }));
     };
+    // Veio de outra página pelo selo "PL ?": abre já na chegada.
+    if (pendingProcessRequest(true)) open();
     window.addEventListener(def.openOn, open);
     return () => window.removeEventListener(def.openOn!, open);
   }, [def.openOn]);

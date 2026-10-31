@@ -315,6 +315,16 @@ button.link { font: inherit; background: none; border: 0; padding: 0; color: var
 .vote-more > p { margin: 6px 0 0; color: var(--text-secondary); }
 .vote-more .feed li { padding: 8px 0; }
 .vote-link { font-size: 14px; }
+.vote-links { display: flex; flex-wrap: wrap; gap: 6px 18px; }
+.vote-progress + .veto-note { margin-top: 12px; }
+.proposta-ementa { margin: 0 0 24px; }
+.veto-note { margin: 0; display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 8px; font-size: 15px; }
+.timeline { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
+.timeline > li { position: relative; padding: 10px 0 14px 22px; display: grid; gap: 4px; }
+.timeline > li::before { content: ''; position: absolute; left: 4px; top: 16px; width: 10px; height: 10px; border-radius: 50%; background: var(--actor); }
+.timeline > li::after { content: ''; position: absolute; left: 8px; top: 30px; bottom: -8px; width: 2px; background: var(--border); }
+.timeline > li:last-child::after { display: none; }
+.timeline-title { margin: 0; font-size: 15px; }
 .show-more { align-self: flex-start; font: inherit; font-size: 15px; padding: 10px 16px; border-radius: var(--radius); border: 1px solid var(--border); background: var(--surface-2); color: var(--accent); cursor: pointer; }
 .show-more:hover { border-color: var(--text-muted); }
 .type-badge { display: inline-flex; align-items: center; gap: 6px; font: inherit; font-size: 13px; padding: 2px 8px; border-radius: 6px; border: 1px solid var(--border); background: var(--surface-2); color: var(--text-primary); }

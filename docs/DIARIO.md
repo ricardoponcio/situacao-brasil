@@ -7,6 +7,40 @@ Formato de cada entrada: data · o que foi feito · decisões (com o porquê) ·
 
 ---
 
+## 2026-10-31 · Sessão 13: ligar vetos, Câmara e Senado pela mesma proposta
+
+### O que foi feito
+- **Chave comum da proposta** (`subject.ref`): a identificação que a proposta recebeu na Casa onde começou. O Senado
+  publica isso em `identificacaoProcessoInicial`, inclusive no detalhe de cada veto, então **não foi preciso ler a
+  ementa**. Ex.: VET 3/2026 → `PL-2162-2023`; VET 10/2026 (PLV de medida provisória) → `MPV-1313-2025`; VET 7/2026
+  → `PL-1549-2003` (número da Câmara, embora no Senado fosse PL 5.983/2019).
+- Coleta: Câmara grava a chave pelo próprio número; Senado pela identificação de origem; vetos buscam o detalhe de
+  cada veto (cerca de 110 consultas a mais por coleta).
+- API: `GET /api/propostas/:ref`. Storage: índice sobre `json_extract(payload, '$.subject.ref')` (sem migração).
+- Site: página nova `#/proposta/:ref` com "Em que pé está" (situação mais recente entre as fontes + veto) e linha
+  do tempo (Câmara, Senado, Presidente, Congresso; pedidos de procedimento recolhidos). Cards de proposta mostram o
+  veto ("O Presidente vetou parte do projeto (VET 33/2026, em 18/06/2026). Esperando o Congresso…") e o link "Ver
+  tudo sobre esta proposta"; cards de veto mostram "Projeto vetado: PL 1.049/2026".
+- O selo "PL ?" agora funciona fora da página de Política: leva até lá e abre o diagrama na aba certa.
+- Correção: um processo do Senado sem `situacaoAtual` derrubava a coleta inteira (aparece ao coletar mais de 30
+  dias). Agora o campo é opcional.
+
+### Decisões
+- Chave = identificação na Casa de origem, não id interno de uma das Casas: é o único valor que as três fontes
+  conhecem. PEC e PDL têm numeração separada por Casa, então levam o sufixo `-cd`/`-sf` para não juntar propostas
+  diferentes de mesmo número.
+- Os cards da Câmara e do Senado continuam separados nas listas; quem junta é a página da proposta.
+
+### Problemas em aberto
+- Projetos que começaram no Senado antes de 2019 têm outro número na Câmara: as duas partes não se juntam.
+- PEC da Câmara no Senado: a página junta, mas a coleta da Câmara ainda não acompanha a situação no Senado.
+- A página mostra só o que foi coletado (votações dos últimos 30 dias, vetos de 2 anos).
+
+### Próximos passos
+- Ipeadata (item 5 das fontes candidatas). Talvez coletar uma janela maior do Senado para a página da proposta ficar mais completa.
+
+---
+
 ## 2026-10-31 · Sessão 12: calendário do IBGE e vetos
 
 ### O que foi feito

@@ -19,6 +19,7 @@ export const href = {
   home: () => '#/',
   topic: (id: string) => `#/assunto/${encodeURIComponent(id)}`,
   dataset: (id: string) => `#/dados/${encodeURIComponent(id)}`,
+  proposta: (ref: string) => `#/proposta/${encodeURIComponent(ref)}`,
   sources: () => '#/fontes',
   source: (id: string) => `#/fontes/${encodeURIComponent(id)}`,
 };

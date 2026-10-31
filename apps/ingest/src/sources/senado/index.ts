@@ -1,4 +1,4 @@
-import type { DatasetDescriptor, EventSubject, SubjectStatus } from '@sb/core';
+import { refFromIdentificacao, type Casa, type DatasetDescriptor, type EventSubject, type SubjectStatus } from '@sb/core';
 import { BaseProcessor, type Emission } from '../../framework/BaseProcessor.ts';
 import type { FetchResult } from '../../framework/HttpClient.ts';
 import type { RunContext } from '../../framework/Processor.ts';
@@ -80,6 +80,15 @@ function vetoStatus(v: VetoResumo): SubjectStatus {
 
 const isoDate = (d: Date) => d.toISOString().slice(0, 10);
 
+/**
+ * Chave comum da proposta (`subject.ref`): a identificação na Casa onde começou. Para um veto, o detalhe do veto
+ * aponta para o projeto vetado (PLV oriundo de medida provisória aponta para a MPV).
+ */
+function refOf(p: Pick<SenadoProcesso, 'identificacao' | 'identificacaoProcessoInicial' | 'siglaCasaIniciadora' | 'casaIdentificadora'>) {
+  const casa = (p.siglaCasaIniciadora ?? p.casaIdentificadora) as Casa;
+  return refFromIdentificacao(p.identificacaoProcessoInicial ?? p.identificacao, casa);
+}
+
 /** Decisões e votações nominais do Plenário do Senado Federal (eventos). */
 class SenadoProcessor extends BaseProcessor {
   constructor() {
@@ -99,9 +108,10 @@ class SenadoProcessor extends BaseProcessor {
           'Requerimentos, ofícios e aprovação de autoridades (embaixadores, diretores de agências) ainda não entram.',
           'Medidas provisórias que perdem a validade aparecem aqui porque o Senado registra o fim do prazo, mesmo sem votação.',
           'Vetos são votados em sessão conjunta do Congresso; o Senado é quem publica esses dados.',
+          'Projetos que começaram no Senado antes de 2019 têm outro número na Câmara; a página da proposta não junta as duas partes.',
         ],
       },
-      '0.2.0',
+      '0.3.0',
     );
   }
 
@@ -212,12 +222,21 @@ class SenadoProcessor extends BaseProcessor {
       const res = await ctx.http.getJson<VetoResumo[]>(`${SENADO_API}/processo?sigla=VET&ano=${a}`);
       for (const v of res.data) {
         const total = /veto total/i.test(v.ementa);
+        // O detalhe diz qual projeto foi vetado (a lista só traz a ementa).
+        let ref: string | undefined;
+        try {
+          const { data: d } = await getProcesso(ctx, v.id);
+          if (d.identificacaoProcessoInicial) ref = refOf(d);
+        } catch (err) {
+          ctx.issue(`detalhe do veto ${v.identificacao}: ${(err as Error).message}`);
+        }
         const subject: EventSubject = {
           id: `senado-processo:${v.id}`,
           kind: 'VET',
           label: v.identificacao,
           title: v.ementa,
           url: v.codigoMateria ? senadoPage(v.codigoMateria) : undefined,
+          ref,
           status: vetoStatus(v),
         };
         const links = [{ label: 'O veto na API do Senado', url: `${SENADO_API}/processo/${v.id}` }];
@@ -259,6 +278,7 @@ class SenadoProcessor extends BaseProcessor {
       label: p.identificacao,
       title: p.conteudo?.ementa ?? p.identificacao,
       url: p.codigoMateria ? senadoPage(p.codigoMateria) : undefined,
+      ref: refOf(p),
       status: senadoStatus(p),
     };
   }
