@@ -7,6 +7,30 @@ Formato de cada entrada: data · o que foi feito · decisões (com o porquê) ·
 
 ---
 
+## 2026-10-30 · Sessão 8: levantamento de fontes para ampliar a coleta
+
+### O que foi feito
+- Pedido do autor: buscar todas as fontes possíveis. Resultado em `docs/FONTES-CANDIDATAS.md`, com prioridade,
+  acesso, endereço e assunto de cada uma.
+- Cerca de 50 endereços **testados de verdade** (de conexão no Brasil), não tirados só da documentação.
+
+### Achados
+- **O Banco Central voltou a responder** (SGS e Olinda/Focus). Na sessão 1 recusava. O bloqueio de antes era
+  provavelmente de rede, e o servidor já sai por um proxy no Brasil.
+- **Senado tem API aberta e completa** (votações, situação atual das matérias, vetos). É a continuação natural da
+  sessão 7.
+- **SIDRA tem as tabelas da camada 1** (segurança alimentar 9552, água 6731, esgoto 7192, falta d'água 7190) e de
+  desigualdade (Gini 7435). Entram só com configuração.
+- Saíram do ar ou mudaram: API do Atlas da Violência, CKAN do OpenDataSUS, painel do TerraBrasilis; o PDET (CAGED)
+  não abre conexão.
+- Portal da Transparência, dados.gov.br e DataJud pedem chave gratuita: decisão do autor (criar as contas).
+- MapBiomas e SEEG bloquearam acesso automático e não são órgãos públicos: ficam de fora, pela regra do projeto.
+
+### Próximos passos
+Seguir a "Ordem sugerida" do documento: tabelas do SIDRA da camada 1 → Senado → Banco Central → calendário do IBGE.
+
+---
+
 ## 2026-10-30 · Sessão 7: "agora" e "próximo passo" de cada proposta votada
 
 ### Pedido do autor
