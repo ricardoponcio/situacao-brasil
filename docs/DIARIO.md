@@ -7,6 +7,39 @@ Formato de cada entrada: data · o que foi feito · decisões (com o porquê) ·
 
 ---
 
+## 2026-10-31 · Sessão 11: Banco Central (juros, dólar e inflação esperada)
+
+### O que foi feito
+- Fonte nova `bcb` (`sources/bcb/index.ts`), tema economia, aparece em "Custo de vida" (intro atualizada):
+
+  | id | origem | último valor |
+  |---|---|---|
+  | `selic` | SGS 432 (meta Selic, % ao ano) | 13,75% (31/10/2026) |
+  | `dolar` | SGS 1 (PTAX venda) | 5,42 reais (30/10/2026) |
+  | `inflacao-esperada` | Focus, IPCA 12 meses à frente (Olinda) | 4,53% (23/10/2026) |
+- Últimos 10 anos, um ponto por mês: o último dia com dado. O id é por mês, então o ponto do mês corrente é
+  atualizado a cada coleta. O rótulo é a data exata, para não parecer média do mês.
+- Leia junto: Selic ↔ inflação de 12 meses e inflação esperada (juros só pesam acima da inflação); dólar ↔ inflação;
+  inflação esperada ↔ inflação medida (aposta × o que aconteceu). A inflação esperada usa as mesmas faixas da meta.
+
+### Decisões
+- **Ponto mensal, não diário**: 10 anos de dados diários dariam 2.500 pontos por série sem ganho para quem lê.
+- **Focus 12 meses à frente**, não "IPCA do ano": a série é contínua e não dá salto na virada do ano.
+  Mediana, suavizada, todas as respostas (`baseCalculo = 0`).
+- A série 432 vem com dias futuros (a meta vale até a próxima reunião do Copom); a coleta corta em hoje.
+- Na Olinda (OData), o `$` dos parâmetros não pode ser codificado e espaço vai como `%20`: com `URLSearchParams`
+  (que usa `+`) a API responde 400.
+
+### Problemas em aberto
+- Falta mostrar os **juros reais** (Selic menos inflação) como número próprio; hoje é só o "leia junto".
+- Juros do crédito para pessoas (cartão, cheque especial) estão no SGS e seriam o número que pesa no bolso.
+
+### Próximos passos
+- Calendário do IBGE (item 4 de `FONTES-CANDIDATAS.md`).
+- Vetos e sanção, para fechar o caminho das propostas.
+
+---
+
 ## 2026-10-31 · Sessão 10: Senado e votações no celular
 
 ### O que foi feito

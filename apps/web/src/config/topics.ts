@@ -30,7 +30,8 @@ export const TOPICS: Topic[] = [
     id: 'custo-de-vida',
     title: 'Custo de vida',
     question: 'Os preços estão subindo muito?',
-    intro: 'Quanto as coisas estão ficando mais caras, e se isso está dentro do que o país definiu como aceitável.',
+    intro:
+      'Quanto as coisas estão ficando mais caras, se isso está dentro do que o país definiu como aceitável, e o que pesa nos preços: os juros e o dólar.',
     themes: ['economia'],
   },
   {

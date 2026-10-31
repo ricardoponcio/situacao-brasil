@@ -120,7 +120,7 @@ Decisão do autor necessária: criar as contas e guardar as chaves (variável de
 
 1. ~~**SIDRA**: as tabelas de necessidades básicas~~. Feito na sessão 9 (9552, 6731, 6732, 7192).
 2. ~~**Senado**: situação e votações~~. Feito na sessão 10 (API nova `/processo` e `/votacao`; a antiga `/materia` e `/plenario/lista` está descontinuada).
-3. **Banco Central**: Selic, dólar e Focus. Pendente desde a sessão 1.
+3. ~~**Banco Central**: Selic, dólar e Focus~~. Feito na sessão 11 (SGS 432 e 1; Focus 12 meses pela Olinda).
 4. **Calendário do IBGE**: mostrar "próxima atualização em ..." em cada dado.
 5. **Ipeadata** como processador parametrizável.
 6. **SICONFI**: contas de estados e municípios (primeiro passo para olhar além do país inteiro).
