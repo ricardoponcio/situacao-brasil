@@ -19,6 +19,8 @@ export const Theme = z.enum([
   'politica',
   'territorio',
   'meio-ambiente',
+  /** Dados de apoio (calendários, listas de referência), fora dos assuntos do site */
+  'referencia',
 ]);
 export type Theme = z.infer<typeof Theme>;
 
@@ -115,6 +117,11 @@ export const DatasetDescriptor = z.object({
    * Ex.: desemprego → subutilização e informalidade.
    */
   readWith: z.array(z.object({ datasetId: z.string(), why: z.string() })).default([]),
+  /**
+   * Onde sai a próxima atualização: o evento futuro do dataset de calendário `datasetId`
+   * cujo `attributes.chave` é `key`. Ex.: IPCA → { datasetId: 'ibge-divulgacoes', key: '9256' }.
+   */
+  nextRelease: z.object({ datasetId: z.string(), key: z.string() }).optional(),
   /** Representa o seu assunto no resumo da página inicial. */
   featured: z.boolean().default(false),
   /** Página oficial que descreve este dado específico */

@@ -114,6 +114,7 @@ h1, h2, h3 { line-height: 1.25; margin: 0; }
 
 .stat-value { font-size: 40px; font-weight: 600; letter-spacing: -0.01em; line-height: 1.1; }
 .stat-sub { color: var(--text-secondary); font-size: 15px; }
+.next-release { display: block; margin-top: 2px; color: var(--text-muted); font-size: 13px; }
 .delta { display: inline-flex; gap: 6px; align-items: center; font-size: 14px; padding: 2px 8px; border-radius: 999px; background: var(--surface-2); color: var(--text-primary); }
 .delta.good { background: var(--good-soft); }
 .delta.good .delta-icon { color: var(--good); }
@@ -314,6 +315,8 @@ button.link { font: inherit; background: none; border: 0; padding: 0; color: var
 .vote-more > p { margin: 6px 0 0; color: var(--text-secondary); }
 .vote-more .feed li { padding: 8px 0; }
 .vote-link { font-size: 14px; }
+.show-more { align-self: flex-start; font: inherit; font-size: 15px; padding: 10px 16px; border-radius: var(--radius); border: 1px solid var(--border); background: var(--surface-2); color: var(--accent); cursor: pointer; }
+.show-more:hover { border-color: var(--text-muted); }
 .type-badge { display: inline-flex; align-items: center; gap: 6px; font: inherit; font-size: 13px; padding: 2px 8px; border-radius: 6px; border: 1px solid var(--border); background: var(--surface-2); color: var(--text-primary); }
 button.type-badge { cursor: pointer; }
 button.type-badge:hover { border-color: var(--text-muted); }

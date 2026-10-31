@@ -1,5 +1,6 @@
 import type { Observation } from '@sb/core';
 import { LineChart, type ReferenceBand, type ReferenceLine } from '../components/charts/LineChart.tsx';
+import { NextRelease } from '../components/NextRelease.tsx';
 import { formatNumber, formatValue } from '../lib/format.ts';
 import type { Tone } from '../components/ui.tsx';
 import type { ViewDefinition, ViewProps } from './types.ts';
@@ -45,6 +46,7 @@ function TimeSeries({ descriptor, records, mode }: ViewProps) {
         <div className="stat-sub">
           {last.territory.name ?? 'Brasil'} · {last.period.label}
         </div>
+        <NextRelease descriptor={descriptor} />
       </div>
       {change && (
         <div>

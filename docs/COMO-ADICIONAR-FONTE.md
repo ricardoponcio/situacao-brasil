@@ -43,6 +43,9 @@
 - **Leia junto (`readWith`)**: se o número isolado puder ser usado para contar meia verdade, declare o par e o
   porquê. Exemplo: desemprego → subutilização e informalidade. Pergunte-se: "que número a oposição/o governo
   mostraria para rebater este?". Esse número entra como par.
+- **Próxima atualização (`nextRelease`)**: se a origem publica um calendário coletado (hoje, o do IBGE em
+  `ibge-calendario`), aponte o indicador para ele: `nextRelease: { datasetId: 'ibge-divulgacoes', key: '<produto_id>' }`.
+  O `produto_id` está em `servicodados.ibge.gov.br/api/v3/calendario/`. Ex.: IPCA = 9256, PNAD Contínua mensal = 9171.
 - **Limitações e cuidados**: escreva o que a fonte não mostra. Isso aparece no site.
 - Erro em um item: `ctx.issue(...)` e continue. Erro na fonte toda: deixe a exceção subir (a execução vira `error`).
 - Nunca contorne bloqueios de acesso (captcha, WAF, anti-robô). Use o canal oficial ou registre o problema no diário.

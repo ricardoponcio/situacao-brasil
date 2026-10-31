@@ -16,6 +16,7 @@ export const SERIES: SidraSeries[] = [
     periodType: 'mes',
     descriptor: {
       id: 'ipca-12-meses',
+      nextRelease: { datasetId: 'ibge-divulgacoes', key: '9256' },
       title: 'Inflação dos últimos 12 meses (IPCA)',
       theme: 'economia',
       unit: '%',
@@ -58,6 +59,7 @@ export const SERIES: SidraSeries[] = [
     periodType: 'mes',
     descriptor: {
       id: 'ipca-mensal',
+      nextRelease: { datasetId: 'ibge-divulgacoes', key: '9256' },
       title: 'Inflação do mês (IPCA)',
       theme: 'economia',
       unit: '%',
@@ -87,6 +89,7 @@ export const SERIES: SidraSeries[] = [
     periodType: 'trimestre-movel',
     descriptor: {
       id: 'desocupacao',
+      nextRelease: { datasetId: 'ibge-divulgacoes', key: '9171' },
       title: 'Desemprego (taxa de desocupação)',
       theme: 'trabalho',
       unit: '%',
@@ -130,6 +133,7 @@ export const SERIES: SidraSeries[] = [
     periodType: 'trimestre-movel',
     descriptor: {
       id: 'subutilizacao',
+      nextRelease: { datasetId: 'ibge-divulgacoes', key: '9171' },
       title: 'Subutilização (desemprego ampliado)',
       theme: 'trabalho',
       unit: '%',
@@ -163,6 +167,7 @@ export const SERIES: SidraSeries[] = [
     periodType: 'trimestre-movel',
     descriptor: {
       id: 'informalidade',
+      nextRelease: { datasetId: 'ibge-divulgacoes', key: '9171' },
       title: 'Trabalho informal',
       theme: 'trabalho',
       unit: '%',

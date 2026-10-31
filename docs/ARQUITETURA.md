@@ -60,6 +60,10 @@ Brutos em `data/raw/<sha256>`. A pasta `data/` fica fora do git e é recriada pe
   A tradução da situação de cada origem fica na coleta (ex.: `sources/camara-votacoes/status.ts`); o `FeedView` só exibe.
   Quando a proposta da Câmara está no Senado, a coleta da Câmara consulta o Senado (`sources/senado/api.ts`,
   `findFromCamara`) e usa `senadoStatus` (`sources/senado/status.ts`), compartilhado com a fonte `senado`.
+- `DatasetDescriptor.nextRelease` liga um indicador a um dataset de calendário (eventos futuros com `attributes.chave`).
+  O componente `NextRelease` mostra "Próximo dado: dd/mm/aaaa" abaixo do valor. Datasets de apoio, como o
+  calendário, usam o tema `referencia` e não aparecem nos assuntos.
+- Listas de propostas (`SubjectFeed`) mostram 8 assuntos e um botão "Mostrar mais".
 - `lib/api.ts`: cache em memória por URL (vários componentes pedem os mesmos registros).
 
 ## Produção (`brasil.poncio.dev`)

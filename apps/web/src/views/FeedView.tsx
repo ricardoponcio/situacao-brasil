@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import type { Event } from '@sb/core';
 import { Pill, type Tone } from '../components/ui.tsx';
 import { formatDate, formatDateTime } from '../lib/format.ts';
@@ -15,7 +16,17 @@ const OUTCOME: Record<string, { tone: Tone; icon: string; label: string }> = {
   'perdeu-validade': { tone: 'neutral', icon: '•', label: 'Perdeu a validade' },
   prejudicada: { tone: 'neutral', icon: '•', label: 'Prejudicada' },
   retirada: { tone: 'neutral', icon: '•', label: 'Retirada' },
+  'veto-total': { tone: 'neutral', icon: '•', label: 'Veto total' },
+  'veto-parcial': { tone: 'neutral', icon: '•', label: 'Veto parcial' },
+  'mantido-em-parte': { tone: 'neutral', icon: '•', label: 'Veto mantido em parte' },
 };
+
+/** Como chamar o registro mais recente do grupo, pela categoria do evento. */
+const LAST_LABEL: Record<string, string> = {
+  'decisao-final': 'Decisão final em',
+  veto: 'Vetado em',
+};
+const VOTE_CATEGORIES = new Set(['votacao-plenario', 'procedimento', 'votacao-nominal']);
 
 /** Site onde a proposta tem a tramitação completa, pelo prefixo do id do assunto. */
 const SUBJECT_SITE: Record<string, string> = {
@@ -144,7 +155,7 @@ function SubjectGroup({ g }: { g: Group }) {
       <div className="vote-status">
         <DecidedByChip who={last.decidedBy} />
         <span>
-          {last.category === 'decisao-final' ? 'Decisão final em' : 'Última votação em'} {formatDate(last.occurredAt.slice(0, 10))}
+          {LAST_LABEL[last.category] ?? 'Última votação em'} {formatDate(last.occurredAt.slice(0, 10))}
           {last.category === 'procedimento' ? ' (um pedido sobre o andamento, não o texto)' : ''}:
         </span>
         <OutcomePill outcome={last.outcome} />
@@ -157,7 +168,13 @@ function SubjectGroup({ g }: { g: Group }) {
       )}
       <details className="vote-more">
         <summary>
-          {g.events.length === 1 ? 'Ver a votação' : `Ver as ${g.events.length} votações sobre esta proposta`}
+          {g.events.every((e) => VOTE_CATEGORIES.has(e.category))
+            ? g.events.length === 1
+              ? 'Ver a votação'
+              : `Ver as ${g.events.length} votações sobre esta proposta`
+            : g.events.length === 1
+              ? 'Ver o registro'
+              : `Ver os ${g.events.length} registros sobre esta proposta`}
         </summary>
         <EventList events={g.events} />
       </details>
@@ -170,8 +187,12 @@ function SubjectGroup({ g }: { g: Group }) {
   );
 }
 
+/** Quantas propostas aparecem de início; o resto fica atrás de "Mostrar mais" (listas longas cansam, no celular mais ainda). */
+const PAGE = 8;
+
 /** Agrupa por assunto; eventos sem assunto ficam numa lista à parte. */
 export function SubjectFeed({ events }: { events: Event[] }) {
+  const [shown, setShown] = useState(PAGE);
   const groups = new Map<string, Group>();
   const loose: Event[] = [];
   for (const e of [...events].sort((a, b) => b.occurredAt.localeCompare(a.occurredAt))) {
@@ -187,10 +208,15 @@ export function SubjectFeed({ events }: { events: Event[] }) {
   return (
     <>
       <ul className="vote-groups">
-        {[...groups.values()].map((g) => (
+        {[...groups.values()].slice(0, shown).map((g) => (
           <SubjectGroup key={g.subject.id} g={g} />
         ))}
       </ul>
+      {groups.size > shown && (
+        <button className="show-more" onClick={() => setShown((n) => n + PAGE * 2)}>
+          Mostrar mais {Math.min(PAGE * 2, groups.size - shown)} (de {groups.size - shown} restantes)
+        </button>
+      )}
       {loose.length > 0 && (
         <details className="vote-more">
           <summary>Outras votações ({loose.length})</summary>

@@ -7,6 +7,41 @@ Formato de cada entrada: data · o que foi feito · decisões (com o porquê) ·
 
 ---
 
+## 2026-10-31 · Sessão 12: calendário do IBGE e vetos
+
+### O que foi feito
+- **Próximo dado.** Fonte nova `ibge-calendario` (dataset `ibge-divulgacoes`, tema novo `referencia`): divulgações
+  do IBGE de 30 dias atrás a 180 dias à frente. Campo novo `nextRelease` no descriptor liga o indicador ao produto
+  do calendário. IPCA (12 meses e mês) → 9256; desemprego, subutilização e informalidade → 9171 (PNAD mensal).
+  No site, "Próximo dado: 27/11/2026" aparece abaixo do valor.
+- **Vetos.** Dataset novo `congresso-vetos` ("Vetos do Presidente") na fonte `senado`, pela API nova
+  (`/processo?sigla=VET&ano=`), ano corrente e anterior (106 vetos). Cada veto tem dois momentos: quando o
+  Presidente vetou (total ou parcial) e, se houve, a decisão do Congresso (mantido, derrubado, mantido em parte,
+  prejudicado). "Agora / próximo passo": esperando o Congresso, ou prazo de 30 dias vencido (passa à frente das
+  outras votações); próximo passo explica que derrubar exige 257 deputados e 41 senadores.
+- **Sanção:** já entra pela situação das propostas. Quando a lei sai, a Câmara (1140) e o Senado (TNJR/TNJRVETO)
+  mudam a situação para "Virou lei" ou "Virou lei, com partes vetadas".
+- Site: rótulo do último registro conforme o tipo ("Vetado em", "Decisão final em", "Última votação em") e
+  "Ver o registro" quando não é votação. Listas de propostas mostram 8 e um botão "Mostrar mais" (a página de
+  Política ia passar de 40 mil pixels com os vetos).
+
+### Decisões
+- Pesquisas anuais (PNAD anual: fome, água, esgoto) ficam sem "próximo dado": o calendário publica "Divulgação
+  anual" com temas diferentes no mesmo produto (17270), e ligar errado seria pior que não mostrar.
+- Horário do calendário tratado como UTC (12:00 = 9h de Brasília, que é o horário em que o IBGE divulga).
+- Vetos ficam no Senado (quem publica), mas quem decide é o Congresso: `decidedBy: 'congresso'`.
+
+### Problemas em aberto
+- O veto não aponta para a proposta original no feed da Câmara/Senado (o vínculo está só no texto da ementa).
+- Selic sem "próximo dado": o calendário do Copom não tem API aberta conhecida.
+- Pesquisas anuais sem data da próxima divulgação.
+
+### Próximos passos
+- Ipeadata como processador parametrizável (item 5 de `FONTES-CANDIDATAS.md`).
+- Juros reais e juros do crédito para pessoas (sessão 11).
+
+---
+
 ## 2026-10-31 · Sessão 11: Banco Central (juros, dólar e inflação esperada)
 
 ### O que foi feito

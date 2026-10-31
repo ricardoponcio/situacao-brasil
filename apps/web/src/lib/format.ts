@@ -62,4 +62,5 @@ export const THEME_LABEL: Record<string, string> = {
   politica: 'Política',
   territorio: 'Territórios',
   'meio-ambiente': 'Meio ambiente',
+  referencia: 'Referência',
 };
