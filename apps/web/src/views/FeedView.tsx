@@ -30,7 +30,6 @@ const LAST_LABEL: Record<string, string> = {
   'decisao-final': 'Decisão final em',
   veto: 'Vetado em',
 };
-const VOTE_CATEGORIES = new Set(['votacao-plenario', 'procedimento', 'votacao-nominal']);
 
 /** Site onde a proposta tem a tramitação completa, pelo prefixo do id do assunto. */
 export const SUBJECT_SITE: Record<string, string> = {
@@ -131,6 +130,20 @@ export function VetoNote({ events }: { events: Event[] }) {
   );
 }
 
+/** "Última votação em 15/10/2026: Aprovada", com quem decidiu. */
+export function LastRecord({ event }: { event: Event }) {
+  return (
+    <div className="vote-status">
+      <DecidedByChip who={event.decidedBy} />
+      <span>
+        {LAST_LABEL[event.category] ?? 'Última votação em'} {formatDate(event.occurredAt.slice(0, 10))}
+        {event.category === 'procedimento' ? ' (um pedido sobre o andamento, não o texto)' : ''}:
+      </span>
+      <OutcomePill outcome={event.outcome} />
+    </div>
+  );
+}
+
 /** Selo cinza com a sigla. Se existir diagrama para o tipo, abre a explicação na aba certa. */
 export function TypeBadge({ kind }: { kind: string }) {
   const t = PROPOSITION_TYPES[kind];
@@ -184,7 +197,7 @@ interface Group {
   events: Event[]; // mais recente primeiro
 }
 
-/** Um assunto (ex.: um projeto de lei) com todas as votações sobre ele. */
+/** Um assunto (ex.: um projeto de lei) na lista: o resumo e onde está. O resto fica na página de detalhes. */
 function SubjectGroup({ g, vetos, resumos }: { g: Group; vetos?: Event[]; resumos?: PropostaResumo[] }) {
   const last = g.events[0]!;
   const ref = g.subject.ref;
@@ -208,42 +221,24 @@ function SubjectGroup({ g, vetos, resumos }: { g: Group; vetos?: Event[]; resumo
       {resumo && <ResumoIA resumo={resumo} />}
       {status && <SubjectProgress status={status} />}
       {!isVeto && vetos && <VetoNote events={vetos} />}
-      <div className="vote-status">
-        <DecidedByChip who={last.decidedBy} />
-        <span>
-          {LAST_LABEL[last.category] ?? 'Última votação em'} {formatDate(last.occurredAt.slice(0, 10))}
-          {last.category === 'procedimento' ? ' (um pedido sobre o andamento, não o texto)' : ''}:
-        </span>
-        <OutcomePill outcome={last.outcome} />
-      </div>
       {(gist || resumo) && (
         <details className="vote-more">
           <summary>Texto oficial (ementa)</summary>
           <p>{g.subject.title}</p>
         </details>
       )}
-      <details className="vote-more">
-        <summary>
-          {g.events.every((e) => VOTE_CATEGORIES.has(e.category))
-            ? g.events.length === 1
-              ? 'Ver a votação'
-              : `Ver as ${g.events.length} votações sobre esta proposta`
-            : g.events.length === 1
-              ? 'Ver o registro'
-              : `Ver os ${g.events.length} registros sobre esta proposta`}
-        </summary>
-        <EventList events={g.events} />
-      </details>
+      {/* Votações, última votação e tramitação ficam na página de detalhes. */}
       <div className="vote-links">
-        {ref && (
+        {ref ? (
           <a className="vote-link" href={href.proposta(ref)}>
-            {isVeto ? 'Ver a história do projeto vetado' : 'Ver tudo sobre esta proposta (Câmara, Senado e vetos)'}
+            Ver detalhes
           </a>
-        )}
-        {g.subject.url && (
-          <a className="vote-link" href={g.subject.url} target="_blank" rel="noreferrer">
-            {SUBJECT_SITE[g.subject.id.split(':')[0]!] ?? 'Tramitação completa'}
-          </a>
+        ) : (
+          g.subject.url && (
+            <a className="vote-link" href={g.subject.url} target="_blank" rel="noreferrer">
+              {SUBJECT_SITE[g.subject.id.split(':')[0]!] ?? 'Tramitação completa'}
+            </a>
+          )
         )}
       </div>
     </li>

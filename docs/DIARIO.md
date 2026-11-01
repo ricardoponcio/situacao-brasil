@@ -22,6 +22,9 @@ Formato de cada entrada: data · o que foi feito · decisões (com o porquê) ·
   entrega em `GET /api/resumos?refs=` e o site troca a ementa pelo título simples nos cards e na página da proposta,
   com a descrição e o aviso "Resumo feito por inteligência artificial… confira o texto oficial" (link do PDF).
 - Piloto: 22 resumos de 21 propostas (PL, PLP, PEC, PDL, PRS, MPV), cerca de 1 min e meio, equivalente a US$ 0,05 na API.
+- **Cards mais simples**, agora que existe a página de detalhes: ficam o resumo, "Agora" e "Próximo passo", o veto
+  e um "Ver detalhes". Saíram do card a última votação, a lista de votações e o link da tramitação. Na página, a
+  última votação e os links dos sites oficiais entraram no "Em que pé está".
 
 ### Decisões
 - **Sem a justificação nem a exposição de motivos** dos ministros: é o argumento de quem propôs e puxaria o resumo

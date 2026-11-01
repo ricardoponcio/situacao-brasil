@@ -6,7 +6,7 @@ import { useAsync } from '../lib/useAsync.ts';
 import { Async, Card, Section } from '../components/ui.tsx';
 import { ResumoIA, casaOf, pickResumo, useResumos } from '../components/Resumo.tsx';
 import { ementaGist } from '../content/propositionTypes.ts';
-import { DecidedByChip, OutcomePill, SUBJECT_SITE, SubjectProgress, TypeBadge, VetoNote } from '../views/FeedView.tsx';
+import { DecidedByChip, LastRecord, OutcomePill, SUBJECT_SITE, SubjectProgress, TypeBadge, VetoNote } from '../views/FeedView.tsx';
 
 type Status = NonNullable<NonNullable<Event['subject']>['status']>;
 
@@ -93,11 +93,21 @@ function Proposta({ refKey, events }: { refKey: string; events: Event[] }) {
         )}
       </div>
 
-      {(status || vetos.length > 0) && (
+      {(status || vetos.length > 0 || decisivos.length > 0 || sites.size > 0) && (
         <Section title="Em que pé está">
           <Card>
             {status && <SubjectProgress status={status} />}
             {vetos.length > 0 && <VetoNote events={vetos} />}
+            {decisivos.length > 0 && <LastRecord event={decisivos.at(-1)!} />}
+            {sites.size > 0 && (
+              <div className="vote-links">
+                {[...sites].map(([url, label]) => (
+                  <a key={url} className="vote-link" href={url} target="_blank" rel="noreferrer">
+                    {label}
+                  </a>
+                ))}
+              </div>
+            )}
           </Card>
         </Section>
       )}
@@ -119,20 +129,6 @@ function Proposta({ refKey, events }: { refKey: string; events: Event[] }) {
           )}
         </Card>
       </Section>
-
-      {sites.size > 0 && (
-        <Section title="Nos sites oficiais">
-          <ul className="caveats">
-            {[...sites].map(([url, label]) => (
-              <li key={url}>
-                <a href={url} target="_blank" rel="noreferrer">
-                  {label}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </Section>
-      )}
 
       <p className="muted">
         Aqui aparece o que este site coletou: votações dos últimos 30 dias e vetos deste ano e do anterior. O histórico
