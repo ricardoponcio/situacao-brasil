@@ -53,6 +53,35 @@ CREATE TABLE IF NOT EXISTS raw_blobs (
   bytes        INTEGER NOT NULL,
   content_type TEXT NOT NULL
 );
+
+-- Texto oficial de cada proposta, por Casa (a versão muda quando passa de uma Casa à outra).
+-- Só os artigos: a justificação é o argumento do autor e fica de fora.
+CREATE TABLE IF NOT EXISTS propostas_textos (
+  ref         TEXT NOT NULL,
+  casa        TEXT NOT NULL,
+  url         TEXT,
+  raw_hash    TEXT,
+  texto_hash  TEXT,
+  texto       TEXT NOT NULL DEFAULT '',
+  problema    TEXT,
+  fetched_at  TEXT NOT NULL,
+  PRIMARY KEY (ref, casa)
+);
+
+-- Resumo em linguagem simples, feito por IA a partir de um texto (mesmo texto, mesmo resumo).
+-- Vem também do arquivo versionado apps/ingest/dados/resumos-propostas.json (o servidor não tem os textos).
+CREATE TABLE IF NOT EXISTS propostas_resumos (
+  texto_hash    TEXT PRIMARY KEY,
+  ref           TEXT NOT NULL,
+  casa          TEXT NOT NULL,
+  texto_url     TEXT,
+  titulo        TEXT NOT NULL,
+  descricao     TEXT NOT NULL,
+  modelo        TEXT NOT NULL,
+  versao_prompt TEXT NOT NULL,
+  criado_em     TEXT NOT NULL
+);
+CREATE INDEX IF NOT EXISTS idx_propostas_resumos_ref ON propostas_resumos(ref);
 `;
 
 export function openDatabase(file = dbPath): DatabaseSync {

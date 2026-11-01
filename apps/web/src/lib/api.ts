@@ -3,6 +3,7 @@ import type {
   DatasetDescriptor,
   DatasetDetail,
   DatasetStats,
+  PropostaResumo,
   RecordsResponse,
   RunSummary,
   SbRecord,
@@ -60,6 +61,11 @@ export const api = {
   },
   /** Eventos de todas as fontes sobre uma proposta (chave de `subject.ref`), do mais antigo ao mais recente. */
   proposta: (ref: string) => get<SbRecord[]>(`/propostas/${encodeURIComponent(ref)}`),
+  /** Resumos em linguagem simples (feitos por IA) das propostas pedidas. */
+  resumos: (refs: string[]) =>
+    refs.length
+      ? get<PropostaResumo[]>(`/resumos?refs=${[...new Set(refs)].sort().map(encodeURIComponent).join(',')}`)
+      : Promise.resolve([]),
   feed: (limit = 50) => get<SbRecord[]>(`/feed?limit=${limit}`),
   sources: () => get<SourceSummary[]>('/sources'),
   source: (id: string) => get<SourceSummary & { runs: RunSummary[] }>(`/sources/${encodeURIComponent(id)}`),

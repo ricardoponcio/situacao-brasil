@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react';
-import { refLabel, type Event } from '@sb/core';
+import { refLabel, type Event, type PropostaResumo } from '@sb/core';
 import { Pill, type Tone } from '../components/ui.tsx';
+import { ResumoIA, casaOf, pickResumo, useResumos } from '../components/Resumo.tsx';
 import { api } from '../lib/api.ts';
 import { href } from '../lib/router.ts';
 import { useAsync } from '../lib/useAsync.ts';
@@ -184,11 +185,13 @@ interface Group {
 }
 
 /** Um assunto (ex.: um projeto de lei) com todas as votações sobre ele. */
-function SubjectGroup({ g, vetos }: { g: Group; vetos?: Event[] }) {
+function SubjectGroup({ g, vetos, resumos }: { g: Group; vetos?: Event[]; resumos?: PropostaResumo[] }) {
   const last = g.events[0]!;
   const ref = g.subject.ref;
   const isVeto = g.subject.kind === 'VET';
   const gist = ementaGist(g.subject.title);
+  // Num veto, o resumo seria do projeto vetado, não do veto: fica para a página da proposta.
+  const resumo = isVeto ? undefined : pickResumo(resumos, casaOf(g.subject.id));
   const status = latestStatus(g.events);
   return (
     <li className={`vote-group actor-${status?.now.where ?? last.decidedBy ?? 'proponente'}`}>
@@ -201,7 +204,8 @@ function SubjectGroup({ g, vetos }: { g: Group; vetos?: Event[] }) {
           </span>
         )}
       </div>
-      <p className="vote-title">{gist ?? g.subject.title}</p>
+      <p className="vote-title">{resumo?.titulo ?? gist ?? g.subject.title}</p>
+      {resumo && <ResumoIA resumo={resumo} />}
       {status && <SubjectProgress status={status} />}
       {!isVeto && vetos && <VetoNote events={vetos} />}
       <div className="vote-status">
@@ -212,7 +216,7 @@ function SubjectGroup({ g, vetos }: { g: Group; vetos?: Event[] }) {
         </span>
         <OutcomePill outcome={last.outcome} />
       </div>
-      {gist && (
+      {(gist || resumo) && (
         <details className="vote-more">
           <summary>Texto oficial (ementa)</summary>
           <p>{g.subject.title}</p>
@@ -265,12 +269,18 @@ export function SubjectFeed({ events }: { events: Event[] }) {
   }
   const all = [...groups.values()];
   const vetos = useVetosByRef(all.some((g) => g.subject.ref && g.subject.kind !== 'VET'));
+  const resumos = useResumos(all.flatMap((g) => (g.subject.ref && g.subject.kind !== 'VET' ? [g.subject.ref] : [])));
   if (!groups.size) return <EventList events={loose} />;
   return (
     <>
       <ul className="vote-groups">
         {all.slice(0, shown).map((g) => (
-          <SubjectGroup key={g.subject.id} g={g} vetos={g.subject.ref ? vetos.get(g.subject.ref) : undefined} />
+          <SubjectGroup
+            key={g.subject.id}
+            g={g}
+            vetos={g.subject.ref ? vetos.get(g.subject.ref) : undefined}
+            resumos={g.subject.ref ? resumos.get(g.subject.ref) : undefined}
+          />
         ))}
       </ul>
       {groups.size > shown && (

@@ -8,6 +8,7 @@
 import { Storage } from '@sb/storage';
 import { loadProcessors } from './framework/registry.ts';
 import { Runner } from './framework/Runner.ts';
+import { importarResumos } from './propostas/arquivo.ts';
 
 const args = process.argv.slice(2);
 const options: Record<string, string> = {};
@@ -47,6 +48,7 @@ if (unknown.length) {
 }
 
 const storage = new Storage();
+console.log(`> resumos das propostas: ${importarResumos(storage)} importados do arquivo`);
 const runner = new Runner(storage, options);
 let failed = false;
 for (const p of selected) {

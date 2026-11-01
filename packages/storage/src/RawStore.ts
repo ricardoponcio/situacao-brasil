@@ -14,7 +14,12 @@ export class RawStore {
     mkdirSync(dir, { recursive: true });
   }
 
-  save(body: string, url: string, contentType: string): RawBlobInfo {
+  /** Caminho do bruto no disco (para ferramentas externas, como o pdftotext). */
+  pathOf(hash: string): string {
+    return path.join(this.dir, hash);
+  }
+
+  save(body: string | Buffer, url: string, contentType: string): RawBlobInfo {
     const hash = createHash('sha256').update(body).digest('hex');
     const file = path.join(this.dir, hash);
     if (!existsSync(file)) writeFileSync(file, body);

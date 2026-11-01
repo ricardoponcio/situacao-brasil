@@ -34,7 +34,9 @@ export class HttpClient {
   ) {}
 
   async getJson<T = unknown>(url: string, opts: HttpOptions = {}): Promise<FetchResult<T>> {
-    const { body, contentType } = await this.getText(url, opts);
+    const res = await this.request(url, 'application/json', opts);
+    const body = res.body.toString('utf8');
+    const contentType = res.contentType;
     let data: T;
     try {
       data = JSON.parse(body) as T;
@@ -45,16 +47,23 @@ export class HttpClient {
     return { data, origin: { url, rawHash: info.hash, fetchedAt: info.fetchedAt } };
   }
 
-  private async getText(url: string, { timeoutMs = 30_000, retries = 2 }: HttpOptions) {
+  /** Arquivo binário (ex.: PDF do texto de uma proposta), também arquivado. */
+  async getBytes(url: string, opts: HttpOptions = {}): Promise<FetchResult<Buffer> & { contentType: string }> {
+    const { body, contentType } = await this.request(url, '*/*', opts);
+    const info = this.raw.save(body, url, contentType);
+    return { data: body, contentType, origin: { url, rawHash: info.hash, fetchedAt: info.fetchedAt } };
+  }
+
+  private async request(url: string, accept: string, { timeoutMs = 30_000, retries = 2 }: HttpOptions) {
     let lastErr: unknown;
     for (let attempt = 0; attempt <= retries; attempt++) {
       await this.throttle(url);
       try {
         const res = await fetch(url, {
-          headers: { 'User-Agent': this.userAgent, Accept: 'application/json' },
+          headers: { 'User-Agent': this.userAgent, Accept: accept },
           signal: AbortSignal.timeout(timeoutMs),
         });
-        const body = await res.text();
+        const body = Buffer.from(await res.arrayBuffer());
         if (res.ok) return { body, contentType: res.headers.get('content-type') ?? 'application/octet-stream' };
         lastErr = new Error(`HTTP ${res.status} em ${url}`);
         if (res.status < 500 && res.status !== 429) break; // erro do cliente: não adianta repetir

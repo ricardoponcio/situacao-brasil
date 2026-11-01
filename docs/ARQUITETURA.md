@@ -24,10 +24,20 @@
 - `framework/HttpClient.ts`: User-Agent honesto, espaçamento por host, novas tentativas, arquivamento do bruto.
 - `framework/registry.ts`: auto-descoberta de `src/sources/*/index.ts`.
 - `framework/Runner.ts`: grava catálogo e registros em lotes, e o log de execução em `runs`.
-- CLI: `npm run ingest [-- <fonte...>] [--list] [--opt chave=valor]`.
+- CLI: `npm run ingest [-- <fonte...>] [--list] [--opt chave=valor]`. Antes das fontes, importa os resumos de
+  `apps/ingest/dados/resumos-propostas.json`.
+- **Resumos das propostas** (`src/propostas/`), fora da coleta regular, rodados à mão na máquina do autor:
+  - `npm run textos [-- --limite N --refs A,B --refazer]`: baixa o PDF oficial de cada proposta citada nos registros
+    (Câmara `urlInteiroTeor`, Senado `documento.url`), extrai com `pdftotext` e guarda só os artigos (corta a
+    justificação e a exposição de motivos). Um texto por proposta e Casa.
+  - `npm run resumos [-- --limite N --paralelo N --modelo haiku]`: título e descrição em linguagem simples, pelo
+    `claude -p` (assinatura do autor, sem ferramentas, numa pasta vazia). Texto já resumido na mesma
+    `VERSAO_PROMPT` não é refeito. No fim exporta tudo para o JSON versionado, que leva os resumos ao ar no push.
 
 ## Armazenamento (`packages/storage`)
-Tabelas: `sources`, `datasets`, `records` (payload JSON + colunas extraídas para filtrar), `runs`, `raw_blobs`.
+Tabelas: `sources`, `datasets`, `records` (payload JSON + colunas extraídas para filtrar), `runs`, `raw_blobs`,
+`propostas_textos` (texto oficial por proposta e Casa; só existe onde `npm run textos` rodou) e `propostas_resumos`
+(chave: hash do texto resumido).
 Brutos em `data/raw/<sha256>`. A pasta `data/` fica fora do git e é recriada pela ingestão.
 
 ## API (`apps/api`, porta 3101)
@@ -39,6 +49,7 @@ Brutos em `data/raw/<sha256>`. A pasta `data/` fica fora do git e é recriada pe
 | `GET /api/datasets/:id` | descriptor + fonte + estatísticas |
 | `GET /api/datasets/:id/records?level=&territory=&from=&to=&order=&limit=` | registros de qualquer tipo |
 | `GET /api/propostas/:ref` | eventos de todas as fontes sobre uma proposta (`subject.ref`), do mais antigo ao mais recente |
+| `GET /api/resumos?refs=A,B` | resumos em linguagem simples (IA) das propostas pedidas, um por versão do texto |
 | `GET /api/feed?limit=` | eventos de todas as fontes, mais recentes primeiro |
 | `GET /api/raw/:hash[?info]` | resposta bruta exatamente como veio da origem |
 
@@ -72,6 +83,9 @@ Brutos em `data/raw/<sha256>`. A pasta `data/` fica fora do git e é recriada pe
   cada Casa e ganham o sufixo `-cd`/`-sf`. O storage indexa `json_extract(payload, '$.subject.ref')`. Os cards
   mostram o veto do projeto (`VetoNote`, lendo o dataset `congresso-vetos`) e o link para a página da proposta.
 - Listas de propostas (`SubjectFeed`) mostram 8 assuntos e um botão "Mostrar mais".
+- Resumos (`components/Resumo.tsx`): o card e a página da proposta usam o título simples no lugar da ementa e mostram
+  a descrição com o aviso de IA e o link do PDF. Escolhe a versão da Casa do card (na página, da Casa do último
+  evento); sem resumo, continua a ementa.
 - `lib/api.ts`: cache em memória por URL (vários componentes pedem os mesmos registros).
 
 ## Produção (`brasil.poncio.dev`)

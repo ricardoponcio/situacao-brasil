@@ -4,7 +4,9 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "start": "tsx src/cli.ts"
+    "start": "tsx src/cli.ts",
+    "textos": "tsx src/propostas/textos.ts",
+    "resumos": "tsx src/propostas/resumos.ts"
   },
   "dependencies": {
     "@sb/core": "*",

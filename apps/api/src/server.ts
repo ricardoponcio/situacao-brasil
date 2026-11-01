@@ -5,7 +5,7 @@ import { Storage } from '@sb/storage';
 import { HttpError, Router } from './Router.ts';
 
 const storage = new Storage();
-const { catalog, records, runs, raw } = storage;
+const { catalog, records, runs, raw, resumos } = storage;
 
 function summarizeSource(id: string): SourceSummary {
   const manifest = catalog.getSource(id);
@@ -67,6 +67,13 @@ const router = new Router()
   .get('/api/propostas/:ref', ({ params }) =>
     records.query({ kind: 'event', subjectRef: params.ref, order: 'asc', limit: 2000 }),
   )
+
+  // Resumos em linguagem simples (feitos por IA), por proposta: ?refs=PL-1123-2025,MPV-1370-2026
+  .get('/api/resumos', ({ query }) => {
+    const refs = (query.get('refs') ?? '').split(',').filter(Boolean);
+    if (refs.length > 500) throw new HttpError(400, 'No máximo 500 propostas por consulta');
+    return resumos.byRefs(refs);
+  })
 
   // Payload bruto exatamente como veio da origem
   .get('/api/raw/:hash', ({ params, query }) => {

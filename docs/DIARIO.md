@@ -7,6 +7,42 @@ Formato de cada entrada: data · o que foi feito · decisões (com o porquê) ·
 
 ---
 
+## 2026-11-01 · Sessão 14: resumos das propostas em linguagem simples (IA)
+
+### O que foi feito
+- **Volume medido** antes de decidir: cerca de 150 propostas novas por mês (Senado ~100, Câmara, vetos ~5); 821
+  pares proposta/Casa no banco hoje. O texto existe nas duas APIs como PDF público: Câmara `urlInteiroTeor`,
+  Senado `documento.url` (em `/processo/{id}`).
+- `npm run textos`: baixa o PDF, arquiva no `RawStore` (agora aceita binário; `HttpClient.getBytes`), extrai com
+  `pdftotext` e guarda só os artigos em `propostas_textos`. PDF só de imagem fica marcado como problema.
+- `npm run resumos`: chama `claude -p --model haiku` (assinatura do autor), sem ferramentas e numa pasta vazia, com
+  saída em JSON (`--json-schema`). Grava em `propostas_resumos` pela impressão digital do texto e exporta tudo para
+  `apps/ingest/dados/resumos-propostas.json`.
+- No ar: o servidor não tem o Claude nem os textos. O JSON vai no git, a coleta importa a cada rodada, a API
+  entrega em `GET /api/resumos?refs=` e o site troca a ementa pelo título simples nos cards e na página da proposta,
+  com a descrição e o aviso "Resumo feito por inteligência artificial… confira o texto oficial" (link do PDF).
+- Piloto: 22 resumos de 21 propostas (PL, PLP, PEC, PDL, PRS, MPV), cerca de 1 min e meio, equivalente a US$ 0,05 na API.
+
+### Decisões
+- **Sem a justificação nem a exposição de motivos** dos ministros: é o argumento de quem propôs e puxaria o resumo
+  para um lado. Corte em `JUSTIFICAÇÃO`, `EM nº`/`EMI nº`/`EXM nº` e "Senhor Presidente da República,".
+- **A IA não fala do andamento.** Na v1 ela deduzia ("ainda precisa passar pelo Senado") e errou na PEC 221, que já
+  é emenda constitucional. O andamento continua vindo dos dados oficiais. v2 também limita a 60 palavras, tira o
+  "entra em vigor na data da publicação" e o "o texto não deixa claro" por hábito.
+- **Um texto por Casa**: no PLP 186/2026 a versão do Senado tem o perdão de dívidas do MEI e a da Câmara (original)
+  não. Mesmo texto nas duas Casas gera um resumo só.
+- Resumos fora de `records` (a coleta reescreve os registros) e fora da coleta regular (o Claude roda só aqui).
+  Trocar para API/OpenRouter depois muda só a função `resumir`.
+
+### Problemas em aberto
+- O texto da Câmara é o original (`urlInteiroTeor`); substitutivos aprovados ainda não entram.
+- Propostas novas só ganham resumo quando alguém roda `textos` + `resumos` e faz commit do JSON.
+
+### Próximos passos
+- Rodar os ~796 textos restantes e resumir (cerca de 40 min). Depois, "o que mudou" entre as versões de cada Casa.
+
+---
+
 ## 2026-10-31 · Sessão 13: ligar vetos, Câmara e Senado pela mesma proposta
 
 ### O que foi feito

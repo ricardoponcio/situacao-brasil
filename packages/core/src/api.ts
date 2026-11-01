@@ -43,3 +43,20 @@ export interface RawBlobInfo {
   bytes: number;
   contentType: string;
 }
+
+/**
+ * Título e descrição em linguagem simples de uma versão do texto de uma proposta, escritos por IA
+ * a partir do texto oficial (só os artigos). Cada Casa pode ter a sua versão.
+ */
+export interface PropostaResumo {
+  ref: string;
+  casa: 'camara' | 'senado';
+  textoHash: string;
+  /** PDF oficial de onde saiu o texto resumido */
+  textoUrl: string | null;
+  titulo: string;
+  descricao: string;
+  modelo: string;
+  versaoPrompt: string;
+  criadoEm: string;
+}

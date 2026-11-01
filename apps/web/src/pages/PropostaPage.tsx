@@ -4,6 +4,7 @@ import { formatDate } from '../lib/format.ts';
 import { href } from '../lib/router.ts';
 import { useAsync } from '../lib/useAsync.ts';
 import { Async, Card, Section } from '../components/ui.tsx';
+import { ResumoIA, casaOf, pickResumo, useResumos } from '../components/Resumo.tsx';
 import { ementaGist } from '../content/propositionTypes.ts';
 import { DecidedByChip, OutcomePill, SUBJECT_SITE, SubjectProgress, TypeBadge, VetoNote } from '../views/FeedView.tsx';
 
@@ -66,6 +67,8 @@ function Proposta({ refKey, events }: { refKey: string; events: Event[] }) {
     }
   }
   const gist = subject && subject.kind !== 'VET' ? ementaGist(subject.title) : null;
+  // Versão do texto da Casa onde a proposta andou por último.
+  const resumo = pickResumo(useResumos([refKey]).get(refKey), own.at(-1) && casaOf(own.at(-1)!.subject!.id));
 
   return (
     <>
@@ -74,8 +77,15 @@ function Proposta({ refKey, events }: { refKey: string; events: Event[] }) {
       </div>
       <h1 className="page-title">{refLabel(refKey)}</h1>
       <div className="proposta-ementa">
-        {subject && <p className="explain-simple">{gist ?? subject.title}</p>}
-        {gist && subject && (
+        {resumo ? (
+          <>
+            <p className="vote-title">{resumo.titulo}</p>
+            <ResumoIA resumo={resumo} />
+          </>
+        ) : (
+          subject && <p className="explain-simple">{gist ?? subject.title}</p>
+        )}
+        {(gist || resumo) && subject && (
           <details className="vote-more">
             <summary>Texto oficial (ementa)</summary>
             <p>{subject.title}</p>

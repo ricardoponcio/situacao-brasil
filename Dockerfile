@@ -29,6 +29,7 @@ COPY --from=check /app/packages/core/src packages/core/src
 COPY --from=check /app/packages/storage/src packages/storage/src
 COPY --from=check /app/apps/api/src apps/api/src
 COPY --from=check /app/apps/ingest/src apps/ingest/src
+COPY --from=check /app/apps/ingest/dados apps/ingest/dados
 RUN mkdir -p /data && chown node:node /data
 USER node
 VOLUME ["/data"]

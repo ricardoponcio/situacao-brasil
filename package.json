@@ -10,6 +10,8 @@
   ],
   "scripts": {
     "ingest": "npm run start -w @sb/ingest --",
+    "textos": "npm run textos -w @sb/ingest --",
+    "resumos": "npm run resumos -w @sb/ingest --",
     "api": "npm run dev -w @sb/api",
     "web": "npm run dev -w @sb/web",
     "typecheck": "tsc -p packages/core && tsc -p packages/storage && tsc -p apps/ingest && tsc -p apps/api && tsc -p apps/web"
