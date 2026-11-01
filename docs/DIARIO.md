@@ -37,12 +37,17 @@ Formato de cada entrada: data · o que foi feito · decisões (com o porquê) ·
 - Resumos fora de `records` (a coleta reescreve os registros) e fora da coleta regular (o Claude roda só aqui).
   Trocar para API/OpenRouter depois muda só a função `resumir`.
 
+- **Rodada completa**: 821 textos (proposta e Casa), 691 com texto e 130 PDFs só de imagem (122 PDLs, quase
+  todos de rádio e TV antigos, e 8 PLs). 689 resumos (textos iguais nas duas Casas viram um só), 0 erros,
+  equivalente a US$ 1,12 na API. Média de 51 palavras por descrição, máximo de 74.
+
 ### Problemas em aberto
+- 130 PDFs sem camada de texto: precisariam de OCR (ou usar só a ementa). Ficam com a ementa por enquanto.
 - O texto da Câmara é o original (`urlInteiroTeor`); substitutivos aprovados ainda não entram.
 - Propostas novas só ganham resumo quando alguém roda `textos` + `resumos` e faz commit do JSON.
 
 ### Próximos passos
-- Rodar os ~796 textos restantes e resumir (cerca de 40 min). Depois, "o que mudou" entre as versões de cada Casa.
+- "O que mudou" entre as versões de cada Casa. Decidir o que fazer com os PDFs só de imagem.
 
 ---
 
