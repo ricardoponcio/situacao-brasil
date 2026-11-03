@@ -85,7 +85,9 @@ export function HomePage() {
     <>
       <section className="hero">
         <p className="hero-kicker">{formatDate(new Date().toISOString().slice(0, 10))}</p>
-        <h1 className="hero-title">O Brasil hoje, em poucas frases</h1>
+        <h1 className="hero-title">
+          O Brasil hoje, em <em>poucas frases</em>
+        </h1>
         {datasets.status === 'error' && <p className="status-error">Não foi possível carregar os dados.</p>}
         <ul className="brief">
           {active.map(({ topic, lead }) => (

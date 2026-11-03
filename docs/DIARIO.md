@@ -7,6 +7,30 @@ Formato de cada entrada: data · o que foi feito · decisões (com o porquê) ·
 
 ---
 
+## 2026-11-03 · Sessão 15: visual igual ao do PenseBrasil
+
+### O que foi feito
+- O site passou a usar o mesmo sistema visual do PenseBrasil (DESIGN.md do outro projeto): fundo verde-escuro em
+  camadas (`page` → `surface` → `surface-raised` → `hero`), amarelo (`flag`) para ação e destaque, verde-claro
+  (`brand`) para confiança e sucesso, coral (`danger`) para erro. Títulos em Archivo, texto em IBM Plex Sans
+  (Google Fonts, no `index.html`). Cantos grandes, sem sombra, foco com anel amarelo.
+- Os tokens do sistema ficam no topo de `apps/web/src/styles.css`. Os nomes antigos (`--surface-1`, `--accent`,
+  `--good`...) viraram apelidos para esses tokens, então nenhum componente precisou mudar de cor no TSX.
+- Página inicial: o bloco de abertura virou o "hero" do sistema (caixa alta, "poucas frases" em amarelo, sobretítulo
+  com fios). Menu em pílulas, a página ativa em amarelo. Logo e favicon: círculo verde com losango amarelo
+  (`apps/web/public/favicon.svg`).
+
+### Decisões
+- **Só tema escuro**, como no sistema de origem. O tema claro foi removido.
+- Cores de Câmara, Senado e Presidência continuam distintas (verde, azul, laranja), levemente ajustadas para o fundo
+  verde. São categorias de dados, não papéis do sistema.
+- Fica só o visual. Nenhuma frase ou selo do outro site veio junto, para manter o site sem lado político.
+
+### Próximos passos
+- Conferir contraste do texto fraco (`faint`) em letra pequena sobre os cartões: dá cerca de 4,4:1, no limite.
+
+---
+
 ## 2026-11-01 · Sessão 14: resumos das propostas em linguagem simples (IA)
 
 ### O que foi feito

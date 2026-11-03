@@ -22,8 +22,11 @@ function App() {
     <div className="shell">
       <header className="topbar">
         <a className="brand" href={href.home()}>
-          Situação do Brasil
-          <small>Dados oficiais, explicados e auditáveis</small>
+          <img className="brand-logo" src="/favicon.svg" alt="" />
+          <span>
+            Situação do Brasil
+            <small>Dados oficiais, explicados e auditáveis</small>
+          </span>
         </a>
         <nav className="nav">
           <a href={href.home()} aria-current={!section ? 'page' : undefined}>
