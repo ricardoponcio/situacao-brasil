@@ -25,6 +25,7 @@ Formato de cada entrada: data · o que foi feito · decisões (com o porquê) ·
 - Cores de Câmara, Senado e Presidência continuam distintas (verde, azul, laranja), levemente ajustadas para o fundo
   verde. São categorias de dados, não papéis do sistema.
 - Fica só o visual. Nenhuma frase ou selo do outro site veio junto, para manter o site sem lado político.
+- **Endereço novo:** o endereço principal passa a ser `monitor.pensebrasil.com.br` (antes `brasil.poncio.dev`).
 
 ### Próximos passos
 - Conferir contraste do texto fraco (`faint`) em letra pequena sobre os cartões: dá cerca de 4,4:1, no limite.
