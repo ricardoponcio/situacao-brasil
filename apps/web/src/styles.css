@@ -74,6 +74,8 @@ strong, b { font-weight: 600; }
 .nav a { text-decoration: none; color: var(--text-secondary); font-weight: 500; padding: 8px 12px; border-radius: var(--radius-sm); white-space: nowrap; }
 .nav a:hover { background: var(--surface-2); filter: none; }
 .nav a[aria-current='page'] { background: var(--flag); color: var(--flag-ink); font-weight: 600; }
+.footer { margin-top: 48px; padding-top: 18px; border-top: 1px solid var(--border); font-size: 13px; color: var(--text-muted); }
+.footer a { color: inherit; }
 
 .section { margin-bottom: 40px; }
 .section-head { margin-bottom: 14px; }

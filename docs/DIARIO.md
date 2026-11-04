@@ -7,6 +7,15 @@ Formato de cada entrada: data · o que foi feito · decisões (com o porquê) ·
 
 ---
 
+## 2026-11-04 · Sessão 16: rodapé com link para o Pense Brasil
+
+### O que foi feito
+- Rodapé discreto no fim de todas as páginas: "Um projeto Pense Brasil", com link para https://pensebrasil.com.br
+  (portal novo que reúne o monitor e o Apoio Patriota). Classe `.footer` no `styles.css`, em `--text-muted`.
+
+### Decisões
+- Só o nome e o link, sem slogan: o monitor continua neutro (sem clubismo político).
+
 ## 2026-11-03 · Sessão 15: visual igual ao do PenseBrasil
 
 ### O que foi feito

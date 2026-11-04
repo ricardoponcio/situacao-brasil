@@ -38,6 +38,9 @@ function App() {
         </nav>
       </header>
       <main>{page}</main>
+      <footer className="footer">
+        Um projeto <a href="https://pensebrasil.com.br">Pense Brasil</a>
+      </footer>
     </div>
   );
 }
