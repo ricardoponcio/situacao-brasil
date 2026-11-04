@@ -27,6 +27,12 @@ Formato de cada entrada: data · o que foi feito · decisões (com o porquê) ·
 - Fica só o visual. Nenhuma frase ou selo do outro site veio junto, para manter o site sem lado político.
 - **Endereço novo:** o endereço principal passa a ser `monitor.pensebrasil.com.br` (antes `brasil.poncio.dev`).
 
+- Cards da listagem: a descrição do resumo ocupa a largura toda do card (antes ficava em 70 caracteres por linha e
+  parecia mais estreita que o resto; nada era cortado). Na página da proposta o limite continua, para leitura.
+  O card mostra "Última movimentação: dd/mm/aaaa", a data do evento mais recente daquela proposta na lista.
+- Skill local `.claude/skills/resumos-propostas`: o passo a passo para gerar os resumos das propostas novas
+  (coleta → textos → resumos → conferir → commit do JSON).
+
 ### Próximos passos
 - Conferir contraste do texto fraco (`faint`) em letra pequena sobre os cartões: dá cerca de 4,4:1, no limite.
 

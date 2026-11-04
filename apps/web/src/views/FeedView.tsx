@@ -216,6 +216,9 @@ function SubjectGroup({ g, vetos, resumos }: { g: Group; vetos?: Event[]; resumo
             Projeto vetado: <a href={href.proposta(ref)}>{refLabel(ref)}</a>
           </span>
         )}
+        <time className="vote-date" dateTime={last.occurredAt}>
+          Última movimentação: {formatDate(last.occurredAt.slice(0, 10))}
+        </time>
       </div>
       <p className="vote-title">{resumo?.titulo ?? gist ?? g.subject.title}</p>
       {resumo && <ResumoIA resumo={resumo} />}
