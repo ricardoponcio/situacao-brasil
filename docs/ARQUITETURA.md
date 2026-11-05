@@ -56,6 +56,10 @@ Brutos em `data/raw/<sha256>`. A pasta `data/` fica fora do git e é recriada pe
 ## Front (`apps/web`, porta 5173, proxy de /api)
 - `views/registry.tsx`: `ViewType → { query(), component }`. `DatasetView` renderiza qualquer dataset.
 - Views atuais: `timeseries` (número em destaque + variação em linguagem simples + gráfico), `feed` e `table`.
+  Na página do dado, a `timeseries` tem botões de período (6 meses a 10 anos) e "Comparar com" regiões e estados
+  (até 3 linhas além do Brasil), conforme `descriptor.territories`. Quando o recorte está em outro dataset
+  (`territories.datasetId`, ex.: desemprego mensal → `desocupacao-trimestral`), a comparação usa esse dataset,
+  inclusive para o Brasil. Lista de regiões e estados com o código do IBGE: `lib/territories.ts`.
 - `components/ui.tsx`: primitivos (Section, Card, Explain, SourceLine, Pill, Async).
 - **Leitura em camadas** (profundidade progressiva):
   1. Início: "O Brasil hoje, em poucas frases" (uma frase por assunto) + cartões de assunto (pergunta, número, tendência)

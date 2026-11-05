@@ -122,6 +122,19 @@ export const DatasetDescriptor = z.object({
    * cujo `attributes.chave` é `key`. Ex.: IPCA → { datasetId: 'ibge-divulgacoes', key: '9256' }.
    */
   nextRelease: z.object({ datasetId: z.string(), key: z.string() }).optional(),
+  /**
+   * Recortes além do Brasil inteiro que o gráfico deixa comparar (região, estado).
+   * `datasetId`: quando o recorte está em outro dataset. Ex.: o desemprego mensal só existe para o país;
+   * por estado o IBGE publica por trimestre, então a comparação usa a série trimestral (inclusive a do Brasil).
+   * `note`: o que muda na leitura ao comparar.
+   */
+  territories: z
+    .object({
+      levels: z.array(TerritoryLevel).min(1),
+      datasetId: z.string().optional(),
+      note: z.string().optional(),
+    })
+    .optional(),
   /** Representa o seu assunto no resumo da página inicial. */
   featured: z.boolean().default(false),
   /** Página oficial que descreve este dado específico */

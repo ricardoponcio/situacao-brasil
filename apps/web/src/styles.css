@@ -32,6 +32,10 @@
   --accent: var(--flag);
   --accent-soft: var(--hero);
   --series-1: var(--flag);
+  /* Linhas comparadas com o Brasil (validadas para daltonismo, todos os pares, sobre --surface) */
+  --series-2: #3987e5;
+  --series-3: #d55181;
+  --series-4: #5fd0e0;
   --grid: #1b3427;
   --ref: var(--ink-faint);
   --band: rgba(62, 207, 110, 0.14);
@@ -120,6 +124,29 @@ strong, b { font-weight: 600; }
   transform: translate(-50%, -100%); margin-top: -10px;
 }
 .tooltip strong { display: block; font-size: 15px; }
+.tooltip.multi { display: grid; gap: 2px; transform: none; margin-top: 0; }
+.tooltip-period { color: var(--text-secondary); font-size: 12px; }
+.tooltip-row { display: flex; align-items: baseline; gap: 6px; color: var(--text-secondary); }
+.tooltip-row strong { display: inline; color: var(--text-primary); font-variant-numeric: tabular-nums; }
+.line-key { display: inline-block; width: 12px; height: 2px; border-radius: 1px; flex: none; align-self: center; }
+.chart .end-label { font-size: 12px; font-weight: 600; fill: var(--text-secondary); }
+.chart-loading { opacity: .5; transition: opacity .15s; }
+
+/* Controles do gráfico: período e comparação */
+.chart-controls { display: flex; flex-wrap: wrap; gap: 10px 14px; align-items: center; }
+.segmented { display: inline-flex; flex-wrap: wrap; gap: 6px; }
+.segmented button { font: inherit; font-size: 14px; font-weight: 500; padding: 6px 12px; border-radius: 999px; border: 1px solid var(--border); background: transparent; color: var(--text-secondary); cursor: pointer; }
+.segmented button:hover { background: var(--surface-2); }
+.segmented button[aria-pressed='true'] { border-color: var(--flag); background: var(--flag); color: var(--flag-ink); font-weight: 600; }
+.compare select { font: inherit; font-size: 14px; padding: 6px 10px; border-radius: var(--radius-sm); border: 1px solid var(--border); background: var(--surface-2); color: var(--text-primary); max-width: 100%; }
+.compare select:disabled { opacity: .6; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip { display: inline-flex; align-items: center; gap: 6px; font: inherit; font-size: 13px; padding: 3px 10px; border-radius: 999px; border: 1px solid var(--border); background: var(--surface-2); color: var(--text-primary); }
+button.chip { cursor: pointer; }
+button.chip:hover { border-color: var(--text-muted); }
+.chip.static { background: transparent; }
+.chart-note { font-size: 13px; margin: 0; }
+.visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 
 /* Feed */
 .feed { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }

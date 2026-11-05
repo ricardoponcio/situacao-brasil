@@ -7,6 +7,45 @@ Formato de cada entrada: data · o que foi feito · decisões (com o porquê) ·
 
 ---
 
+## 2026-11-05 · Sessão 17: dados por estado e região, gráfico com período e comparação
+
+### O que foi feito
+- **Avaliação**: dos dados coletados, a PNAD anual (fome, insegurança alimentar, água, esgoto) já vinha por estado,
+  mas o site só mostrava o Brasil. Desemprego, subutilização e informalidade existem por estado só em tabela
+  trimestral. IPCA não tem os 27 estados (só 16 áreas metropolitanas), e Selic, dólar e votações são nacionais.
+- Coleta: a PNAD anual passou a trazer também as 5 regiões (N2). Três datasets novos, trimestrais, com Brasil,
+  regiões e estados desde 2012: `desocupacao-trimestral` e `subutilizacao-trimestral` (SIDRA 4099) e
+  `informalidade-trimestral` (8529). Ficam no tema `referencia` (não aparecem nos assuntos) e servem à comparação.
+- Catálogo: campo novo `DatasetDescriptor.territories` (`levels`, `datasetId` opcional, `note`), que diz quais
+  recortes o gráfico pode comparar e, se for o caso, de qual dataset eles vêm.
+- Página do dado: botões de período (6 meses, 1 ano, 5 anos, 10 anos) e "Comparar com um estado ou região" (até 3).
+  `LineChart` agora desenha várias linhas, com o nome no fim de cada uma e uma leitura do mouse com todas as linhas.
+  Os cartões continuam simples, só com o Brasil.
+
+### Decisões
+- **Linhas no mesmo gráfico, e não um gráfico por estado**: comparar é o objetivo, e na mesma escala a diferença
+  aparece na hora. Empilhar áreas não serve para taxas (a soma de percentuais de estados não significa nada).
+- **Máximo de 3 territórios + Brasil**: as cores (amarelo do Brasil, azul, rosa, ciano) foram testadas para
+  daltonismo em todos os pares contra o fundo do cartão; com mais linhas nenhuma combinação passa. A cor fica com o
+  território enquanto ele estiver na comparação.
+- Ao comparar um indicador mensal que só é trimestral por estado, **todas as linhas usam a série trimestral,
+  inclusive a do Brasil** (mesma conta), com um aviso. O número grande do topo continua o mensal.
+- Botões de período só aparecem quando mostram algo diferente (dado anual não tem "6 meses" nem "1 ano").
+- O ponto no gráfico passou a ficar no **início** do período: antes o ano 2016 aparecia na marca "2017" do eixo.
+  As marcas do eixo y agora usam as casas do passo (antes 5,25 aparecia como 5,3).
+
+### Problemas em aberto
+- Anos sem dado (2020 e 2021 na PNAD anual) são ligados por uma reta; o aviso está nos cuidados.
+- Em estados pequenos a margem de erro da PNAD é grande; ainda não mostramos o coeficiente de variação.
+
+### Próximos passos
+1. Saúde e segurança: fonte DATASUS (SIM/SINASC por FTP, `.dbc`) para homicídios e mortalidade infantil por estado,
+   com população da tabela 6579. Depois, a API de dados abertos do Ministério da Saúde (vacinação, dengue).
+   SINESP: a página do Ministério da Justiça responde "Unauthorized"; só pelo dados.gov.br, com chave (decisão do autor).
+2. Lembrar o estado escolhido entre páginas; mapa ou ranking dos estados.
+
+---
+
 ## 2026-11-04 · Sessão 16: rodapé com link para o Pense Brasil
 
 ### O que foi feito

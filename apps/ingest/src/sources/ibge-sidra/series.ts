@@ -4,6 +4,55 @@
  */
 import type { SidraSeries } from './SidraProcessor.ts';
 
+const PNAD_MENSAL =
+  'https://www.ibge.gov.br/estatisticas/sociais/trabalho/9171-pesquisa-nacional-por-amostra-de-domicilios-continua-mensal.html';
+
+/** Aviso mostrado ao comparar estados num indicador mensal que, por estado, só sai por trimestre. */
+const POR_TRIMESTRE =
+  'Por estado e região, o IBGE publica este número por trimestre (jan–mar, abr–jun...), não mês a mês. Na comparação, todas as linhas, inclusive a do Brasil, são trimestrais.';
+
+/**
+ * Versão trimestral de um indicador da PNAD Contínua, com Brasil, regiões e estados. Serve à comparação
+ * por território do indicador mensal (`territories.datasetId`); tema `referencia`, fora dos assuntos.
+ */
+function trimestral(
+  agregado: number,
+  variavel: number,
+  id: string,
+  title: string,
+  base: string,
+  technical: string,
+): SidraSeries {
+  return {
+    agregado,
+    variavel,
+    periodos: 'all',
+    niveis: ['N1', 'N2', 'N3'],
+    periodType: 'trimestre',
+    descriptor: {
+      id,
+      title: `${title} por estado (trimestral)`,
+      theme: 'referencia',
+      unit: '%',
+      decimals: 1,
+      frequency: 'trimestral',
+      polarity: 'menor-melhor',
+      explanation: {
+        simple: `O mesmo número de "${title}", para o Brasil, cada região e cada estado, por trimestre do ano.`,
+        technical,
+      },
+      view: { type: 'timeseries', options: {} },
+      territories: { levels: ['regiao', 'uf'] },
+      caveats: [
+        'É pesquisa por amostra: em estados pequenos a margem de erro é maior, e diferenças pequenas entre estados podem não ser reais.',
+        'Trimestre do calendário (jan–mar, abr–jun...). A série mensal do Brasil usa trimestres móveis e por isso não bate ponto a ponto com esta.',
+      ],
+      summary: { template: `No Brasil, ${base}`, compareHistory: false },
+      originDocs: PNAD_MENSAL,
+    },
+  };
+}
+
 const PNAD_ANUAL =
   'https://www.ibge.gov.br/estatisticas/sociais/trabalho/17270-pnad-continua.html';
 
@@ -89,6 +138,7 @@ export const SERIES: SidraSeries[] = [
     periodType: 'trimestre-movel',
     descriptor: {
       id: 'desocupacao',
+      territories: { levels: ['regiao', 'uf'], datasetId: 'desocupacao-trimestral', note: POR_TRIMESTRE },
       nextRelease: { datasetId: 'ibge-divulgacoes', key: '9171' },
       title: 'Desemprego (taxa de desocupação)',
       theme: 'trabalho',
@@ -133,6 +183,7 @@ export const SERIES: SidraSeries[] = [
     periodType: 'trimestre-movel',
     descriptor: {
       id: 'subutilizacao',
+      territories: { levels: ['regiao', 'uf'], datasetId: 'subutilizacao-trimestral', note: POR_TRIMESTRE },
       nextRelease: { datasetId: 'ibge-divulgacoes', key: '9171' },
       title: 'Subutilização (desemprego ampliado)',
       theme: 'trabalho',
@@ -167,6 +218,7 @@ export const SERIES: SidraSeries[] = [
     periodType: 'trimestre-movel',
     descriptor: {
       id: 'informalidade',
+      territories: { levels: ['regiao', 'uf'], datasetId: 'informalidade-trimestral', note: POR_TRIMESTRE },
       nextRelease: { datasetId: 'ibge-divulgacoes', key: '9171' },
       title: 'Trabalho informal',
       theme: 'trabalho',
@@ -200,13 +252,14 @@ export const SERIES: SidraSeries[] = [
     variavel: 10117,
     classificacao: '1[6795]|12404[109102]',
     periodos: 'all',
-    niveis: ['N1', 'N3'],
+    niveis: ['N1', 'N2', 'N3'],
     periodType: 'ano',
     descriptor: {
       id: 'inseguranca-alimentar-grave',
       title: 'Fome (insegurança alimentar grave)',
       theme: 'condicoes-de-vida',
       layer: 'necessidades-basicas',
+      territories: { levels: ['regiao', 'uf'] },
       unit: '%',
       decimals: 1,
       frequency: 'anual',
@@ -242,13 +295,14 @@ export const SERIES: SidraSeries[] = [
     variavel: 10117,
     classificacao: '1[6795]|12404[109099]',
     periodos: 'all',
-    niveis: ['N1', 'N3'],
+    niveis: ['N1', 'N2', 'N3'],
     periodType: 'ano',
     descriptor: {
       id: 'inseguranca-alimentar',
       title: 'Insegurança alimentar (todos os níveis)',
       theme: 'condicoes-de-vida',
       layer: 'necessidades-basicas',
+      territories: { levels: ['regiao', 'uf'] },
       unit: '%',
       decimals: 1,
       frequency: 'anual',
@@ -278,13 +332,14 @@ export const SERIES: SidraSeries[] = [
     variavel: 10117,
     classificacao: '1[6795]|825[46285]',
     periodos: 'all',
-    niveis: ['N1', 'N3'],
+    niveis: ['N1', 'N2', 'N3'],
     periodType: 'ano',
     descriptor: {
       id: 'agua-rede-geral',
       title: 'Água encanada da rede',
       theme: 'condicoes-de-vida',
       layer: 'necessidades-basicas',
+      territories: { levels: ['regiao', 'uf'] },
       unit: '%',
       decimals: 1,
       frequency: 'anual',
@@ -315,13 +370,14 @@ export const SERIES: SidraSeries[] = [
     variavel: 10121,
     classificacao: '1[6795]|826[46293]',
     periodos: 'all',
-    niveis: ['N1', 'N3'],
+    niveis: ['N1', 'N2', 'N3'],
     periodType: 'ano',
     descriptor: {
       id: 'agua-todo-dia',
       title: 'Água da rede todos os dias',
       theme: 'condicoes-de-vida',
       layer: 'necessidades-basicas',
+      territories: { levels: ['regiao', 'uf'] },
       unit: '%',
       decimals: 1,
       frequency: 'anual',
@@ -337,7 +393,7 @@ export const SERIES: SidraSeries[] = [
         'A conta é só entre quem recebe água pela rede. Quem não tem rede não entra.',
         'É pesquisa por amostra: diferenças pequenas de um ano para outro podem estar dentro da margem de erro.',
         'Não há dado de 2020 e 2021 (na pandemia o IBGE não divulgou este tema).',
-        'A diferença entre os estados é grande. Os números por estado já são coletados e vão aparecer num mapa.',
+        'A diferença entre os estados é grande. Use "Comparar com" no gráfico para ver o seu.',
       ],
       summary: {
         template: 'Entre quem recebe água da rede, cerca de {round} em cada 100 têm água todos os dias.',
@@ -353,13 +409,14 @@ export const SERIES: SidraSeries[] = [
     classificacao: '1[6795]|11558[47930,47931]',
     somarCategorias: true,
     periodos: 'all',
-    niveis: ['N1', 'N3'],
+    niveis: ['N1', 'N2', 'N3'],
     periodType: 'ano',
     descriptor: {
       id: 'esgoto-rede',
       title: 'Esgoto ligado à rede',
       theme: 'condicoes-de-vida',
       layer: 'necessidades-basicas',
+      territories: { levels: ['regiao', 'uf'] },
       unit: '%',
       decimals: 1,
       frequency: 'anual',
@@ -385,4 +442,30 @@ export const SERIES: SidraSeries[] = [
       originDocs: PNAD_ANUAL,
     },
   },
+
+  // ── Recortes por estado (trimestrais) dos indicadores mensais de trabalho ────────────────
+  trimestral(
+    4099,
+    4099,
+    'desocupacao-trimestral',
+    'Desemprego',
+    'de cada 100 pessoas procurando trabalho, cerca de {round} não encontram.',
+    'Taxa de desocupação das pessoas de 14 anos ou mais na semana de referência, PNAD Contínua trimestral. Tabela SIDRA 4099, variável 4099.',
+  ),
+  trimestral(
+    4099,
+    4118,
+    'subutilizacao-trimestral',
+    'Subutilização',
+    'cerca de {round} em cada 100 pessoas que trabalham ou querem trabalhar estão subutilizadas.',
+    'Taxa composta de subutilização da força de trabalho, PNAD Contínua trimestral. Tabela SIDRA 4099, variável 4118.',
+  ),
+  trimestral(
+    8529,
+    12466,
+    'informalidade-trimestral',
+    'Trabalho informal',
+    'de cada 100 pessoas trabalhando, cerca de {round} estão na informalidade.',
+    'Taxa de informalidade das pessoas de 14 anos ou mais ocupadas, PNAD Contínua trimestral. Tabela SIDRA 8529, variável 12466.',
+  ),
 ];
