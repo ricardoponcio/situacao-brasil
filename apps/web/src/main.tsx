@@ -9,10 +9,10 @@ import { SourcePage, SourcesPage } from './pages/SourcesPage.tsx';
 import { PropostaPage } from './pages/PropostaPage.tsx';
 
 function App() {
-  const [section, id] = useRoute();
+  const [section, id, sub] = useRoute();
   let page;
   if (section === 'dados' && id) page = <DatasetPage id={id} />;
-  else if (section === 'assunto' && id) page = <TopicPage id={id} />;
+  else if (section === 'assunto' && id) page = <TopicPage id={id} tab={sub} />;
   else if (section === 'proposta' && id) page = <PropostaPage refKey={id} />;
   else if (section === 'fontes' && id) page = <SourcePage id={id} />;
   else if (section === 'fontes') page = <SourcesPage />;

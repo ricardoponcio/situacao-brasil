@@ -15,6 +15,11 @@ export interface Topic {
   intro: string;
   themes: Theme[];
   modules?: TopicModule[];
+  /**
+   * Com isso, o assunto mostra um indicador por vez, escolhido por botões no topo (nome curto por dataset).
+   * Dataset do tema que não estiver aqui entra no fim, com o próprio título.
+   */
+  tabs?: Record<string, string>;
 }
 
 export const TOPICS: Topic[] = [
@@ -49,6 +54,7 @@ export const TOPICS: Topic[] = [
       'O que foi votado em Brasília, em que passo cada proposta está agora e o que ainda falta para virar lei, com o link para o registro oficial.',
     themes: ['politica'],
     modules: ['processo-legislativo'],
+    tabs: { 'camara-votacoes-plenario': 'Câmara', 'senado-plenario': 'Senado', 'congresso-vetos': 'Vetos' },
   },
   {
     id: 'saude',

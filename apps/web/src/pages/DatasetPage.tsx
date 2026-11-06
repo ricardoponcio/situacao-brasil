@@ -99,7 +99,7 @@ export function DatasetPage({ id }: { id: string }) {
           {(() => {
             const topic = topicOfTheme(d.theme);
             return topic ? (
-              <a className="back" href={href.topic(topic.id)}>
+              <a className="back" href={href.topic(topic.id, topic.tabs?.[d.id] ? d.id : undefined)}>
                 ← {topic.title}
               </a>
             ) : (

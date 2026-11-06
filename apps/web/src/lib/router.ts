@@ -17,7 +17,7 @@ export function useRoute(): string[] {
 
 export const href = {
   home: () => '#/',
-  topic: (id: string) => `#/assunto/${encodeURIComponent(id)}`,
+  topic: (id: string, tab?: string) => `#/assunto/${encodeURIComponent(id)}${tab ? `/${encodeURIComponent(tab)}` : ''}`,
   dataset: (id: string) => `#/dados/${encodeURIComponent(id)}`,
   proposta: (ref: string) => `#/proposta/${encodeURIComponent(ref)}`,
   sources: () => '#/fontes',

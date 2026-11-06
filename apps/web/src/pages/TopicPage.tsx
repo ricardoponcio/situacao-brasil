@@ -1,4 +1,4 @@
-import { useEffect, useRef, type ReactNode } from 'react';
+import { useEffect, useRef, useState, type ReactNode } from 'react';
 import type { DatasetDescriptor } from '@sb/core';
 import { api } from '../lib/api.ts';
 import { href } from '../lib/router.ts';
@@ -65,10 +65,18 @@ function Indicator({ d }: { d: DatasetDescriptor }) {
   );
 }
 
-export function TopicPage({ id }: { id: string }) {
+export function TopicPage({ id, tab }: { id: string; tab?: string }) {
   const topic = TOPICS.find((t) => t.id === id);
   const state = useAsync(() => api.datasets(), []);
+  const [chosen, setChosen] = useState(tab);
+  useEffect(() => setChosen(tab), [id, tab]);
   if (!topic) return <p>Assunto não encontrado. <a href={href.home()}>Voltar ao início</a></p>;
+
+  const choose = (datasetId: string) => {
+    setChosen(datasetId);
+    // Guarda a escolha no endereço (dá para compartilhar) sem disparar a troca de página, que rola para o topo.
+    history.replaceState(null, '', href.topic(topic.id, datasetId));
+  };
 
   return (
     <>
@@ -82,13 +90,32 @@ export function TopicPage({ id }: { id: string }) {
       <Async state={state}>
         {(items) => {
           const mine = items.map((i) => i.descriptor).filter((d) => topic.themes.includes(d.theme));
+          if (!mine.length) return <p className="muted">Ainda não há dados sobre este assunto. Em construção.</p>;
+
+          if (topic.tabs) {
+            const order = Object.keys(topic.tabs);
+            const pos = (d: DatasetDescriptor) => (order.includes(d.id) ? order.indexOf(d.id) : order.length);
+            const list = [...mine].sort((a, b) => pos(a) - pos(b));
+            const current = list.find((d) => d.id === chosen) ?? list[0]!;
+            return (
+              <>
+                <div className="topic-tabs segmented" role="group" aria-label="O que mostrar">
+                  {list.map((d) => (
+                    <button key={d.id} type="button" aria-pressed={d === current} onClick={() => choose(d.id)}>
+                      {topic.tabs![d.id] ?? d.title}
+                    </button>
+                  ))}
+                </div>
+                <Indicator key={current.id} d={current} />
+              </>
+            );
+          }
+
           // Destaque primeiro, logo depois os indicadores que devem ser lidos junto com ele.
           const lead = mine.find((d) => d.featured);
           const pairs = lead ? lead.readWith.map((r) => r.datasetId) : [];
           const rank = (d: DatasetDescriptor) => (d === lead ? 0 : pairs.includes(d.id) ? 1 + pairs.indexOf(d.id) : 100);
-          const list = [...mine].sort((a, b) => rank(a) - rank(b));
-          if (!list.length) return <p className="muted">Ainda não há dados sobre este assunto. Em construção.</p>;
-          return list.map((d) => <Indicator key={d.id} d={d} />);
+          return [...mine].sort((a, b) => rank(a) - rank(b)).map((d) => <Indicator key={d.id} d={d} />);
         }}
       </Async>
     </>

@@ -137,6 +137,8 @@ strong, b { font-weight: 600; }
 .segmented { display: inline-flex; flex-wrap: wrap; gap: 6px; }
 .segmented button { font: inherit; font-size: 14px; font-weight: 500; padding: 6px 12px; border-radius: 999px; border: 1px solid var(--border); background: transparent; color: var(--text-secondary); cursor: pointer; }
 .segmented button:hover { background: var(--surface-2); }
+.topic-tabs { margin: 0 0 8px; }
+.topic-tabs button { font-size: 16px; padding: 8px 18px; }
 .segmented button[aria-pressed='true'] { border-color: var(--flag); background: var(--flag); color: var(--flag-ink); font-weight: 600; }
 .compare select { font: inherit; font-size: 14px; padding: 6px 10px; border-radius: var(--radius-sm); border: 1px solid var(--border); background: var(--surface-2); color: var(--text-primary); max-width: 100%; }
 .compare select:disabled { opacity: .6; }

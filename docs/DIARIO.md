@@ -7,6 +7,26 @@ Formato de cada entrada: data · o que foi feito · decisões (com o porquê) ·
 
 ---
 
+## 2026-11-06 · Sessão 18: resumos novos e seletor Câmara / Senado / Vetos
+
+### O que foi feito
+- Resumos: 18 propostas novas (custo equivalente US$ 0,04). O `--refazer` do `npm run resumos` era lido mas não
+  usado; agora, junto com `--refs`, refaz mesmo quem já tem resumo (`textos.comConteudo()` no storage).
+  Refeitos PDC-1290-2013 (título soava como andamento) e PRS-50-2026.
+- Página "Política": botões Câmara · Senado · Vetos logo abaixo do texto de abertura, mostrando um indicador por
+  vez. Antes os vetos ficavam no fim de uma página muito longa e quase ninguém chegava lá.
+  Campo novo `Topic.tabs` (dataset → nome curto); a escolha vai para o endereço (`#/assunto/politica/congresso-vetos`)
+  com `history.replaceState`, para não voltar ao topo. O "← Política" da página do dado volta para a aba certa.
+
+### Decisões
+- **Um por vez, e não links para pular**: o roteamento é por hash, então âncoras quebrariam a rota; e mostrar um
+  só deixa a página curta. Os outros assuntos continuam com a lista inteira (só usam abas se tiverem `tabs`).
+
+### Próximos passos
+- Ver se vale um número em cada botão (ex.: "Vetos (12)").
+
+---
+
 ## 2026-11-05 · Sessão 17: dados por estado e região, gráfico com período e comparação
 
 ### O que foi feito
