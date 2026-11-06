@@ -248,6 +248,14 @@ export class PropostaTextoRepository {
     return !!this.db.prepare('SELECT 1 FROM propostas_textos WHERE ref = ? AND casa = ?').get(ref, casa);
   }
 
+  /** Todos os textos com conteúdo (para refazer resumos que já existem). */
+  comConteudo(): PropostaTexto[] {
+    return this.db
+      .prepare('SELECT * FROM propostas_textos WHERE texto_hash IS NOT NULL ORDER BY ref, casa')
+      .all()
+      .map((r) => toTexto(r as Row));
+  }
+
   /** Textos com conteúdo que ainda não têm resumo nesta versão do prompt. */
   semResumo(versaoPrompt: string): PropostaTexto[] {
     return this.db

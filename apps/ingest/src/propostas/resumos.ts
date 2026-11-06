@@ -6,6 +6,7 @@
  *   npm run resumos                          # todos os textos sem resumo
  *   npm run resumos -- --limite 20 --paralelo 2
  *   npm run resumos -- --refs PL-1123-2025 --modelo sonnet
+ *   npm run resumos -- --refs PL-1123-2025,PL-12-2024 --refazer   # refaz mesmo já tendo resumo
  */
 import { spawn } from 'node:child_process';
 import { mkdirSync } from 'node:fs';
@@ -57,7 +58,9 @@ mkdirSync(pastaVazia, { recursive: true });
 
 const info = new Map(storage.textos.candidatas().map((c) => [c.ref, c]));
 // Câmara e Senado muitas vezes publicam o mesmo texto: um resumo serve para os dois.
-let fila = [...new Map(storage.textos.semResumo(VERSAO_PROMPT).map((t) => [t.textoHash, t])).values()];
+// Com --refazer (só junto de --refs), entram também textos que já têm resumo.
+const base = args.refazer && args.refs ? storage.textos.comConteudo() : storage.textos.semResumo(VERSAO_PROMPT);
+let fila = [...new Map(base.map((t) => [t.textoHash, t])).values()];
 if (args.refs) fila = fila.filter((t) => args.refs!.includes(t.ref));
 const grandes = fila.filter((t) => t.texto.length > MAX_CARACTERES);
 fila = fila.filter((t) => t.texto.length <= MAX_CARACTERES);

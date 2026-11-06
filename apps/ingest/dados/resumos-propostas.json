@@ -572,6 +572,17 @@
   "criadoEm": "2026-11-01T19:44:12.880Z"
  },
  {
+  "ref": "MPV-1374-2026",
+  "casa": "senado",
+  "textoHash": "8fc68b74e23fce106ca84e802425900b75eed7382a583b9bc65b77cb6ae30875",
+  "textoUrl": "https://legis.senado.gov.br/sdleg-getter/dadosabertos/documento/b0e658b2-1982-4c76-b5b9-3d8f9c09fa6d",
+  "titulo": "Ajuda do governo a produtores de cana do Nordeste com perdas",
+  "descricao": "A proposta autoriza o governo a pagar R$ 12 por tonelada de cana entregue a usinas ou cooperativas do Nordeste na safra 2025/2026. O pagamento é para produtores independentes que tiveram prejuízos com a tarifa extra dos Estados Unidos ou com eventos climáticos extremos. Quem tem participação nessas usinas ou cooperativas fica de fora.",
+  "modelo": "claude-haiku-5-5",
+  "versaoPrompt": "v2",
+  "criadoEm": "2026-11-06T15:22:44.325Z"
+ },
+ {
   "ref": "MPV-1375-2026",
   "casa": "senado",
   "textoHash": "0ce5902e97454d0e1bb5e0cff4af0fc80c5203f84730b3de2e825cbb426b6df9",
@@ -594,6 +605,17 @@
   "criadoEm": "2026-11-01T19:44:06.578Z"
  },
  {
+  "ref": "PDC-1290-2013",
+  "casa": "senado",
+  "textoHash": "b813b08a446e8a5e2fcc5e771d354d9f9b77e3e170064fef27d7601851f8964b",
+  "textoUrl": "https://legis.senado.gov.br/sdleg-getter/dadosabertos/documento/2b6120aa-b2d0-4910-b7d0-515d39671063",
+  "titulo": "Aprova acordo do Mercosul sobre compromisso com a democracia",
+  "descricao": "A proposta aprova o Protocolo de Montevidéu, acordo do Mercosul, o bloco comercial sul-americano, sobre compromisso com a democracia. Qualquer ato que possa revisar o protocolo, ou gerar encargos pesados ao patrimônio nacional, passa a depender de aprovação do Congresso. O texto enviado não detalha as regras do protocolo.",
+  "modelo": "claude-haiku-5-5",
+  "versaoPrompt": "v2",
+  "criadoEm": "2026-11-06T15:25:40.319Z"
+ },
+ {
   "ref": "PDC-291-2015",
   "casa": "senado",
   "textoHash": "b84d0bb7e87987586890b821e2a2f4dd49afca9aa49b85c5ab6afa6a34d03535",
@@ -603,6 +625,17 @@
   "modelo": "claude-haiku-5-5",
   "versaoPrompt": "v2",
   "criadoEm": "2026-11-01T19:44:07.867Z"
+ },
+ {
+  "ref": "PDC-51-2011",
+  "casa": "senado",
+  "textoHash": "3ed4a440bafbb264ab6f1661f0c97a84f55cfbb92ae393794fe9f5e20fe360ff",
+  "textoUrl": "https://legis.senado.gov.br/sdleg-getter/dadosabertos/documento/ad4cf496-e81c-4ae6-af0c-cf951d6a204e",
+  "titulo": "Aprova acordo com a Venezuela para cooperar em ciência e tecnologia espacial",
+  "descricao": "A proposta aprova o acordo de cooperação em ciência e tecnologia espacial assinado com a Venezuela em 2008. Atos que possam revisar o acordo, ou gerar ajustes e acordos complementares com encargos pesados ao patrimônio nacional, passam a depender de aprovação do Congresso. O mesmo vale para projetos específicos previstos no Artigo IV do acordo.",
+  "modelo": "claude-haiku-5-5",
+  "versaoPrompt": "v2",
+  "criadoEm": "2026-11-06T15:22:41.170Z"
  },
  {
   "ref": "PDC-656-2017",
@@ -1760,6 +1793,17 @@
   "criadoEm": "2026-11-01T19:49:07.343Z"
  },
  {
+  "ref": "PDL-344-2024-cd",
+  "casa": "senado",
+  "textoHash": "fcd0697e69eb7ea29e8b115b52bb7cb1f92140d2a2731cf303f74fd19c2a2e5d",
+  "textoUrl": "https://legis.senado.gov.br/sdleg-getter/dadosabertos/documento/1fc7f585-6be2-4219-8270-c781c6c988ba",
+  "titulo": "Aprova acordo com a Croácia para cooperação em educação",
+  "descricao": "A proposta aprova o acordo de cooperação em educação entre Brasil e Croácia, assinado em Zagreb em 2023. O texto não detalha as ações de cooperação. Sair do acordo ou revisá-lo passa a depender de aprovação do Congresso.",
+  "modelo": "claude-haiku-5-5",
+  "versaoPrompt": "v2",
+  "criadoEm": "2026-11-06T15:22:51.960Z"
+ },
+ {
   "ref": "PDL-348-2021-cd",
   "casa": "senado",
   "textoHash": "7a22787bfa38d586dcea4faf95eb7d9a1aa4af0341532a9ba77e3ecba5dcc5e0",
@@ -1824,6 +1868,17 @@
   "modelo": "claude-haiku-5-5",
   "versaoPrompt": "v2",
   "criadoEm": "2026-11-01T19:49:18.373Z"
+ },
+ {
+  "ref": "PDL-359-2024-cd",
+  "casa": "senado",
+  "textoHash": "8f25af546cf4a4ae70bd7f121add2371e673ae913a4ea08332addf42a449493e",
+  "textoUrl": "https://legis.senado.gov.br/sdleg-getter/dadosabertos/documento/5fa2672c-3f47-4ed3-b959-6f18835827a5",
+  "titulo": "Aprova acordo sobre exposições internacionais; mudanças exigem aval do Congresso",
+  "descricao": "O Congresso aprova um protocolo que altera uma convenção de 1928 sobre exposições internacionais. Qualquer ato que possa levar o Brasil a sair do protocolo ou revisá-lo, e ajustes que criem encargos pesados ao patrimônio nacional, precisarão de aprovação do Congresso. O texto também troca a palavra \"suplementar\" por \"substituir\" no preâmbulo.",
+  "modelo": "claude-haiku-5-5",
+  "versaoPrompt": "v2",
+  "criadoEm": "2026-11-06T15:22:53.492Z"
  },
  {
   "ref": "PDL-362-2021-cd",
@@ -4004,6 +4059,17 @@
   "criadoEm": "2026-11-01T18:57:44.146Z"
  },
  {
+  "ref": "PEC-18-2025-cd",
+  "casa": "senado",
+  "textoHash": "51cd299bd3ec678c3a4abf4e2cefdae85ad39b96551cf0767be549b38587def7",
+  "textoUrl": "https://legis.senado.gov.br/sdleg-getter/dadosabertos/documento/e6034c8c-f874-487c-9bd7-62c549e49253",
+  "titulo": "Cria sistema nacional de segurança pública com fundos ligados às apostas",
+  "descricao": "A proposta cria o Sistema Único de Segurança Pública, para que União, estados e municípios atuem juntos e troquem informações. Permite que municípios criem polícias municipais, desde que cumpram requisitos como capacidade financeira e formação. Cria fundos de segurança pública, com 30% da arrecadação das apostas de quota fixa (as bets), e prevê regras mais duras contra organizações criminosas.",
+  "modelo": "claude-haiku-5-5",
+  "versaoPrompt": "v2",
+  "criadoEm": "2026-11-06T15:22:57.457Z"
+ },
+ {
   "ref": "PEC-221-2019-cd",
   "casa": "senado",
   "textoHash": "87c80d03239fc3ec6c95b82bfec3f0d8a1320e076d2faa3215f1f64dfc0a77b2",
@@ -4499,6 +4565,17 @@
   "criadoEm": "2026-11-01T20:01:35.216Z"
  },
  {
+  "ref": "PL-186-2025",
+  "casa": "senado",
+  "textoHash": "63f5259ddd07c7f9b97a94fee24533f180e021d529ed9d50c47053d7bab34b77",
+  "textoUrl": "https://legis.senado.gov.br/sdleg-getter/dadosabertos/documento/69851cc9-5578-4637-abc5-6f908817621b",
+  "titulo": "Cursos, campanhas e palestras sobre criação positiva de filhos entram em lei",
+  "descricao": "A proposta inclui, entre as ações de promoção da parentalidade positiva (o jeito de cuidar e educar os filhos), cursos, campanhas e palestras. Esses conteúdos devem ser baseados em evidências científicas sobre a importância e os benefícios dessa forma de criar filhos.",
+  "modelo": "claude-haiku-5-5",
+  "versaoPrompt": "v2",
+  "criadoEm": "2026-11-06T15:23:00.247Z"
+ },
+ {
   "ref": "PL-1873-2025",
   "casa": "senado",
   "textoHash": "625caf6396e3be82f8d66c2e90b1ab1e963d8804ace6ec3f8011195e06eb915b",
@@ -4642,6 +4719,17 @@
   "criadoEm": "2026-11-01T20:02:16.663Z"
  },
  {
+  "ref": "PL-2167-2026",
+  "casa": "camara",
+  "textoHash": "d25e93d76dee2237cc78002d56063ec372693cf2e741dc05a737415672ecb484",
+  "textoUrl": "https://www.camara.leg.br/proposicoesWeb/prop_mostrarintegra?codteor=3122830",
+  "titulo": "Financiamento de estudos em troca de trabalho em saúde mental pública",
+  "descricao": "A proposta cria o PRONAFESM, linha do FIES (crédito estudantil) para saúde mental. Podem participar estudantes de Psicologia, Medicina, Terapia Ocupacional, Serviço Social, Fonoaudiologia e Enfermagem com renda de até 3 salários mínimos por pessoa. Em troca, o beneficiário trabalha no SUS (sistema público de saúde), 20 horas semanais, pelo dobro do tempo financiado, e tem a dívida restante quitada.",
+  "modelo": "claude-haiku-5-5",
+  "versaoPrompt": "v2",
+  "criadoEm": "2026-11-06T15:23:25.113Z"
+ },
+ {
   "ref": "PL-2220-2024",
   "casa": "senado",
   "textoHash": "0c2302d41ee7c99d96c647c171840415295cdfd33bdd1d918708faaec7aa145a",
@@ -4662,6 +4750,17 @@
   "modelo": "claude-haiku-5-5",
   "versaoPrompt": "v2",
   "criadoEm": "2026-11-01T20:02:14.492Z"
+ },
+ {
+  "ref": "PL-2234-2024",
+  "casa": "senado",
+  "textoHash": "03f2e2289baf4e0f0f6bc86b28246b145c54d40eb7e1bbba4147f076fdbe65c6",
+  "textoUrl": "https://legis.senado.gov.br/sdleg-getter/dadosabertos/documento/f6fe6ddc-f252-4820-8edc-6071a619e977",
+  "titulo": "Torna obrigatória a educação básica dos 4 aos 17 anos",
+  "descricao": "A proposta torna obrigatória e gratuita a educação básica de crianças e adolescentes dos 4 aos 17 anos, em todas as suas etapas. Quem não estudou na idade certa também terá direito à oferta gratuita. O poder público deverá fazer o levantamento das crianças em idade escolar e cuidar para que frequentem as aulas.",
+  "modelo": "claude-haiku-5-5",
+  "versaoPrompt": "v2",
+  "criadoEm": "2026-11-06T15:23:11.201Z"
  },
  {
   "ref": "PL-2251-2025",
@@ -4695,6 +4794,17 @@
   "modelo": "claude-haiku-5-5",
   "versaoPrompt": "v2",
   "criadoEm": "2026-11-01T20:02:23.653Z"
+ },
+ {
+  "ref": "PL-2334-2019",
+  "casa": "camara",
+  "textoHash": "901714ec4cf0555cb371c0d032e295b4cce067038c0357cbbfdaa2ec2ba95788",
+  "textoUrl": "https://www.camara.leg.br/proposicoesWeb/prop_mostrarintegra?codteor=1733798",
+  "titulo": "INPI poderá firmar parcerias com entidades para orientar sobre patentes",
+  "descricao": "A proposta permite que o INPI, órgão que cuida dos registros de patentes e marcas, faça convênios e parcerias. Essas parcerias são com organizações da sociedade civil e órgãos públicos. Elas podem oferecer treinamento e orientação a quem quer pedir uma patente, além de tarefas preparatórias para as decisões sobre o registro.",
+  "modelo": "claude-haiku-5-5",
+  "versaoPrompt": "v2",
+  "criadoEm": "2026-11-06T15:23:06.554Z"
  },
  {
   "ref": "PL-2336-2022",
@@ -5126,6 +5236,17 @@
   "criadoEm": "2026-11-01T20:04:50.510Z"
  },
  {
+  "ref": "PL-3083-2019",
+  "casa": "camara",
+  "textoHash": "e475d3daee633f07802245fe42e5fbc1210311fd65e5023cdeaa6ac8eba3b864",
+  "textoUrl": "https://www.camara.leg.br/proposicoesWeb/prop_mostrarintegra?codteor=1751360",
+  "titulo": "Limita a 20% o bloqueio do faturamento de empresas em dívidas trabalhistas",
+  "descricao": "A proposta permite ao juiz bloquear parte do faturamento de empresas com dívidas trabalhistas. O bloqueio não pode passar de 20% do faturamento mensal, descontada a folha de pagamento. Basta a decisão do juiz fixar o percentual para que ele valha.",
+  "modelo": "claude-haiku-5-5",
+  "versaoPrompt": "v2",
+  "criadoEm": "2026-11-06T15:23:17.170Z"
+ },
+ {
   "ref": "PL-3085-2026",
   "casa": "senado",
   "textoHash": "ce1e675bc885f1ca3cc114526e2aed95e1026101e0a81c10e0aeb538da24bd0c",
@@ -5223,6 +5344,17 @@
   "modelo": "claude-haiku-5-5",
   "versaoPrompt": "v2",
   "criadoEm": "2026-11-01T20:05:29.599Z"
+ },
+ {
+  "ref": "PL-3220-2019",
+  "casa": "camara",
+  "textoHash": "f8152037767c85e224f60e6b7ef67327956df683230e89ad6fa69c41a67ae2a9",
+  "textoUrl": "https://www.camara.leg.br/proposicoesWeb/prop_mostrarintegra?codteor=3115561",
+  "titulo": "Regras para empresas de internet e telefonia usarem postes de energia",
+  "descricao": "Empresas de internet e telefonia passam a precisar de contrato com o dono dos postes para usá-los. A Aneel (agência de energia) e a Anatel (agência de telecomunicações) definem regras; a Aneel fixa o preço máximo. Empresas que já usam postes sem contrato podem pedir regularização em 180 dias após a entrada em vigor, sem multa.",
+  "modelo": "claude-haiku-5-5",
+  "versaoPrompt": "v2",
+  "criadoEm": "2026-11-06T15:23:22.846Z"
  },
  {
   "ref": "PL-3220-2019",
@@ -5355,6 +5487,17 @@
   "modelo": "claude-haiku-5-5",
   "versaoPrompt": "v2",
   "criadoEm": "2026-11-01T20:06:13.750Z"
+ },
+ {
+  "ref": "PL-3507-2026",
+  "casa": "camara",
+  "textoHash": "24623d71959efab0a8e01b06d20f8e8a9b734b5e296a0d37f96b5801dfbd5cec",
+  "textoUrl": "https://www.camara.leg.br/proposicoesWeb/prop_mostrarintegra?codteor=3157723",
+  "titulo": "Reconhece o artesanato tradicional do Maranhão como cultura nacional",
+  "descricao": "A proposta reconhece o artesanato tradicional do Maranhão como manifestação da cultura nacional, por ser expressão do saber tradicional, identidade das comunidades e atividade de economia criativa. Com isso, o Poder Executivo poderá adotar medidas para proteger, incentivar, valorizar e preservar esse artesanato.",
+  "modelo": "claude-haiku-5-5",
+  "versaoPrompt": "v2",
+  "criadoEm": "2026-11-06T15:23:19.654Z"
  },
  {
   "ref": "PL-3535-2025",
@@ -5896,6 +6039,17 @@
   "criadoEm": "2026-11-01T20:09:18.524Z"
  },
  {
+  "ref": "PL-4674-2024",
+  "casa": "camara",
+  "textoHash": "c834ecd8110ee229fbfab8ccca2d9f295c06dd0577cd66a452dcc6361ad4746e",
+  "textoUrl": "https://www.camara.leg.br/proposicoesWeb/prop_mostrarintegra?codteor=2833133",
+  "titulo": "Garante ultrassom gratuito para gestantes checarem a formação do bebê",
+  "descricao": "A proposta garante às gestantes ultrassom morfológico gratuito no SUS, o sistema público de saúde. Conforme a recomendação médica, o exame acompanha o bebê e ajuda a identificar cedo más-formações e riscos. Não fazer o exame indicado será considerado negligência médica, com punições do Código de Ética. O Ministério da Saúde deve informar as gestantes sobre o exame.",
+  "modelo": "claude-haiku-5-5",
+  "versaoPrompt": "v2",
+  "criadoEm": "2026-11-06T15:23:34.482Z"
+ },
+ {
   "ref": "PL-4740-2025",
   "casa": "senado",
   "textoHash": "23d930fb2b90dd52582c2b5e6ea27839bcc6a220bfecd90efbc00c4710385cb8",
@@ -5993,6 +6147,17 @@
   "modelo": "claude-haiku-5-5",
   "versaoPrompt": "v2",
   "criadoEm": "2026-11-01T20:09:56.737Z"
+ },
+ {
+  "ref": "PL-504-2021",
+  "casa": "camara",
+  "textoHash": "3a30d913ba61efaea60a99d2ad345d29b4dc327af1119db1cd7bda609d5f6df5",
+  "textoUrl": "https://www.camara.leg.br/proposicoesWeb/prop_mostrarintegra?codteor=1964794",
+  "titulo": "Cria regras nacionais para residência de profissionais de saúde não médicos",
+  "descricao": "A proposta cria a Política Nacional de Residência em Área Profissional da Saúde, para profissionais como enfermeiros e psicólogos. A residência é uma pós-graduação feita no serviço de saúde, em dedicação exclusiva, com carga de 40 horas semanais e pelo menos 2 anos. Programas só podem receber residentes após autorização do Ministério da Educação.",
+  "modelo": "claude-haiku-5-5",
+  "versaoPrompt": "v2",
+  "criadoEm": "2026-11-06T15:23:37.698Z"
  },
  {
   "ref": "PL-5057-2023",
@@ -6301,6 +6466,28 @@
   "modelo": "claude-haiku-5-5",
   "versaoPrompt": "v2",
   "criadoEm": "2026-11-01T20:11:30.431Z"
+ },
+ {
+  "ref": "PL-5782-2023",
+  "casa": "senado",
+  "textoHash": "147e42b64968ef482be26605a00171ddb2a787f02d1538f9900a5d1268d50b0d",
+  "textoUrl": "https://legis.senado.gov.br/sdleg-getter/dadosabertos/documento/33c094f3-cafa-472e-bbe4-5b8d545ea41e",
+  "titulo": "Cria campanha anual de alerta sobre tumores ginecológicos em setembro",
+  "descricao": "A proposta cria a campanha Setembro em Flor, realizada todo ano no mês de setembro. O objetivo é informar a população sobre os sinais e sintomas precoces dos tumores ginecológicos, tumores que atingem órgãos do sistema reprodutor feminino. Segundo o texto, a campanha busca reduzir fatores de risco e salvar vidas.",
+  "modelo": "claude-haiku-5-5",
+  "versaoPrompt": "v2",
+  "criadoEm": "2026-11-06T15:23:29.431Z"
+ },
+ {
+  "ref": "PL-5815-2025",
+  "casa": "camara",
+  "textoHash": "167bfc094acd829b4008e3a776dfe71c18d2e8c461b0fbda6d92ffc3a8fb1c07",
+  "textoUrl": "https://www.camara.leg.br/proposicoesWeb/prop_mostrarintegra?codteor=3045101",
+  "titulo": "Cria avaliação anual obrigatória e gratuita para crianças até 12 anos",
+  "descricao": "A proposta cria o PNAPE, programa de avaliações anuais de saúde física e emocional, obrigatórias e gratuitas, para crianças até 12 anos. O governo paga as consultas, em postos públicos ou clínicas credenciadas. Havendo suspeita de violência ou abuso, profissionais avisam Ministério Público e conselho tutelar. Quem não levar a criança pode ter benefícios suspensos, como o Bolsa Família.",
+  "modelo": "claude-haiku-5-5",
+  "versaoPrompt": "v2",
+  "criadoEm": "2026-11-06T15:23:52.309Z"
  },
  {
   "ref": "PL-5824-2013",
@@ -7489,6 +7676,17 @@
   "modelo": "claude-haiku-5-5",
   "versaoPrompt": "v2",
   "criadoEm": "2026-11-01T20:18:10.437Z"
+ },
+ {
+  "ref": "PRS-50-2026",
+  "casa": "senado",
+  "textoHash": "89dca896f722459008c9e6414c8da33fac2b0b92267c6085085690050ce97f8f",
+  "textoUrl": "https://legis.senado.gov.br/sdleg-getter/dadosabertos/documento/ed4280e8-c67d-4d0e-8aea-5d4687c14594",
+  "titulo": "Libera renegociação de dívidas de estados e cidades no fim do mandato",
+  "descricao": "A proposta permite que estados, o Distrito Federal e municípios façam operações para reorganizar suas dívidas nos 120 dias antes do fim do mandato do governador ou do prefeito. Hoje, uma resolução do Senado de 2001 proíbe contratar empréstimos nesse período. A exceção vale só para a reestruturação e a recomposição do valor principal das dívidas.",
+  "modelo": "claude-haiku-5-5",
+  "versaoPrompt": "v2",
+  "criadoEm": "2026-11-06T15:25:39.726Z"
  },
  {
   "ref": "PRS-51-2026",
