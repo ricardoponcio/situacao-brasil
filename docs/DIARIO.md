@@ -7,6 +7,26 @@ Formato de cada entrada: data · o que foi feito · decisões (com o porquê) ·
 
 ---
 
+## 2026-11-10 · Sessão 19: levantamento de saúde e segurança (só testes, sem código)
+
+### O que foi feito
+- Testados de verdade: FTP do DATASUS (SIM, SINASC, SINAN), API de dados abertos do Ministério da Saúde, portal
+  OpenDataSUS, SINESP (MJ e dados.gov.br) e Atlas da Violência. Tabela em `docs/FONTES-CANDIDATAS.md`
+  ("Saúde e segurança: testado em 2026-11-10").
+- Prova de leitura do `.dbc` em Node com `node-pkware` (na pasta temporária, fora do repositório): Acre 2024 ok.
+
+### Decisões
+- **DATASUS pelo FTP, e não pela API nova do Ministério**: a API só entrega registro por registro, sem totais
+  (5.000 casos de dengue levaram 31 s). O FTP é aberto, sem chave, com o arquivo inteiro por estado e ano.
+- **Segurança começa por homicídios do SIM** (fonte original do Atlas da Violência). Crimes do SINESP dependem da
+  chave do dados.gov.br e, mesmo com ela, os arquivos podem estar no `dados.mj.gov.br`, que não responde.
+
+### Próximos passos
+- Processador `datasus`: homicídios por 100 mil, mortalidade infantil por 1.000 nascidos e dengue por 100 mil,
+  por estado, região e Brasil, com população da tabela 6579. Baixar só arquivo com `Last-Modified` novo.
+
+---
+
 ## 2026-11-06 · Sessão 18: resumos novos e seletor Câmara / Senado / Vetos
 
 ### O que foi feito

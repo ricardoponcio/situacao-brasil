@@ -104,6 +104,20 @@ Decisão do autor necessária: criar as contas e guardar as chaves (variável de
 
 ---
 
+## Saúde e segurança: testado em 2026-11-10
+
+| Fonte | Acesso | Chave? | O que dá | Limites e cuidados |
+|---|---|---|---|---|
+| **DATASUS FTP, SIM** (mortes) | `ftp://ftp.datasus.gov.br/dissemin/publicos/SIM/CID10/DORES/DO{UF}{ano}.dbc` (final, até 2024) e `SIM/PRELIM/DORES/` (2025 e 2026, preliminar, atualizado ~mensal) | não | homicídios (CID X85–Y09, Y35–Y36), mortes de bebês, qualquer causa, por estado e município de residência | um arquivo por UF e ano (SP 2024: 29 MB; o do país, `DOBR`, 138 MB). Dado final sai com ~1 ano de atraso. `.dbc` = DBF comprimido (PKWare implode) |
+| **DATASUS FTP, SINASC** (nascimentos) | `SINASC/1996_/Dados/DNRES/DN{UF}{ano}.dbc` e `SINASC/PRELIM/DNRES/` | não | nascidos vivos, base da mortalidade infantil (mortes antes de 1 ano por 1.000 nascidos) | `DNBR` 2024: 118 MB |
+| **DATASUS FTP, SINAN** (dengue) | `SINAN/DADOS/PRELIM/DENGBR26.dbc` (2023 a 2026), `FINAIS/` | não | casos notificados de dengue | 24 MB por ano, país inteiro num arquivo; preliminar atualizado ~semanal (3/11/2026) |
+| **API de dados abertos do Ministério da Saúde** | `apidadosabertos.saude.gov.br/v1` (OpenAPI em `/static/swagger.json`) | não | SIM, SINASC, dengue, vacinas, hospitais e leitos, CNES | **só registro por registro** (`limit`/`offset`), sem totais. 5.000 casos de dengue = 3,7 MB e 31 s: inviável para contar um ano. Serve para cadastros (hospitais, leitos) |
+| **Portal OpenDataSUS** | `dadosabertos.saude.gov.br` | – | página nova (Next.js); a API CKAN antiga dá 404 | sem API de catálogo |
+| **SINESP** (crimes registrados) | página de estatística do MJ dá erro `Unauthorized`; `dados.mj.gov.br` não resolve no DNS | API do dados.gov.br: **sim** (`chave-api-dados-abertos`, conta gov.br) | roubos, furtos, estupros por UF | a chave só abre o **catálogo**; os arquivos em si podem estar no `dados.mj.gov.br`, que não responde. Só dá para saber criando a conta |
+| **Atlas da Violência (Ipea)** | `/atlasviolencia/api/v1` | – | – | 404, site refeito. Usa o SIM por baixo: melhor ir direto no SIM |
+
+Ler `.dbc` em Node: testado com `node-pkware` (`explode`): Acre 2024, 4.267 registros, 87 campos, 55 ms, 174 homicídios.
+
 ## Não funcionou agora (rever depois)
 
 | Fonte | Problema |
