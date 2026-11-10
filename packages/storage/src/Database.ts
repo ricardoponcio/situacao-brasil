@@ -82,6 +82,39 @@ CREATE TABLE IF NOT EXISTS propostas_resumos (
   criado_em     TEXT NOT NULL
 );
 CREATE INDEX IF NOT EXISTS idx_propostas_resumos_ref ON propostas_resumos(ref);
+
+-- DATASUS: cada arquivo .dbc lido (SIM, SINASC, SINAN). Só é baixado de novo quando a data de alteração muda.
+CREATE TABLE IF NOT EXISTS datasus_arquivos (
+  caminho       TEXT PRIMARY KEY,   -- SIM/CID10/DORES/DOAC2024.dbc
+  sistema       TEXT NOT NULL,      -- sim | sinasc | sinan-dengue
+  uf            TEXT,               -- sigla do arquivo (AC...) ou BR
+  ano           INTEGER NOT NULL,
+  final         INTEGER NOT NULL,   -- 1 = dado final; 0 = preliminar (a origem substitui o arquivo)
+  url           TEXT NOT NULL,
+  modificado    TEXT NOT NULL,      -- data de alteração na origem (ISO)
+  versao        TEXT NOT NULL,      -- data da listagem + tamanho: se mudar, o arquivo é baixado de novo
+  bytes         INTEGER NOT NULL,
+  raw_hash      TEXT NOT NULL,
+  registros     INTEGER NOT NULL,
+  processado_em TEXT NOT NULL
+);
+
+-- Contagens dos microdados do DATASUS, sem dado pessoal: quantos casos por município de residência,
+-- ano, mês, grupo (causa da morte, nascimento, dengue), faixa de idade e sexo. Consultável por SQL.
+CREATE TABLE IF NOT EXISTS datasus_contagens (
+  arquivo   TEXT NOT NULL REFERENCES datasus_arquivos(caminho) ON DELETE CASCADE,
+  sistema   TEXT NOT NULL,
+  ano       INTEGER NOT NULL,
+  mes       INTEGER NOT NULL,       -- 0 = mês ignorado
+  uf        TEXT NOT NULL,          -- código IBGE de 2 dígitos ('' = ignorado)
+  municipio TEXT NOT NULL,          -- código de 6 dígitos usado pelo DATASUS ('' = ignorado)
+  grupo     TEXT NOT NULL,
+  faixa     TEXT NOT NULL,
+  sexo      TEXT NOT NULL,          -- m | f | i
+  n         INTEGER NOT NULL,
+  PRIMARY KEY (arquivo, ano, mes, municipio, grupo, faixa, sexo)
+) WITHOUT ROWID;
+CREATE INDEX IF NOT EXISTS idx_datasus_contagens ON datasus_contagens(sistema, grupo, ano, uf);
 `;
 
 export function openDatabase(file = dbPath): DatabaseSync {

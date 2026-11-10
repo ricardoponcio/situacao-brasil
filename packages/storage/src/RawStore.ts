@@ -1,5 +1,5 @@
 import { createHash } from 'node:crypto';
-import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
 import type { RawBlobInfo } from '@sb/core';
 import { rawDir } from './paths.ts';
@@ -19,10 +19,14 @@ export class RawStore {
     return path.join(this.dir, hash);
   }
 
-  save(body: string | Buffer, url: string, contentType: string): RawBlobInfo {
+  /**
+   * `keep: false` registra só a identidade do bruto (hash, endereço, tamanho), sem guardar o conteúdo. Serve a
+   * arquivos grandes que a origem mantém para sempre: quem quiser conferir baixa de novo e compara o hash.
+   */
+  save(body: string | Buffer, url: string, contentType: string, { keep = true } = {}): RawBlobInfo {
     const hash = createHash('sha256').update(body).digest('hex');
     const file = path.join(this.dir, hash);
-    if (!existsSync(file)) writeFileSync(file, body);
+    if (keep && !existsSync(file)) writeFileSync(file, body);
     const info: RawBlobInfo = {
       hash,
       url,
@@ -32,6 +36,18 @@ export class RawStore {
     };
     this.index.register(info);
     return info;
+  }
+
+  /** Apaga o conteúdo guardado, mantendo o registro (hash, endereço, data). */
+  discard(hash: string): void {
+    if (/^[a-f0-9]{64}$/.test(hash)) rmSync(path.join(this.dir, hash), { force: true });
+  }
+
+  /** Registro do bruto e se o conteúdo está guardado. */
+  info(hash: string): (RawBlobInfo & { kept: boolean }) | null {
+    if (!/^[a-f0-9]{64}$/.test(hash)) return null;
+    const info = this.index.get(hash);
+    return info ? { ...info, kept: existsSync(path.join(this.dir, hash)) } : null;
   }
 
   read(hash: string): { info: RawBlobInfo; body: Buffer } | null {

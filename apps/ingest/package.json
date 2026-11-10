@@ -11,6 +11,8 @@
   "dependencies": {
     "@sb/core": "*",
     "@sb/storage": "*",
+    "basic-ftp": "6.2.3",
+    "node-pkware": "6.0.0",
     "tsx": "^4.23.15"
   }
 }

@@ -23,6 +23,16 @@
   registros inválidos (a execução fica `partial`).
 - `framework/HttpClient.ts`: User-Agent honesto, espaçamento por host, novas tentativas, arquivamento do bruto.
 - `framework/registry.ts`: auto-descoberta de `src/sources/*/index.ts`.
+- `RunContext.storage`: acesso ao armazenamento para fontes com tabela própria ou que derivam números do que já
+  foi gravado. Hoje só o `datasus` usa.
+- **DATASUS** (`sources/datasus/`): FTP público (`basic-ftp`, sem proxy: FTP não passa pelo `HTTPS_PROXY`), arquivos
+  `.dbc` lidos com `node-pkware` (`dbc.ts`) e transformados em contagens (`agregar.ts`) na tabela
+  `datasus_contagens`: mortes e nascimentos por município × ano × grupo × faixa de idade × sexo; dengue também por
+  mês. Nenhum dado pessoal é guardado. `datasus_arquivos` lembra cada arquivo (data da listagem + tamanho): só o que
+  mudou é baixado de novo. Quando sai o arquivo final de um ano, o preliminar do mesmo ano é retirado. Cada coleta
+  baixa por no máximo `--opt minutos=40`; a carga inicial (2015 em diante, uns 3,5 GB) se completa ao longo de várias
+  coletas, dos anos mais recentes para os mais antigos. Os indicadores (taxas) são recalculados das contagens a
+  cada coleta, com a população do IBGE (6579 + Censo 4709, `populacao.ts`).
 - `framework/Runner.ts`: grava catálogo e registros em lotes, e o log de execução em `runs`.
 - CLI: `npm run ingest [-- <fonte...>] [--list] [--opt chave=valor]`. Antes das fontes, importa os resumos de
   `apps/ingest/dados/resumos-propostas.json`.
@@ -39,6 +49,10 @@ Tabelas: `sources`, `datasets`, `records` (payload JSON + colunas extraídas par
 `propostas_textos` (texto oficial por proposta e Casa; só existe onde `npm run textos` rodou) e `propostas_resumos`
 (chave: hash do texto resumido).
 Brutos em `data/raw/<sha256>`. A pasta `data/` fica fora do git e é recriada pela ingestão.
+`RawStore.save(..., { keep: false })` registra só a identidade do bruto (endereço, sha256, tamanho), sem o conteúdo:
+serve a arquivos grandes que a origem mantém (DATASUS final). Nesses, `/api/raw/:hash` responde 410 com o endereço
+para baixar e conferir o hash; `?info` diz `kept: false`.
+Tabelas `datasus_arquivos` e `datasus_contagens`: ver a seção de ingestão.
 
 ## API (`apps/api`, porta 3101)
 | rota | o quê |

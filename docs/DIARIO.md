@@ -7,6 +7,37 @@ Formato de cada entrada: data · o que foi feito · decisões (com o porquê) ·
 
 ---
 
+## 2026-11-10 · Sessão 20: fonte DATASUS (homicídios, mortalidade infantil, dengue)
+
+### O que foi feito
+- Fonte `datasus` (`apps/ingest/src/sources/datasus/`): FTP público, arquivos `.dbc` (DBF comprimido) lidos com
+  `node-pkware`, viram contagens sem dado pessoal na tabela `datasus_contagens` (município × ano × grupo de causa ×
+  faixa de idade × sexo; dengue também por mês). `datasus_arquivos` guarda data+tamanho de cada arquivo: só o que
+  mudou é baixado de novo. Quando sai o final de um ano, o preliminar do mesmo ano é retirado.
+- Indicadores: `homicidios` (Segurança, destaque), `mortalidade-infantil` (Saúde, destaque) e `dengue` (Saúde,
+  mensal), por Brasil, região e estado, com população do IBGE (6579 + Censo 4709; 2023 interpolado).
+- `RunContext.storage` (fonte com tabela própria); `RawStore.save(..., { keep: false })` e `discard()`;
+  `/api/raw/:hash` responde 410 com o endereço quando o conteúdo não foi guardado.
+- Introduções dos assuntos Saúde e Segurança. `.env` no `.gitignore` (chave do dados.gov.br, só local).
+- SINESP testado com a chave: o catálogo existe, mas os arquivos apontam para `dados.mj.gov.br`, que saiu do DNS.
+
+### Decisões
+- **Contagens, não registros**: com o mês, mortes dariam ~500 mil linhas por ano; por município × ano ficam ~150 mil.
+  A dengue fica com o mês porque é sazonal. Microdados não ficam guardados (datas de nascimento e morte, raça...).
+- **Arquivo final descartado, preliminar mais recente guardado**: o final continua na origem para conferir pelo
+  sha256; o preliminar é substituído lá todo mês.
+- **Carga aos poucos no servidor**: `--opt minutos=40` por coleta, anos mais recentes primeiro. O FTP entrega
+  ~11 MB/min e o histórico (2015+, ~3,6 GB) leva umas 8 coletas (~2 dias). Localmente só foram carregados
+  2024–2026, o bastante para testar.
+- Conferência: Brasil 2025 (preliminar) 17,6 homicídios por 100 mil e 12,2 mortes de bebês por mil nascidos.
+
+### Problemas em aberto
+- FTP não passa pelo `HTTPS_PROXY`. Se o DATASUS recusar o servidor (fora do Brasil), a coleta `datasus` falha e
+  isso aparece em Fontes; aí será preciso outro caminho.
+- Gráfico anual com só 2 anos mostra o eixo em meses; some quando o histórico entrar.
+
+---
+
 ## 2026-11-10 · Sessão 19: levantamento de saúde e segurança (só testes, sem código)
 
 ### O que foi feito

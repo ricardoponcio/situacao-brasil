@@ -1,8 +1,14 @@
 import type { DatasetDescriptor, SbRecord, SourceManifest } from '@sb/core';
+import type { Storage } from '@sb/storage';
 import type { HttpClient } from './HttpClient.ts';
 
 export interface RunContext {
   http: HttpClient;
+  /**
+   * Acesso direto ao armazenamento, para fontes que guardam tabelas próprias (ex.: contagens do DATASUS)
+   * ou que derivam números de registros já gravados. A maioria das fontes não precisa.
+   */
+  storage: Storage;
   /** Opções vindas da CLI (--opt chave=valor), para ajustar janelas de coleta etc. */
   options: Readonly<Record<string, string>>;
   log(message: string): void;

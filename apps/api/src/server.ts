@@ -77,9 +77,12 @@ const router = new Router()
 
   // Payload bruto exatamente como veio da origem
   .get('/api/raw/:hash', ({ params, query }) => {
+    const info = raw.info(params.hash!);
+    if (!info) throw new HttpError(404, 'Bruto não encontrado');
+    if (query.get('info') !== null) return info;
     const blob = raw.read(params.hash!);
-    if (!blob) throw new HttpError(404, 'Bruto não encontrado');
-    if (query.get('info') !== null) return blob.info;
+    // Arquivos grandes que a origem mantém (ex.: DATASUS final) ficam só registrados: baixe no endereço e compare o hash.
+    if (!blob) throw new HttpError(410, `Conteúdo não guardado. Baixe em ${info.url} e confira o sha256 ${info.hash}`);
     return { raw: blob.body, contentType: blob.info.contentType };
   });
 

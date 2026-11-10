@@ -2,6 +2,7 @@ import type { DatabaseSync } from 'node:sqlite';
 import { openDatabase } from './Database.ts';
 import {
   CatalogRepository,
+  DatasusRepository,
   PropostaResumoRepository,
   PropostaTextoRepository,
   RawBlobRepository,
@@ -23,6 +24,7 @@ export class Storage {
   readonly raw: RawStore;
   readonly textos: PropostaTextoRepository;
   readonly resumos: PropostaResumoRepository;
+  readonly datasus: DatasusRepository;
 
   constructor(readonly db: DatabaseSync = openDatabase()) {
     this.catalog = new CatalogRepository(db);
@@ -30,6 +32,7 @@ export class Storage {
     this.runs = new RunRepository(db);
     this.textos = new PropostaTextoRepository(db);
     this.resumos = new PropostaResumoRepository(db);
+    this.datasus = new DatasusRepository(db);
     this.raw = new RawStore(new RawBlobRepository(db));
   }
 

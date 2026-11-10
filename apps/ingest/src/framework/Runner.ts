@@ -28,6 +28,7 @@ export class Runner {
     const issues: string[] = [];
     const ctx: RunContext = {
       http: new HttpClient(this.storage.raw),
+      storage: this.storage,
       options: this.options,
       log: (m) => console.log(`  [${sourceId}] ${m}`),
       issue: (m) => {

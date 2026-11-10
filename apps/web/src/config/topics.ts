@@ -79,7 +79,8 @@ export const TOPICS: Topic[] = [
     id: 'saude',
     title: 'Saúde',
     question: 'Como está a saúde da população?',
-    intro: '',
+    intro:
+      'Quantos bebês morrem antes de fazer 1 ano e como anda a dengue, a partir dos registros do Ministério da Saúde: certidões de óbito, declarações de nascimento e casos notificados.',
     themes: ['saude'],
   },
   {
@@ -93,7 +94,8 @@ export const TOPICS: Topic[] = [
     id: 'seguranca',
     title: 'Segurança',
     question: 'O país está mais seguro?',
-    intro: '',
+    intro:
+      'Quantas pessoas são assassinadas a cada ano, contadas pelas certidões de óbito do Ministério da Saúde, e não pelos boletins de ocorrência da polícia.',
     themes: ['seguranca'],
   },
   {

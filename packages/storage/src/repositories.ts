@@ -360,3 +360,135 @@ export class RawBlobRepository {
     };
   }
 }
+
+export interface DatasusArquivo {
+  caminho: string;
+  sistema: string;
+  uf: string | null;
+  ano: number;
+  final: boolean;
+  url: string;
+  modificado: string;
+  versao: string;
+  bytes: number;
+  rawHash: string;
+  registros: number;
+  processadoEm: string;
+}
+
+export interface DatasusContagem {
+  ano: number;
+  mes: number;
+  uf: string;
+  municipio: string;
+  grupo: string;
+  faixa: string;
+  sexo: string;
+  n: number;
+}
+
+/** Arquivos do DATASUS já lidos e as contagens tiradas deles. */
+export class DatasusRepository {
+  constructor(private readonly db: DatabaseSync) {}
+
+  arquivo(caminho: string): DatasusArquivo | null {
+    const r = this.db.prepare('SELECT * FROM datasus_arquivos WHERE caminho = ?').get(caminho) as Row | undefined;
+    return r ? toArquivo(r) : null;
+  }
+
+  arquivos(): DatasusArquivo[] {
+    return (this.db.prepare('SELECT * FROM datasus_arquivos ORDER BY caminho').all() as Row[]).map(toArquivo);
+  }
+
+  /** Troca, numa transação só, tudo o que veio de um arquivo (um arquivo novo substitui o anterior inteiro). */
+  substituir(a: DatasusArquivo, contagens: DatasusContagem[]): void {
+    const ins = this.db.prepare(
+      `INSERT INTO datasus_contagens (arquivo, sistema, ano, mes, uf, municipio, grupo, faixa, sexo, n)
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+    );
+    this.db.exec('BEGIN');
+    try {
+      this.db.prepare('DELETE FROM datasus_contagens WHERE arquivo = ?').run(a.caminho);
+      this.db
+        .prepare(
+          `INSERT INTO datasus_arquivos (caminho, sistema, uf, ano, final, url, modificado, versao, bytes, raw_hash, registros, processado_em)
+           VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+           ON CONFLICT(caminho) DO UPDATE SET sistema = excluded.sistema, uf = excluded.uf, ano = excluded.ano,
+             final = excluded.final, url = excluded.url, modificado = excluded.modificado, versao = excluded.versao, bytes = excluded.bytes,
+             raw_hash = excluded.raw_hash, registros = excluded.registros, processado_em = excluded.processado_em`,
+        )
+        .run(a.caminho, a.sistema, a.uf, a.ano, a.final ? 1 : 0, a.url, a.modificado, a.versao, a.bytes, a.rawHash, a.registros, a.processadoEm);
+      for (const c of contagens) ins.run(a.caminho, a.sistema, c.ano, c.mes, c.uf, c.municipio, c.grupo, c.faixa, c.sexo, c.n);
+      this.db.exec('COMMIT');
+    } catch (err) {
+      this.db.exec('ROLLBACK');
+      throw err;
+    }
+  }
+
+  /** Apaga um arquivo e as contagens dele (ex.: o preliminar, quando sai o final do mesmo ano). */
+  remover(caminho: string): void {
+    this.db.exec('BEGIN');
+    try {
+      this.db.prepare('DELETE FROM datasus_contagens WHERE arquivo = ?').run(caminho);
+      this.db.prepare('DELETE FROM datasus_arquivos WHERE caminho = ?').run(caminho);
+      this.db.exec('COMMIT');
+    } catch (err) {
+      this.db.exec('ROLLBACK');
+      throw err;
+    }
+  }
+
+  /**
+   * Soma por UF e período. `porMes` separa os meses; senão, soma o ano. Filtros opcionais de grupo e faixa.
+   * Devolve também se algum arquivo da soma é preliminar.
+   */
+  somaPorUf(
+    sistema: string,
+    filtro: { grupos?: string[]; faixas?: string[]; porMes?: boolean } = {},
+  ): { ano: number; mes: number; uf: string; n: number; preliminar: boolean }[] {
+    const where = ['c.sistema = ?'];
+    const params: SQLInputValue[] = [sistema];
+    if (filtro.grupos?.length) {
+      where.push(`c.grupo IN (${filtro.grupos.map(() => '?').join(',')})`);
+      params.push(...filtro.grupos);
+    }
+    if (filtro.faixas?.length) {
+      where.push(`c.faixa IN (${filtro.faixas.map(() => '?').join(',')})`);
+      params.push(...filtro.faixas);
+    }
+    const mes = filtro.porMes ? 'c.mes' : '0';
+    const rows = this.db
+      .prepare(
+        `SELECT c.ano AS ano, ${mes} AS mes, c.uf AS uf, SUM(c.n) AS n, MIN(a.final) AS final
+         FROM datasus_contagens c JOIN datasus_arquivos a ON a.caminho = c.arquivo
+         WHERE ${where.join(' AND ')}
+         GROUP BY c.ano, ${filtro.porMes ? 'c.mes, ' : ''}c.uf`,
+      )
+      .all(...params) as Row[];
+    return rows.map((r) => ({
+      ano: Number(r.ano),
+      mes: Number(r.mes),
+      uf: String(r.uf),
+      n: Number(r.n),
+      preliminar: Number(r.final) === 0,
+    }));
+  }
+}
+
+function toArquivo(r: Row): DatasusArquivo {
+  return {
+    caminho: String(r.caminho),
+    sistema: String(r.sistema),
+    uf: (r.uf as string | null) ?? null,
+    ano: Number(r.ano),
+    final: Number(r.final) === 1,
+    url: String(r.url),
+    modificado: String(r.modificado),
+    versao: String(r.versao),
+    bytes: Number(r.bytes),
+    rawHash: String(r.raw_hash),
+    registros: Number(r.registros),
+    processadoEm: String(r.processado_em),
+  };
+}
