@@ -20,6 +20,16 @@ export interface Topic {
    * Dataset do tema que não estiver aqui entra no fim, com o próprio título.
    */
   tabs?: Record<string, string>;
+  /**
+   * Indicadores que se leem juntos ficam em sequência, sob um subtítulo. Dataset do tema fora de todo grupo
+   * entra no fim, em "Outros dados", para fonte nova não sumir.
+   */
+  groups?: TopicGroup[];
+}
+
+export interface TopicGroup {
+  title: string;
+  datasets: string[];
 }
 
 export const TOPICS: Topic[] = [
@@ -30,6 +40,10 @@ export const TOPICS: Topic[] = [
     intro:
       'Se as pessoas têm comida na mesa, água chegando em casa e esgoto ligado à rede. É a base: sem isso, o resto fica difícil.',
     themes: ['condicoes-de-vida'],
+    groups: [
+      { title: 'Comida', datasets: ['inseguranca-alimentar-grave', 'inseguranca-alimentar'] },
+      { title: 'Água e esgoto', datasets: ['agua-rede-geral', 'agua-todo-dia', 'esgoto-rede'] },
+    ],
   },
   {
     id: 'custo-de-vida',
@@ -38,6 +52,10 @@ export const TOPICS: Topic[] = [
     intro:
       'Quanto as coisas estão ficando mais caras, se isso está dentro do que o país definiu como aceitável, e o que pesa nos preços: os juros e o dólar.',
     themes: ['economia'],
+    groups: [
+      { title: 'Inflação', datasets: ['ipca-12-meses', 'ipca-mensal', 'inflacao-esperada'] },
+      { title: 'Juros e dólar', datasets: ['selic', 'dolar'] },
+    ],
   },
   {
     id: 'trabalho',
@@ -45,6 +63,7 @@ export const TOPICS: Topic[] = [
     question: 'Está fácil arrumar emprego?',
     intro: 'Quantas pessoas procuram trabalho e não encontram, e como isso mudou com o tempo.',
     themes: ['trabalho'],
+    groups: [{ title: 'Emprego', datasets: ['desocupacao', 'subutilizacao', 'informalidade'] }],
   },
   {
     id: 'politica',

@@ -232,6 +232,10 @@ pre.json { font-size: 12px; background: var(--surface-2); padding: 10px; border-
 
 .indicator { padding: 28px 0; border-top: 1px solid var(--border); display: flex; flex-direction: column; gap: 12px; }
 .indicator h2 { font-size: 24px; }
+.topic-group { margin-top: 28px; }
+.topic-group:first-of-type { margin-top: 8px; }
+.topic-group-title { margin: 0; padding: 14px 0 4px; border-top: 3px solid var(--flag); font-family: var(--font-display); font-size: 14px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--flag); }
+.topic-group-title + .indicator { border-top: 0; padding-top: 8px; }
 .indicator .summary-lg { margin-bottom: 4px; }
 .indicator-body { background: var(--surface-1); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px; display: flex; flex-direction: column; gap: 12px; }
 .indicator-more { font-size: 15px; }

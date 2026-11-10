@@ -111,6 +111,28 @@ export function TopicPage({ id, tab }: { id: string; tab?: string }) {
             );
           }
 
+          if (topic.groups) {
+            const byId = new Map(mine.map((d) => [d.id, d]));
+            const sections = topic.groups.map((g) => ({
+              title: g.title,
+              list: g.datasets.map((id) => byId.get(id)).filter((d): d is DatasetDescriptor => !!d),
+            }));
+            const grouped = new Set(topic.groups.flatMap((g) => g.datasets));
+            const rest = mine.filter((d) => !grouped.has(d.id));
+            if (rest.length) sections.push({ title: 'Outros dados', list: rest });
+            const visible = sections.filter((g) => g.list.length);
+            // Um grupo só não precisa de subtítulo: seria repetir o assunto.
+            const titled = visible.length > 1;
+            return visible.map((g) => (
+              <section key={g.title} className="topic-group">
+                {titled && <h2 className="topic-group-title">{g.title}</h2>}
+                {g.list.map((d) => (
+                  <Indicator key={d.id} d={d} />
+                ))}
+              </section>
+            ));
+          }
+
           // Destaque primeiro, logo depois os indicadores que devem ser lidos junto com ele.
           const lead = mine.find((d) => d.featured);
           const pairs = lead ? lead.readWith.map((r) => r.datasetId) : [];

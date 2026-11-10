@@ -22,6 +22,14 @@ Formato de cada entrada: data · o que foi feito · decisões (com o porquê) ·
 - **Um por vez, e não links para pular**: o roteamento é por hash, então âncoras quebrariam a rota; e mostrar um
   só deixa a página curta. Os outros assuntos continuam com a lista inteira (só usam abas se tiverem `tabs`).
 
+- Assuntos com grupos (`Topic.groups`): indicadores que se leem juntos ficam em sequência, sob um subtítulo.
+  Custo de vida: Inflação (12 meses, do mês, esperada) e Juros e dólar. O básico: Comida e Água e esgoto.
+  Trabalho: um grupo só, então sem subtítulo. Dataset fora dos grupos cai em "Outros dados" (fonte nova não some).
+
+### Decisões
+- **Grupos escritos à mão no `topics.ts`, e não pelo `readWith`**: o `readWith` diz "leia junto", mas não dá ordem
+  nem nome ao conjunto; antes o IPCA do mês ficava depois do dólar.
+
 ### Próximos passos
 - Ver se vale um número em cada botão (ex.: "Vetos (12)").
 
