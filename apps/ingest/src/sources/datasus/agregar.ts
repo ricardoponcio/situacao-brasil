@@ -3,7 +3,7 @@
  * grupo, faixa de idade e sexo. O que fica no banco é só o número de casos de cada combinação.
  */
 import type { DatasusContagem } from '@sb/storage';
-import type { Dbf } from './dbc.ts';
+import type { Registro } from './dbc.ts';
 
 export type Sistema = 'sim' | 'sinasc' | 'sinan-dengue';
 
@@ -76,59 +76,62 @@ export interface Resultado {
 }
 
 /**
+ * Soma os registros de um arquivo, um por vez (o arquivo inteiro nunca fica na memória, só as contagens).
  * `ano` = ano do arquivo, usado quando a data do registro falta.
  * Mortes e nascimentos ficam por ano (mes = 0): com o mês, seriam ~500 mil linhas por ano só de mortes.
  * A dengue fica por mês, porque varia muito ao longo do ano.
  */
-export function agregar(dbf: Dbf, sistema: Sistema, ano: number): Resultado {
-  const porMes = sistema === 'sinan-dengue';
-  const mapa = new Map<string, DatasusContagem>();
-  let ignorados = 0;
-  for (let i = 0; i < dbf.registros; i++) {
+export class Agregador {
+  private mapa = new Map<string, DatasusContagem>();
+  private lidos = 0;
+  private ignorados = 0;
+  private readonly porMes: boolean;
+
+  constructor(private readonly sistema: Sistema, private readonly ano: number) {
+    this.porMes = sistema === 'sinan-dengue';
+  }
+
+  somar(r: Registro): void {
+    this.lidos++;
     let data: { ano: number; mes: number } | null;
     let mun: string;
     let grupo: string;
     let fx: string;
     let sx: string;
-    if (sistema === 'sim') {
-      data = anoMes(dbf.valor(i, 'DTOBITO'), 'dmy');
-      mun = dbf.valor(i, 'CODMUNRES');
-      grupo = grupoCausa(dbf.valor(i, 'CAUSABAS'));
-      fx = faixa(idadeEmAnos(dbf.valor(i, 'IDADE'), 'sim'));
-      sx = sexo(dbf.valor(i, 'SEXO'));
-    } else if (sistema === 'sinasc') {
-      data = anoMes(dbf.valor(i, 'DTNASC'), 'dmy');
-      mun = dbf.valor(i, 'CODMUNRES');
+    if (this.sistema === 'sim') {
+      data = anoMes(r.valor('DTOBITO'), 'dmy');
+      mun = r.valor('CODMUNRES');
+      grupo = grupoCausa(r.valor('CAUSABAS'));
+      fx = faixa(idadeEmAnos(r.valor('IDADE'), 'sim'));
+      sx = sexo(r.valor('SEXO'));
+    } else if (this.sistema === 'sinasc') {
+      data = anoMes(r.valor('DTNASC'), 'dmy');
+      mun = r.valor('CODMUNRES');
       grupo = 'nascido-vivo';
       fx = 'menos-1';
-      sx = sexo(dbf.valor(i, 'SEXO'));
+      sx = sexo(r.valor('SEXO'));
     } else {
       // Caso provável de dengue = toda notificação, menos as descartadas (CLASSI_FIN 5), como no boletim do Ministério.
-      if (dbf.valor(i, 'CLASSI_FIN') === '5') {
-        ignorados++;
-        continue;
+      if (r.valor('CLASSI_FIN') === '5') {
+        this.ignorados++;
+        return;
       }
-      data = anoMes(dbf.valor(i, 'DT_SIN_PRI'), 'ymd');
-      mun = dbf.valor(i, 'ID_MN_RESI');
+      data = anoMes(r.valor('DT_SIN_PRI'), 'ymd');
+      mun = r.valor('ID_MN_RESI');
       grupo = 'dengue-provavel';
-      fx = faixa(idadeEmAnos(dbf.valor(i, 'NU_IDADE_N'), 'sinan-dengue'));
-      sx = sexo(dbf.valor(i, 'CS_SEXO'));
+      fx = faixa(idadeEmAnos(r.valor('NU_IDADE_N'), 'sinan-dengue'));
+      sx = sexo(r.valor('CS_SEXO'));
     }
     const municipio = /^\d{6}/.test(mun) ? mun.slice(0, 6) : '';
-    const c: DatasusContagem = {
-      ano: data?.ano ?? ano,
-      mes: porMes ? (data?.mes ?? 0) : 0,
-      uf: municipio.slice(0, 2),
-      municipio,
-      grupo,
-      faixa: fx,
-      sexo: sx,
-      n: 0,
-    };
-    const chave = `${c.ano}|${c.mes}|${c.municipio}|${c.grupo}|${c.faixa}|${c.sexo}`;
-    const atual = mapa.get(chave);
+    const ano = data?.ano ?? this.ano;
+    const mes = this.porMes ? (data?.mes ?? 0) : 0;
+    const chave = `${ano}|${mes}|${municipio}|${grupo}|${fx}|${sx}`;
+    const atual = this.mapa.get(chave);
     if (atual) atual.n++;
-    else mapa.set(chave, { ...c, n: 1 });
+    else this.mapa.set(chave, { ano, mes, uf: municipio.slice(0, 2), municipio, grupo, faixa: fx, sexo: sx, n: 1 });
   }
-  return { contagens: [...mapa.values()], lidos: dbf.registros, ignorados };
+
+  resultado(): Resultado {
+    return { contagens: [...this.mapa.values()], lidos: this.lidos, ignorados: this.ignorados };
+  }
 }

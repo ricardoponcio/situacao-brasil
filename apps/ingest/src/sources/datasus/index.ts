@@ -9,12 +9,13 @@
  * Opções (--opt): desde=2015 (primeiro ano), minutos=40 (tempo máximo baixando por coleta; o resto fica para a
  * próxima), sistemas=sim,sinasc,sinan-dengue.
  */
+import { rmSync, statSync } from 'node:fs';
 import type { DatasetDescriptor, DatasetDescriptorInput, RecordDraft, TerritoryLevel } from '@sb/core';
 import type { DatasusArquivo } from '@sb/storage';
 import { BaseProcessor, type Emission } from '../../framework/BaseProcessor.ts';
 import type { Origin } from '../../framework/HttpClient.ts';
 import type { RunContext } from '../../framework/Processor.ts';
-import { agregar, type Sistema } from './agregar.ts';
+import { Agregador, type Sistema } from './agregar.ts';
 import { lerDbc } from './dbc.ts';
 import { DatasusFtp, type ArquivoRemoto } from './ftp.ts';
 import { carregarPopulacao, type Populacao } from './populacao.ts';
@@ -240,14 +241,18 @@ class Datasus extends BaseProcessor {
         ctx.log(`tempo-limite: ${pendentes.length - feitos} arquivos ficam para a próxima coleta`);
         break;
       }
+      const tmp = ctx.storage.raw.tempPath();
       try {
         const t0 = Date.now();
-        const corpo = await ftp.baixar(c.caminho);
+        await ftp.baixar(c.caminho, tmp);
         const modificado = await ftp.modificado(c.caminho).catch(() => new Date().toISOString());
-        const r = agregar(lerDbc(corpo), c.sistema, c.ano);
+        const ag = new Agregador(c.sistema, c.ano);
+        await lerDbc(tmp, (reg) => ag.somar(reg), { respiroMs: 50 });
+        const r = ag.resultado();
         const url = ftp.url(c.caminho);
         const anterior = repo.arquivo(c.caminho);
-        const raw = ctx.storage.raw.save(corpo, url, 'application/x-dbc', { keep: !c.final });
+        const bytes = statSync(tmp).size;
+        const raw = await ctx.storage.raw.saveFile(tmp, url, 'application/x-dbc', { keep: !c.final });
         if (anterior && anterior.rawHash !== raw.hash) ctx.storage.raw.discard(anterior.rawHash);
         repo.substituir(
           {
@@ -259,7 +264,7 @@ class Datasus extends BaseProcessor {
             url,
             modificado,
             versao: c.versao,
-            bytes: corpo.length,
+            bytes,
             rawHash: raw.hash,
             registros: r.lidos,
             processadoEm: new Date().toISOString(),
@@ -268,10 +273,12 @@ class Datasus extends BaseProcessor {
         );
         feitos++;
         ctx.log(
-          `${c.caminho}: ${r.lidos} registros, ${r.contagens.length} contagens, ${(corpo.length / 1e6).toFixed(1)} MB, ${((Date.now() - t0) / 1000).toFixed(0)} s`,
+          `${c.caminho}: ${r.lidos} registros, ${r.contagens.length} contagens, ${(bytes / 1e6).toFixed(1)} MB, ${((Date.now() - t0) / 1000).toFixed(0)} s`,
         );
       } catch (err) {
         ctx.issue(`${c.caminho}: ${(err as Error).message}`);
+      } finally {
+        rmSync(tmp, { force: true });
       }
     }
   }

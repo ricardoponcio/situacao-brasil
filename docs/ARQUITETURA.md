@@ -26,7 +26,8 @@
 - `RunContext.storage`: acesso ao armazenamento para fontes com tabela própria ou que derivam números do que já
   foi gravado. Hoje só o `datasus` usa.
 - **DATASUS** (`sources/datasus/`): FTP público (`basic-ftp`, sem proxy: FTP não passa pelo `HTTPS_PROXY`), arquivos
-  `.dbc` lidos com `node-pkware` (`dbc.ts`) e transformados em contagens (`agregar.ts`) na tabela
+  `.dbc` baixados para o disco e lidos em fluxo, um registro por vez, com `node-pkware` (`dbc.ts`; o DBF da dengue
+  descomprimido passa de GB e o servidor tem 1 GB de RAM) e transformados em contagens (`agregar.ts`) na tabela
   `datasus_contagens`: mortes e nascimentos por município × ano × grupo × faixa de idade × sexo; dengue também por
   mês. Nenhum dado pessoal é guardado. `datasus_arquivos` lembra cada arquivo (data da listagem + tamanho): só o que
   mudou é baixado de novo. Quando sai o arquivo final de um ano, o preliminar do mesmo ano é retirado. Cada coleta
@@ -50,7 +51,8 @@ Tabelas: `sources`, `datasets`, `records` (payload JSON + colunas extraídas par
 (chave: hash do texto resumido).
 Brutos em `data/raw/<sha256>`. A pasta `data/` fica fora do git e é recriada pela ingestão.
 `RawStore.save(..., { keep: false })` registra só a identidade do bruto (endereço, sha256, tamanho), sem o conteúdo:
-serve a arquivos grandes que a origem mantém (DATASUS final). Nesses, `/api/raw/:hash` responde 410 com o endereço
+serve a arquivos grandes que a origem mantém (DATASUS final). `RawStore.saveFile` faz o mesmo a partir de um
+arquivo no disco (`tempPath()`), sem carregar na memória. Nesses, `/api/raw/:hash` responde 410 com o endereço
 para baixar e conferir o hash; `?info` diz `kept: false`.
 Tabelas `datasus_arquivos` e `datasus_contagens`: ver a seção de ingestão.
 

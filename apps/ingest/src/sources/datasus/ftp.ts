@@ -1,7 +1,6 @@
 /**
  * Acesso ao FTP público do DATASUS (sem senha). Um pedido por vez, com pausa entre arquivos: é serviço público.
  */
-import { PassThrough } from 'node:stream';
 import { Client } from 'basic-ftp';
 
 export const HOST = 'ftp.datasus.gov.br';
@@ -43,13 +42,10 @@ export class DatasusFtp {
     return (await this.client.lastMod(`${BASE}/${caminho}`)).toISOString();
   }
 
-  async baixar(caminho: string): Promise<Buffer> {
+  /** Baixa direto para um arquivo no disco (os maiores passam de 100 MB: não cabem na memória do servidor). */
+  async baixar(caminho: string, destino: string): Promise<void> {
     await this.esperar();
-    const partes: Buffer[] = [];
-    const destino = new PassThrough();
-    destino.on('data', (b: Buffer) => partes.push(b));
     await this.client.downloadTo(destino, `${BASE}/${caminho}`);
-    return Buffer.concat(partes);
   }
 
   url(caminho: string): string {

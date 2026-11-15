@@ -7,6 +7,29 @@ Formato de cada entrada: data · o que foi feito · decisões (com o porquê) ·
 
 ---
 
+## 2026-11-15 · Sessão 21: coleta do DATASUS derrubava o servidor (falta de RAM)
+
+### O que foi feito
+- O servidor (1 GB de RAM) caiu três vezes depois da fonte `datasus` (alerta de RAM no Komodo, depois fora do ar).
+  Causa: cada `.dbc` era baixado inteiro para a memória e descomprimido inteiro. Medido localmente: DENGBR26
+  (24 MB comprimido, 160 MB descomprimido) usava 744 MB; DENGBR25 (66 MB) e DENGBR24 (bem maior) passariam de GB.
+- Agora o arquivo é baixado direto para o disco (`ftp.baixar(caminho, destino)`), o sha256 é calculado em fluxo
+  (`RawStore.saveFile`, que move para os brutos ou apaga) e o DBF é lido em fluxo, um registro por vez
+  (`lerDbc(arquivo, porRegistro)` + `Agregador`). Pico medido: 188 MB no DENGBR26, 126 MB no DOSP2025, com
+  as mesmas contagens que já estavam no banco. A memória não cresce com o tamanho do arquivo.
+- A leitura pausa 50 ms a cada 8 MB descomprimidos, para não tomar a CPU toda.
+- `docker-compose.yml`: o serviço `ingest` ganhou `mem_limit: 512m` (sem swap) e `cpus: 0.5`. Se a coleta
+  passar do limite, só ela é morta e o laço recomeça; a máquina e a API ficam de pé.
+
+### Decisões
+- Registros marcados como apagados no DBF (`*`) passam a ser pulados (antes contavam). Nos arquivos testados não
+  havia nenhum.
+
+### Próximos passos
+- Depois do deploy, acompanhar a primeira coleta do `datasus` no servidor (RAM no Komodo e log de cada arquivo).
+
+---
+
 ## 2026-11-10 · Sessão 20: fonte DATASUS (homicídios, mortalidade infantil, dengue)
 
 ### O que foi feito

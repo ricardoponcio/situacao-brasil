@@ -1,5 +1,5 @@
-import { createHash } from 'node:crypto';
-import { existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { createHash, randomUUID } from 'node:crypto';
+import { createReadStream, existsSync, mkdirSync, readFileSync, renameSync, rmSync, statSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
 import type { RawBlobInfo } from '@sb/core';
 import { rawDir } from './paths.ts';
@@ -34,6 +34,28 @@ export class RawStore {
       bytes: Buffer.byteLength(body),
       contentType,
     };
+    this.index.register(info);
+    return info;
+  }
+
+  /** Caminho temporário no mesmo disco dos brutos, para baixar um arquivo grande antes de `saveFile`. */
+  tempPath(): string {
+    return path.join(this.dir, `.tmp-${randomUUID()}`);
+  }
+
+  /**
+   * Igual a `save`, mas para um arquivo já no disco (lido em fluxo, sem carregar na memória). O arquivo é movido
+   * para o arquivo de brutos (`keep`) ou apagado.
+   */
+  async saveFile(file: string, url: string, contentType: string, { keep = true } = {}): Promise<RawBlobInfo> {
+    const h = createHash('sha256');
+    for await (const chunk of createReadStream(file)) h.update(chunk as Buffer);
+    const hash = h.digest('hex');
+    const dest = path.join(this.dir, hash);
+    const bytes = statSync(file).size;
+    if (keep && !existsSync(dest)) renameSync(file, dest);
+    else rmSync(file, { force: true });
+    const info: RawBlobInfo = { hash, url, fetchedAt: new Date().toISOString(), bytes, contentType };
     this.index.register(info);
     return info;
   }

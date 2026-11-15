@@ -21,6 +21,11 @@ services:
       - api
     volumes:
       - data:/data
+    # O servidor tem 1 GB de RAM. Com teto, se a coleta passar do limite só ela é derrubada (e volta sozinha),
+    # não a máquina inteira. O Node 24 ajusta o próprio heap a esse limite. Meia CPU deixa a API respirar.
+    mem_limit: 512m
+    memswap_limit: 512m
+    cpus: 0.5
     # Opcional: proxy HTTP de saída para a coleta (ex.: fonte que recusa conexão de servidor fora do Brasil).
     # Vazio = conexão direta. O fetch do Node 24 só usa HTTPS_PROXY com NODE_USE_ENV_PROXY=1.
     environment:
