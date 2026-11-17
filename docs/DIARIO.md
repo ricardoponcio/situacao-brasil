@@ -7,7 +7,7 @@ Formato de cada entrada: data · o que foi feito · decisões (com o porquê) ·
 
 ---
 
-## 2026-11-17 · Sessão 23: resumos novos e apensados agrupados na lista da Câmara
+## 2026-11-17 · Sessão 23: resumos novos, apensados agrupados e front em camadas
 
 ### O que foi feito
 - Resumos: 121 textos novos (10 PDFs sem texto), 120 resumos com Haiku (US$ 0,17 equivalente), commit `bad489d`.
@@ -26,9 +26,26 @@ Formato de cada entrada: data · o que foi feito · decisões (com o porquê) ·
 - Só agrupa quando a principal também está na lista; senão o apensado fica solto (ex.: PL 479/2025).
 - A escolha do leitor fica só na tela (não é guardada), padrão ligado (pedido do autor).
 
+- **Front reorganizado em camadas** (pedido do autor: telas com o mínimo de regra, componentes reaproveitáveis):
+  `controllers/` (regra pura, sem React), `hooks/` (busca + controllers), `components/` por domínio
+  (`propostas/`, `series/`, `assuntos/`, `dados/`, `fontes/`) e genéricos em `ui.tsx`. `FeedView` caiu de ~400
+  para 15 linhas, `TimeSeriesView` de 262 para 8, as páginas ficaram entre 44 e 93. `lib/summarize.ts` foi para
+  `controllers/`. Removidos `DatasetCard` e `SourceLine`, que nada usava.
+- Conferência da refatoração: fotos do texto e da estrutura (tag + classes) de 16 telas e 4 interações (caixa dos
+  apensados, período + comparação no gráfico, busca na tabela, aba do assunto) no Chrome headless, antes e depois:
+  idênticas (só muda o "há N min" das fontes). Console sem erros. Script em scratch, não versionado.
+
+### Decisões
+- Refatoração sem mudar nada visível: a régua foi a tela igual, não o código "mais bonito".
+- Hooks separados dos controllers: o controller não sabe de onde vêm os dados, então dá para testar sem API.
+
 ### Próximos passos
+- Testes de unidade para `controllers/` (hoje não há nenhum teste no front; a separação deixou isso fácil).
 - Explicar "urgência" em linguagem simples no lugar de "Art. 155 do RICD" (ideia levantada, não feita).
-- Conferir a caixa no navegador (nesta sessão só foi conferido pelos dados da API e pelo build).
+- (Depois do deploy) Conferido no Chrome headless por script: a caixa alterna nos dois sentidos. Corrigida a
+  contagem, que contava duas vezes o apensado com uma votação detalhada e outra não (dava 4 no PL 2.561/2024 em vez
+  de 3). A caixa agora diz quanto juntou ("72 projetos em 3 propostas"), porque nas 8 primeiras propostas a
+  diferença quase não aparece.
 
 ## 2026-11-16 · Sessão 22: servidor ainda caía, tudo mais leve (mesmo que mais lento)
 

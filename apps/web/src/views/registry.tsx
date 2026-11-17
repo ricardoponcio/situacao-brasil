@@ -1,6 +1,5 @@
 import type { DatasetDescriptor, ViewType } from '@sb/core';
-import { api } from '../lib/api.ts';
-import { useAsync } from '../lib/useAsync.ts';
+import { useRecords } from '../hooks/useDatasets.ts';
 import { Async } from '../components/ui.tsx';
 import { feedView } from './FeedView.tsx';
 import { tableView } from './TableView.tsx';
@@ -22,7 +21,7 @@ const VIEWS: Record<ViewType, ViewDefinition> = {
 export function DatasetView({ descriptor, mode }: { descriptor: DatasetDescriptor; mode: ViewMode }) {
   const view = VIEWS[descriptor.view.type];
   const params = view.query(descriptor, mode);
-  const state = useAsync(() => api.records(descriptor.id, params), [descriptor.id, mode]);
+  const state = useRecords(descriptor.id, params, mode);
   const Component = view.component;
   return (
     <Async state={state}>{(data) => <Component descriptor={descriptor} records={data.records} mode={mode} />}</Async>

@@ -3,8 +3,8 @@
  * específico: o texto vem de `descriptor.summary` (template, faixas, palavras de direção).
  */
 import type { DatasetDescriptor, Event, Observation, SbRecord } from '@sb/core';
-import type { RecordsParams } from './api.ts';
-import { formatNumber, formatValue } from './format.ts';
+import type { RecordsParams } from '../lib/api.ts';
+import { formatNumber, formatValue } from '../lib/format.ts';
 
 const DAY = 86_400_000;
 

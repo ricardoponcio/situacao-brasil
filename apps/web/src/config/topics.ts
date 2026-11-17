@@ -5,7 +5,7 @@
  */
 import type { Theme } from '@sb/core';
 
-/** Blocos explicativos que não vêm de dataset (ver pages/TopicPage.tsx → MODULES). */
+/** Blocos explicativos que não vêm de dataset (ver components/assuntos/Modulos.tsx → MODULES). */
 export type TopicModule = 'processo-legislativo';
 
 export interface Topic {

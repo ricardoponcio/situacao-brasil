@@ -1,53 +1,10 @@
-import type { RunSummary, SourceManifest } from '@sb/core';
-import { api } from '../lib/api.ts';
-import { FREQUENCY_LABEL, formatDateTime, timeAgo } from '../lib/format.ts';
 import { href } from '../lib/router.ts';
-import { useAsync } from '../lib/useAsync.ts';
-import { Async, Card, Section } from '../components/ui.tsx';
-
-const ACCESS_LABEL = { 'api-rest': 'API pública', download: 'Arquivos para download', scraping: 'Leitura de páginas (raspagem)' };
-const AUTH_LABEL = { nenhuma: 'aberta, sem cadastro', chave: 'exige chave gratuita', token: 'exige login/token' };
-const STATUS_LABEL: Record<RunSummary['status'], string> = {
-  running: 'em andamento',
-  ok: 'ok',
-  partial: 'parcial (com avisos)',
-  error: 'falhou',
-};
-
-function RunStatus({ run }: { run: RunSummary | null }) {
-  if (!run) return <span className="muted">nunca coletado</span>;
-  const cls = run.status === 'ok' ? 'status-ok' : run.status === 'error' ? 'status-error' : '';
-  return (
-    <span>
-      <span className={cls}>{STATUS_LABEL[run.status]}</span> · {timeAgo(run.startedAt)} · {run.recordsCount.toLocaleString('pt-BR')} registros
-    </span>
-  );
-}
-
-function ManifestFacts({ m }: { m: SourceManifest }) {
-  return (
-    <dl className="kv">
-      <dt>Responsável</dt>
-      <dd>{m.publisher}</dd>
-      <dt>Acesso</dt>
-      <dd>
-        {ACCESS_LABEL[m.access.method]}, {AUTH_LABEL[m.access.auth]}
-      </dd>
-      <dt>Publica dados</dt>
-      <dd>{FREQUENCY_LABEL[m.publishFrequency]}</dd>
-      <dt>Licença</dt>
-      <dd>{m.license}</dd>
-      <dt>Links</dt>
-      <dd>
-        <a href={m.homepage} target="_blank" rel="noreferrer">site</a> ·{' '}
-        <a href={m.docsUrl} target="_blank" rel="noreferrer">documentação</a>
-      </dd>
-    </dl>
-  );
-}
+import { useSource, useSources } from '../hooks/useDatasets.ts';
+import { Async, BackLink, Card, Section, TextList } from '../components/ui.tsx';
+import { DatasetLinks, ManifestFacts, RunStatus, RunsTable } from '../components/fontes/Fontes.tsx';
 
 export function SourcesPage() {
-  const state = useAsync(() => api.sources(), []);
+  const state = useSources();
   return (
     <>
       <h1 className="page-title">Fontes</h1>
@@ -69,13 +26,7 @@ export function SourcesPage() {
                 <div className="stat-sub">
                   Última coleta: <RunStatus run={lastRun} />
                 </div>
-                <ul className="caveats">
-                  {datasets.map((d) => (
-                    <li key={d.id}>
-                      <a href={href.dataset(d.id)}>{d.title}</a>
-                    </li>
-                  ))}
-                </ul>
+                <DatasetLinks datasets={datasets} />
               </Card>
             ))}
           </div>
@@ -86,14 +37,12 @@ export function SourcesPage() {
 }
 
 export function SourcePage({ id }: { id: string }) {
-  const state = useAsync(() => api.source(id), [id]);
+  const state = useSource(id);
   return (
     <Async state={state}>
       {({ manifest: m, datasets, runs }) => (
         <>
-          <a className="back" href={href.sources()}>
-            ← Fontes
-          </a>
+          <BackLink href={href.sources()}>Fontes</BackLink>
           <h1 className="page-title">{m.name}</h1>
           <Section title="Sobre a fonte">
             <Card>
@@ -106,45 +55,14 @@ export function SourcePage({ id }: { id: string }) {
           </Section>
           {m.limitations.length > 0 && (
             <Section title="Limitações conhecidas">
-              <ul className="caveats">
-                {m.limitations.map((l) => (
-                  <li key={l}>{l}</li>
-                ))}
-              </ul>
+              <TextList items={m.limitations} />
             </Section>
           )}
           <Section title="Dados que vêm daqui">
-            <ul className="caveats">
-              {datasets.map((d) => (
-                <li key={d.id}>
-                  <a href={href.dataset(d.id)}>{d.title}</a>
-                </li>
-              ))}
-            </ul>
+            <DatasetLinks datasets={datasets} />
           </Section>
           <Section title="Histórico de coletas" intro="Cada vez que o sistema buscou dados nesta fonte, e o que aconteceu.">
-            <div className="table-wrap">
-              <table>
-                <thead>
-                  <tr>
-                    <th>Início</th>
-                    <th>Situação</th>
-                    <th>Registros</th>
-                    <th>Avisos</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {runs.map((r) => (
-                    <tr key={r.id}>
-                      <td>{formatDateTime(r.startedAt)}</td>
-                      <td>{STATUS_LABEL[r.status]}</td>
-                      <td className="num">{r.recordsCount.toLocaleString('pt-BR')}</td>
-                      <td>{r.issues.length ? r.issues.slice(0, 3).join(' | ') : '–'}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
+            <RunsTable runs={runs} />
           </Section>
         </>
       )}

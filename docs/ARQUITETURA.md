@@ -70,13 +70,23 @@ Tabelas `datasus_arquivos` e `datasus_contagens`: ver a seção de ingestão.
 | `GET /api/raw/:hash[?info]` | resposta bruta exatamente como veio da origem |
 
 ## Front (`apps/web`, porta 5173, proxy de /api)
+- **Camadas** (a tela faz o mínimo de regra; a regra fica testável sem React):
+  - `controllers/`: TypeScript puro, sem React. Toda regra de negócio: agrupar votações por proposta e juntar
+    apensados, situação atual, vetos (`propostas.ts`); variação, melhorou/piorou, períodos e comparação do gráfico
+    (`series.ts`); indicador de cada assunto e ordem na página (`assuntos.ts`); fontes, auditoria, tabela e
+    calendário (`registros.ts`); frases de resumo (`summarize.ts`).
+  - `hooks/`: buscam na API (`lib/api.ts`) e entregam o resultado já passado pelos controllers
+    (`useDatasets`, `useSummary`, `usePropostas`, `useSeries`).
+  - `components/`: peças de tela reaproveitáveis. `ui.tsx` tem as genéricas (Section, Card, BackLink, Segmented,
+    ExternalLinks, BulletList/TextList, Facts, Table, LazyDetails, Async, Pill). As de domínio ficam por pasta:
+    `propostas/`, `series/`, `assuntos/`, `dados/`, `fontes/`.
+  - `views/`: só o registro de cada `view.type` (consulta + componente). `pages/`: montam as peças de uma rota.
 - `views/registry.tsx`: `ViewType → { query(), component }`. `DatasetView` renderiza qualquer dataset.
 - Views atuais: `timeseries` (número em destaque + variação em linguagem simples + gráfico), `feed` e `table`.
   Na página do dado, a `timeseries` tem botões de período (6 meses a 10 anos) e "Comparar com" regiões e estados
   (até 3 linhas além do Brasil), conforme `descriptor.territories`. Quando o recorte está em outro dataset
   (`territories.datasetId`, ex.: desemprego mensal → `desocupacao-trimestral`), a comparação usa esse dataset,
   inclusive para o Brasil. Lista de regiões e estados com o código do IBGE: `lib/territories.ts`.
-- `components/ui.tsx`: primitivos (Section, Card, Explain, SourceLine, Pill, Async).
 - **Leitura em camadas** (profundidade progressiva):
   1. Início: "O Brasil hoje, em poucas frases" (uma frase por assunto) + cartões de assunto (pergunta, número, tendência)
   2. Assunto (`#/assunto/:id`, definido em `config/topics.ts`, agrupado por `theme`): frase → número → gráfico → explicação
@@ -84,14 +94,14 @@ Tabelas `datasus_arquivos` e `datasus_contagens`: ver a seção de ingestão.
   - Proposta (`#/proposta/:ref`, `pages/PropostaPage.tsx`): situação atual, veto e linha do tempo juntando
      Câmara, Senado e vetos
   4. Fontes / Fonte: manifesto, limitações, histórico de coletas
-- `lib/summarize.ts`: gera as frases a partir de `descriptor.summary` (template + faixas + comparação com o histórico).
+- `controllers/summarize.ts`: gera as frases a partir de `descriptor.summary` (template + faixas + comparação com o histórico).
 - `components/ReadWith.tsx`: aviso "leia junto" a partir de `descriptor.readWith` (nenhum número aparece sozinho
   quando existe um par que muda a leitura).
 - `config/topics.ts` → `modules`: blocos editoriais por assunto. Hoje existe `processo-legislativo`
-  (`content/legislativeProcesses.ts` + `components/ProcessFlow.tsx`).
+  (`content/legislativeProcesses.ts` + `components/ProcessFlow.tsx`, montado em `components/assuntos/Modulos.tsx`).
 - `lib/api.ts` passa descriptors pelo schema zod do core (os padrões se aplicam a dados gravados por versões antigas).
 - Eventos com assunto (`Event.subject`) podem trazer `subject.status` ("agora" e "próximo passo", com o texto oficial).
-  A tradução da situação de cada origem fica na coleta (ex.: `sources/camara-votacoes/status.ts`); o `FeedView` só exibe.
+  A tradução da situação de cada origem fica na coleta (ex.: `sources/camara-votacoes/status.ts`); o front só exibe.
   Quando a proposta da Câmara está no Senado, a coleta da Câmara consulta o Senado (`sources/senado/api.ts`,
   `findFromCamara`) e usa `senadoStatus` (`sources/senado/status.ts`), compartilhado com a fonte `senado`.
 - `DatasetDescriptor.nextRelease` liga um indicador a um dataset de calendário (eventos futuros com `attributes.chave`).

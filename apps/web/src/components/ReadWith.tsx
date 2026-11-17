@@ -1,20 +1,12 @@
 import type { DatasetDescriptor } from '@sb/core';
-import { api } from '../lib/api.ts';
 import { href } from '../lib/router.ts';
-import { useAsync } from '../lib/useAsync.ts';
-import { useSummary } from './summary.tsx';
-
-/** Resolve os "leia junto" de um dataset para descriptors completos. */
-export function useCompanions(d: DatasetDescriptor | undefined): DatasetDescriptor[] {
-  const all = useAsync(() => api.datasets(), []);
-  if (!d || all.status !== 'ok') return [];
-  return d.readWith.flatMap((r) => all.data.find((i) => i.descriptor.id === r.datasetId)?.descriptor ?? []);
-}
+import { useCompanions } from '../hooks/useDatasets.ts';
+import { useSummaryData } from '../hooks/useSummary.ts';
 
 function CompanionItem({ c, why, inPage }: { c: DatasetDescriptor; why: string; inPage: boolean }) {
-  const s = useSummary(c);
-  const main = s.status === 'ok' ? s.data?.sentences[0] : undefined;
-  const value = s.status === 'ok' ? s.data?.value : undefined;
+  const s = useSummaryData(c);
+  const main = s?.sentences[0];
+  const value = s?.value;
   return (
     <li>
       <a

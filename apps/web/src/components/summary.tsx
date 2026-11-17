@@ -1,15 +1,6 @@
 import type { DatasetDescriptor } from '@sb/core';
-import { api } from '../lib/api.ts';
-import { summarize, summaryQuery, type Summary } from '../lib/summarize.ts';
-import { useAsync, type AsyncState } from '../lib/useAsync.ts';
-
-export function useSummary(d: DatasetDescriptor | undefined): AsyncState<Summary | null> {
-  return useAsync(async () => {
-    if (!d) return null;
-    const { records } = await api.records(d.id, summaryQuery(d));
-    return summarize(d, records);
-  }, [d?.id]);
-}
+import type { Summary } from '../controllers/summarize.ts';
+import { useSummaryData } from '../hooks/useSummary.ts';
 
 /** Frases do resumo: a primeira em destaque, as de contexto logo abaixo. */
 export function SummaryText({ summary, size = 'md' }: { summary: Summary; size?: 'md' | 'lg' }) {
@@ -25,4 +16,10 @@ export function SummaryText({ summary, size = 'md' }: { summary: Summary; size?:
       ))}
     </div>
   );
+}
+
+/** Busca e mostra as frases de resumo de um indicador. Nada enquanto carrega. */
+export function DatasetSummary({ d, size = 'lg' }: { d: DatasetDescriptor; size?: 'md' | 'lg' }) {
+  const s = useSummaryData(d);
+  return s ? <SummaryText summary={s} size={size} /> : null;
 }

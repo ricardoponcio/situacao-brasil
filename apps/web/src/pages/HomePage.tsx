@@ -1,85 +1,12 @@
-import type { DatasetDescriptor, DatasetStats } from '@sb/core';
-import { api } from '../lib/api.ts';
 import { formatDate } from '../lib/format.ts';
 import { href } from '../lib/router.ts';
-import { useAsync } from '../lib/useAsync.ts';
-import { TOPICS, type Topic } from '../config/topics.ts';
-import { Sparkline } from '../components/charts/Sparkline.tsx';
-import { useSummary } from '../components/summary.tsx';
-import { useCompanions } from '../components/ReadWith.tsx';
-
-type Item = { descriptor: DatasetDescriptor; stats: DatasetStats };
-
-/** O dataset que representa o assunto: o marcado como destaque, senão o primeiro. */
-function leadOf(topic: Topic, items: Item[]): DatasetDescriptor | undefined {
-  const mine = items.map((i) => i.descriptor).filter((d) => topic.themes.includes(d.theme));
-  return mine.find((d) => d.featured) ?? mine[0];
-}
-
-/** Nível 1: uma frase por assunto. */
-function BriefLine({ topic, lead }: { topic: Topic; lead: DatasetDescriptor }) {
-  const s = useSummary(lead);
-  // O primeiro "leia junto" entra na mesma frase: o número nunca aparece sozinho.
-  const pair = useSummary(useCompanions(lead)[0]);
-  if (s.status !== 'ok' || !s.data) return null;
-  const [main, firstContext] = s.data.sentences;
-  const pairMain = pair.status === 'ok' ? pair.data?.sentences[0] : undefined;
-  return (
-    <li>
-      <span className="brief-topic">{topic.title}.</span> {main} {firstContext} {pairMain}{' '}
-      <a href={href.topic(topic.id)} className="brief-more">
-        Saber mais
-      </a>
-    </li>
-  );
-}
-
-function CompanionFigure({ d }: { d: DatasetDescriptor }) {
-  const s = useSummary(d);
-  if (s.status !== 'ok' || !s.data?.value) return null;
-  return (
-    <span className="tile-pair">
-      {d.title}: <strong>{s.data.value}</strong>
-    </span>
-  );
-}
-
-/** Nível 2: cartão do assunto, com o número e a tendência. Tudo clicável. */
-function TopicTile({ topic, lead }: { topic: Topic; lead: DatasetDescriptor }) {
-  const s = useSummary(lead);
-  const summary = s.status === 'ok' ? s.data : null;
-  const companions = useCompanions(lead);
-  return (
-    <a className="tile" href={href.topic(topic.id)}>
-      <span className="tile-kicker">{topic.title}</span>
-      <span className="tile-question">{topic.question}</span>
-      {summary ? (
-        <>
-          <span className="tile-figure">
-            <span className="tile-value">{summary.value}</span>
-            {summary.trend && <Sparkline values={summary.trend} label={`Tendência de ${lead.title}`} />}
-          </span>
-          <span className="tile-caption">{summary.caption}</span>
-          {companions.map((c) => (
-            <CompanionFigure key={c.id} d={c} />
-          ))}
-        </>
-      ) : (
-        <span className="muted">Carregando…</span>
-      )}
-      <span className="tile-cta">Ver o assunto →</span>
-    </a>
-  );
-}
+import { homeTopics } from '../controllers/assuntos.ts';
+import { useDatasets } from '../hooks/useDatasets.ts';
+import { BriefLine, TopicTile } from '../components/assuntos/Inicio.tsx';
 
 export function HomePage() {
-  const datasets = useAsync(() => api.datasets(), []);
-  const items = datasets.status === 'ok' ? datasets.data : [];
-  const active = TOPICS.flatMap((t) => {
-    const lead = leadOf(t, items);
-    return lead ? [{ topic: t, lead }] : [];
-  });
-  const upcoming = TOPICS.filter((t) => !active.some((a) => a.topic.id === t.id));
+  const datasets = useDatasets();
+  const { active, upcoming } = homeTopics(datasets.status === 'ok' ? datasets.data.map((i) => i.descriptor) : []);
 
   return (
     <>
