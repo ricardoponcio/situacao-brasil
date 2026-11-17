@@ -594,6 +594,61 @@
   "criadoEm": "2026-11-01T18:57:31.254Z"
  },
  {
+  "ref": "MPV-1376-2026",
+  "casa": "senado",
+  "textoHash": "aef18880438c118274c53dce4624d16e21530efa606ab6a0ed76def8d1f2e605",
+  "textoUrl": "https://legis.senado.gov.br/sdleg-getter/dadosabertos/documento/56f2a123-99e4-49f8-8c61-ba302d36adb0",
+  "titulo": "Nova linha de crédito para produtores rurais pagarem dívidas após perdas",
+  "descricao": "A proposta cria linhas de crédito para produtores rurais quitarem dívidas, em até 10 anos. Podem pedir produtores que tiveram perdas em duas ou mais safras entre 2019 e 2025, com renda reduzida em pelo menos 30%. A União também pode entrar em um fundo que garante empréstimos a produtores atingidos por eventos climáticos.",
+  "modelo": "claude-haiku-5-5",
+  "versaoPrompt": "v2",
+  "criadoEm": "2026-11-17T13:58:45.681Z"
+ },
+ {
+  "ref": "MPV-1379-2026",
+  "casa": "camara",
+  "textoHash": "4fafa6477f02c2731f8f26e826f9ca5410e474499efbb15a8e791508819c1193",
+  "textoUrl": "https://www.camara.leg.br/proposicoesWeb/prop_mostrarintegra?codteor=3166455",
+  "titulo": "Medida permite ampliar em R$ 13,5 bi o crédito para exportação",
+  "descricao": "A proposta permite ampliar em até R$ 13,5 bilhões o limite de recursos para financiar exportações, com dinheiro devolvido à União. O Banco Nacional de Desenvolvimento Econômico e Social (BNDES) poderá combinar esses recursos com os seus próprios. Um conselho interministerial, criado pelo governo federal, aprova o plano de uso desse dinheiro, proposto pelo BNDES.",
+  "modelo": "claude-haiku-5-5",
+  "versaoPrompt": "v2",
+  "criadoEm": "2026-11-17T13:58:43.312Z"
+ },
+ {
+  "ref": "PDC-1034-2018",
+  "casa": "senado",
+  "textoHash": "f9bf8b90a8482fb1c2d32901410f19a1f422ac90003130a9ce2746ea66779a92",
+  "textoUrl": "https://legis.senado.gov.br/sdleg-getter/dadosabertos/documento/33a7f8f6-fe11-4cce-934b-8487bd5bfb31",
+  "titulo": "Aprova autorização para rádio comunitária da Alicom em Tianguá, no Ceará",
+  "descricao": "A proposta aprova a autorização para a Associação Aliança Comunitária (Alicom) operar uma rádio comunitária em Tianguá, no Ceará. A autorização vale por 10 anos e não dá exclusividade à associação. Radiodifusão comunitária é o serviço de rádio voltado a uma comunidade local.",
+  "modelo": "claude-haiku-5-5",
+  "versaoPrompt": "v2",
+  "criadoEm": "2026-11-17T13:58:41.945Z"
+ },
+ {
+  "ref": "PDC-1062-2018",
+  "casa": "senado",
+  "textoHash": "521296952047c7d3fc931f4d43a866eaae1bc4d046fbe03661d0e712be6ccc2d",
+  "textoUrl": "https://legis.senado.gov.br/sdleg-getter/dadosabertos/documento/a0f427d6-7b8f-47ea-9c33-f3129eefefb2",
+  "titulo": "Associação de Jiquiriçá (BA) ganha permissão para rádio comunitária por 10 anos",
+  "descricao": "A proposta aprova a autorização para a Associação Jiquiriçaense de Apoio Cultural operar uma rádio comunitária em Jiquiriçá, na Bahia. A autorização vale por 10 anos e é concedida sem direito de exclusividade.",
+  "modelo": "claude-haiku-5-5",
+  "versaoPrompt": "v2",
+  "criadoEm": "2026-11-17T13:58:49.680Z"
+ },
+ {
+  "ref": "PDC-1114-2018",
+  "casa": "senado",
+  "textoHash": "3a4201f0dde72956c3b58ab8ccb0ffbf5b236d4f4f9a9b3fcc0d0e6b5d9d54c6",
+  "textoUrl": "https://legis.senado.gov.br/sdleg-getter/dadosabertos/documento/664ccc30-8483-44c4-9252-b51fcfa20eec",
+  "titulo": "Aprova permissão para rádio comunitária em Wenceslau Guimarães, Bahia",
+  "descricao": "A proposta aprova a autorização para a Associação dos Monitores em Organização Social de Wenceslau Guimarães (WG FM) operar uma rádio comunitária na cidade. A permissão vale por 10 anos, sem direito de exclusividade. Ela está prevista em portaria de 2015 do Ministério da Ciência, Tecnologia, Inovações e Comunicações.",
+  "modelo": "claude-haiku-5-5",
+  "versaoPrompt": "v2",
+  "criadoEm": "2026-11-17T13:58:54.021Z"
+ },
+ {
   "ref": "PDC-1144-2018",
   "casa": "senado",
   "textoHash": "b1856e8a3669753a7b56336914966604b435f8ef3cee98fc69ee3df9954cdc5d",
@@ -1320,6 +1375,17 @@
   "criadoEm": "2026-11-01T19:47:11.909Z"
  },
  {
+  "ref": "PDL-196-2019-cd",
+  "casa": "senado",
+  "textoHash": "b70b2f8f57f90e03356ec7426bc31abd17880a54fda473862eff0e73a7e8f200",
+  "textoUrl": "https://legis.senado.gov.br/sdleg-getter/dadosabertos/documento/ec528d26-cfaf-4e2d-9d90-c6815e7def17",
+  "titulo": "Aprova renovação por 10 anos de rádio comunitária em Itapipoca, Ceará",
+  "descricao": "A proposta aprova a renovação, por 10 anos, da autorização da Associação Cultural de Itapipoca para operar uma rádio comunitária na cidade. A contagem começa em 3 de junho de 2015. A autorização não dá exclusividade à associação.",
+  "modelo": "claude-haiku-5-5",
+  "versaoPrompt": "v2",
+  "criadoEm": "2026-11-17T13:58:54.658Z"
+ },
+ {
   "ref": "PDL-201-2022-cd",
   "casa": "senado",
   "textoHash": "e1257d1954a6f23b1e6181f2197fcb6bccc39add41a182f75bcb38af1ad7ba14",
@@ -1584,6 +1650,17 @@
   "criadoEm": "2026-11-01T19:48:11.937Z"
  },
  {
+  "ref": "PDL-284-2021-cd",
+  "casa": "senado",
+  "textoHash": "e656ef842c3829f772af0c25c5b7691fd8903247f59d6469c4d418f438db1951",
+  "textoUrl": "https://legis.senado.gov.br/sdleg-getter/dadosabertos/documento/e451ac78-3744-4f87-8eb6-ce8109325645",
+  "titulo": "Renova a rádio comunitária da Associação Pró-Cidadania Avareense em Avaré (SP)",
+  "descricao": "A proposta aprova a renovação da autorização para a Associação Pró-Cidadania Avareense continuar operando uma rádio comunitária em Avaré, no interior de São Paulo. A renovação vale por 10 anos, a partir de 13 de julho de 2014, e foi dada pelo Ministério das Comunicações. A autorização não dá exclusividade de uso da frequência.",
+  "modelo": "claude-haiku-5-5",
+  "versaoPrompt": "v2",
+  "criadoEm": "2026-11-17T13:58:58.845Z"
+ },
+ {
   "ref": "PDL-284-2024-cd",
   "casa": "senado",
   "textoHash": "bb3cd792b8d7dde0ccb1b5cec5a8a970b037241a165e8fb7aadf77de1209974d",
@@ -1738,6 +1815,17 @@
   "criadoEm": "2026-11-01T19:48:45.803Z"
  },
  {
+  "ref": "PDL-311-2021-cd",
+  "casa": "senado",
+  "textoHash": "3b016c6a91436052c737374bf445a9eebc534ef9497e55ec1d39e6dbdca0460f",
+  "textoUrl": "https://legis.senado.gov.br/sdleg-getter/dadosabertos/documento/0cd4faf9-a91b-4188-88b1-8f708edef481",
+  "titulo": "Renova por 10 anos a rádio comunitária de Brejo Santo, no Ceará",
+  "descricao": "A proposta aprova a renovação, por 10 anos, da autorização para a Associação de Desenvolvimento Comunitário da Comunidade de Brejo Santo operar uma rádio comunitária na cidade. A renovação vale a partir de 23 de agosto de 2014 e foi feita por portaria do Ministério das Comunicações de 2017. A autorização não dá exclusividade à associação.",
+  "modelo": "claude-haiku-5-5",
+  "versaoPrompt": "v2",
+  "criadoEm": "2026-11-17T13:59:02.529Z"
+ },
+ {
   "ref": "PDL-311-2023-cd",
   "casa": "senado",
   "textoHash": "3400d80e361a3283f3064271e20ae631a31d300da4493028688d76c37d45a5c6",
@@ -1758,6 +1846,17 @@
   "modelo": "claude-haiku-5-5",
   "versaoPrompt": "v2",
   "criadoEm": "2026-11-01T19:48:48.357Z"
+ },
+ {
+  "ref": "PDL-322-2021-cd",
+  "casa": "senado",
+  "textoHash": "bfbe00edc7af45c6ba21a1cb2d1dd03c913a337c898e261f4d30453e0bbd9609",
+  "textoUrl": "https://legis.senado.gov.br/sdleg-getter/dadosabertos/documento/d2812b7e-b70e-4585-93b1-75151f61cc73",
+  "titulo": "Renova por 10 anos a rádio comunitária de Miguelópolis (SP)",
+  "descricao": "A proposta aprova a renovação da autorização para a Associação Prestadora de Serviços à Comunidade Miguelopolense operar uma rádio comunitária em Miguelópolis, no interior de São Paulo. A renovação vale por 10 anos, a partir de 26 de outubro de 2011, e não dá exclusividade à associação.",
+  "modelo": "claude-haiku-5-5",
+  "versaoPrompt": "v2",
+  "criadoEm": "2026-11-17T13:59:02.047Z"
  },
  {
   "ref": "PDL-323-2021-cd",
@@ -1846,6 +1945,17 @@
   "modelo": "claude-haiku-5-5",
   "versaoPrompt": "v2",
   "criadoEm": "2026-11-01T19:49:21.354Z"
+ },
+ {
+  "ref": "PDL-358-2023-cd",
+  "casa": "senado",
+  "textoHash": "32a4a6d348e412ead0957d3eff45d732b8327982af16ca45ca2afe9e905ff46a",
+  "textoUrl": "https://legis.senado.gov.br/sdleg-getter/dadosabertos/documento/6ef0cd50-147d-49b4-871a-00aee0b1fd16",
+  "titulo": "Autoriza a Assembleia do Amazonas a operar rádio FM educativa em Careiro",
+  "descricao": "A proposta aprova a permissão para a Assembleia Legislativa do Amazonas explorar uma rádio FM (sigla de frequência modulada) em Careiro, no Amazonas. A rádio terá fins exclusivamente educativos. A permissão vale por 10 anos, concedida pelo Ministério das Comunicações em 2015.",
+  "modelo": "claude-haiku-5-5",
+  "versaoPrompt": "v2",
+  "criadoEm": "2026-11-17T13:59:06.151Z"
  },
  {
   "ref": "PDL-359-2021-cd",
@@ -2112,6 +2222,17 @@
   "criadoEm": "2026-11-01T19:50:13.529Z"
  },
  {
+  "ref": "PDL-410-2025-cd",
+  "casa": "senado",
+  "textoHash": "8969409a777ac8637d99f4d8206ea68a0cd09bf08bd4c97115ff1d46fb6953cb",
+  "textoUrl": "https://legis.senado.gov.br/sdleg-getter/dadosabertos/documento/c54856bd-c1fc-490a-b460-d43e242bcbfd",
+  "titulo": "Renova autorização de rádio comunitária em Pio XII, no Maranhão",
+  "descricao": "A proposta aprova a renovação da autorização para a Rádio Babaçu FM, operada pelo Movimento Jovem de Pio XII, no Maranhão. A renovação vale por 10 anos, a partir de 31 de agosto de 2020. Ela permite que a rádio comunitária transmita no município, sem exclusividade.",
+  "modelo": "claude-haiku-5-5",
+  "versaoPrompt": "v2",
+  "criadoEm": "2026-11-17T13:59:10.784Z"
+ },
+ {
   "ref": "PDL-411-2021-cd",
   "casa": "senado",
   "textoHash": "523f115d9a75030309eae1dfb79500f87a1d0f32a331ede47556d3afb263d134",
@@ -2209,6 +2330,17 @@
   "modelo": "claude-haiku-5-5",
   "versaoPrompt": "v2",
   "criadoEm": "2026-11-01T19:50:37.322Z"
+ },
+ {
+  "ref": "PDL-418-2024-cd",
+  "casa": "senado",
+  "textoHash": "85a5746bd3147974a7d0efb094a4233c15087f751fb047f11899424b808d0796",
+  "textoUrl": "https://legis.senado.gov.br/sdleg-getter/dadosabertos/documento/f1c31279-f817-4449-acb9-11f95aa3de2a",
+  "titulo": "Congresso aprova renovação de rádio educativa FM em Icó, Ceará",
+  "descricao": "A proposta aprova a renovação, por 10 anos, da permissão para a Fundação Cultural Manoel Antônio Nunes Neto operar uma rádio FM (transmissão por frequência modulada) em Icó, no Ceará. A contagem dos 10 anos começa em 1º de novembro de 2016. A permissão não dá exclusividade e a rádio deve ter fins exclusivamente educativos.",
+  "modelo": "claude-haiku-5-5",
+  "versaoPrompt": "v2",
+  "criadoEm": "2026-11-17T13:59:10.044Z"
  },
  {
   "ref": "PDL-419-2021-cd",
@@ -2409,6 +2541,17 @@
   "criadoEm": "2026-11-01T19:51:28.073Z"
  },
  {
+  "ref": "PDL-446-2021-cd",
+  "casa": "senado",
+  "textoHash": "63c4cca64f24ca3c6fccc19e1a84de6589bd091655ba2501ad4e97750673eaaf",
+  "textoUrl": "https://legis.senado.gov.br/sdleg-getter/dadosabertos/documento/aa34e614-3559-4abb-b261-20f432f1d0f9",
+  "titulo": "Renova por 10 anos a rádio comunitária de Boituva (SP)",
+  "descricao": "A proposta aprova a renovação, por 10 anos, da autorização para a Associação Cultural Ideal operar uma rádio comunitária em Boituva, no interior de São Paulo. O prazo é contado a partir de 3 de fevereiro de 2014. A autorização é dada sem direito de exclusividade na cidade.",
+  "modelo": "claude-haiku-5-5",
+  "versaoPrompt": "v2",
+  "criadoEm": "2026-11-17T13:59:15.231Z"
+ },
+ {
   "ref": "PDL-446-2022-cd",
   "casa": "senado",
   "textoHash": "2a9debc091c0ff52297af6ef6782ab05dd3e9256f4ddf9fc1bf00efa09351b6c",
@@ -2574,6 +2717,17 @@
   "criadoEm": "2026-11-01T19:52:17.472Z"
  },
  {
+  "ref": "PDL-463-2021-cd",
+  "casa": "senado",
+  "textoHash": "7d64bea4d8dc335c0367e62b1f561fca0221416b284e150514b949a1ff2243db",
+  "textoUrl": "https://legis.senado.gov.br/sdleg-getter/dadosabertos/documento/16741028-3ff7-42e0-a8e1-c3e8fcb9a3ca",
+  "titulo": "Renova por 10 anos a rádio comunitária de Araújos (MG)",
+  "descricao": "O Congresso aprova a renovação, por 10 anos, da autorização para a Associação Cultural Comunitária de Araújos (ACCA) operar uma rádio comunitária na cidade de Araújos, em Minas Gerais. O prazo começa em 18 de agosto de 2013. A autorização não dá direito de exclusividade.",
+  "modelo": "claude-haiku-5-5",
+  "versaoPrompt": "v2",
+  "criadoEm": "2026-11-17T13:59:15.950Z"
+ },
+ {
   "ref": "PDL-463-2025-cd",
   "casa": "senado",
   "textoHash": "4e1cbe9fdf61893aac9e15844c5795bda207d56edc51c1778b1ca0deba471516",
@@ -2596,6 +2750,17 @@
   "criadoEm": "2026-11-01T19:52:19.968Z"
  },
  {
+  "ref": "PDL-465-2024-cd",
+  "casa": "senado",
+  "textoHash": "5d0237c1dd16520de44a7730da1004d82bca32ce812091535a461455f35e4104",
+  "textoUrl": "https://legis.senado.gov.br/sdleg-getter/dadosabertos/documento/576788be-c15c-43be-b094-e7c0cd196990",
+  "titulo": "Renova por 10 anos a rádio Companheira FM, de Mato Leitão (RS)",
+  "descricao": "A proposta aprova a renovação, por 10 anos, da permissão para a Rádio Companheira FM operar em Mato Leitão, no Rio Grande do Sul. O prazo começa em 16 de outubro de 2019. A permissão não dá exclusividade à rádio na cidade.",
+  "modelo": "claude-haiku-5-5",
+  "versaoPrompt": "v2",
+  "criadoEm": "2026-11-17T13:59:19.702Z"
+ },
+ {
   "ref": "PDL-469-2021-cd",
   "casa": "senado",
   "textoHash": "3523b51b1dcfe144ad474e104a38af28492a7316fee38076af8a3966a52d6e56",
@@ -2605,6 +2770,17 @@
   "modelo": "claude-haiku-5-5",
   "versaoPrompt": "v2",
   "criadoEm": "2026-11-01T19:52:24.794Z"
+ },
+ {
+  "ref": "PDL-469-2024-cd",
+  "casa": "senado",
+  "textoHash": "b62f8cf6e838d63a77c09382e1285597a73ded61381c77bfdbec80c2b7c355df",
+  "textoUrl": "https://legis.senado.gov.br/sdleg-getter/dadosabertos/documento/ec478452-762d-4407-8ad9-5a7ff64e1ef3",
+  "titulo": "Aprova permissão para empresa operar rádio FM em Boca do Acre (AM)",
+  "descricao": "A proposta aprova a permissão do Ministério das Comunicações para a empresa Sistema de Comunicação Sol Ltda. explorar uma rádio FM (frequência modulada) em Boca do Acre, no Amazonas. A permissão vale por 10 anos e não tem exclusividade, ou seja, não dá à empresa o direito único de explorar esse serviço na cidade.",
+  "modelo": "claude-haiku-5-5",
+  "versaoPrompt": "v2",
+  "criadoEm": "2026-11-17T13:59:25.304Z"
  },
  {
   "ref": "PDL-470-2024-cd",
@@ -2717,6 +2893,17 @@
   "criadoEm": "2026-11-01T19:52:48.300Z"
  },
  {
+  "ref": "PDL-497-2025-cd",
+  "casa": "senado",
+  "textoHash": "4477e3412460f0fb44c046a439b2932b9c119ce689e645783b92fa310459fdee",
+  "textoUrl": "https://legis.senado.gov.br/sdleg-getter/dadosabertos/documento/df98ba2d-7d3b-42be-b55b-09d900622f28",
+  "titulo": "Renova por 10 anos concessão de rádio AM em Tangará (SC)",
+  "descricao": "A proposta aprova a renovação, por 10 anos, da concessão de rádio dada à empresa Frequência Brasileira de Comunicações Ltda. Com ela, a empresa continua explorando uma rádio AM (onda média) em Tangará, Santa Catarina. A renovação é sem exclusividade, ou seja, a empresa não tem direito exclusivo sobre esse serviço na cidade.",
+  "modelo": "claude-haiku-5-5",
+  "versaoPrompt": "v2",
+  "criadoEm": "2026-11-17T13:59:24.027Z"
+ },
+ {
   "ref": "PDL-498-2025-cd",
   "casa": "senado",
   "textoHash": "74e5fbfd835e428ae793e24e08fec5ec82f1d9d6753485bc98e49395f59c3472",
@@ -2803,6 +2990,17 @@
   "modelo": "claude-haiku-5-5",
   "versaoPrompt": "v2",
   "criadoEm": "2026-11-01T19:53:13.517Z"
+ },
+ {
+  "ref": "PDL-526-2024-cd",
+  "casa": "senado",
+  "textoHash": "ef71494db3eee8ec6948e36b8d588ff58e7db641a7f0b85b5e2a70720a2d6ffa",
+  "textoUrl": "https://legis.senado.gov.br/sdleg-getter/dadosabertos/documento/c3003716-7bc1-41b1-a41d-0ca2c87ac13f",
+  "titulo": "Congresso aprova renovação de rádio FM em Arapoema (TO) por 10 anos",
+  "descricao": "A proposta aprova a renovação, por 10 anos, da permissão da Raja - Rádio Jornal de Arapoema Ltda. para operar uma rádio FM na cidade de Arapoema, no Tocantins. A permissão é para uso sem exclusividade, ou seja, outras rádios também podem operar na mesma cidade. A renovação tem efeito a partir de 14 de janeiro de 2014.",
+  "modelo": "claude-haiku-5-5",
+  "versaoPrompt": "v2",
+  "criadoEm": "2026-11-17T13:59:22.344Z"
  },
  {
   "ref": "PDL-527-2024-cd",
@@ -2937,6 +3135,17 @@
   "criadoEm": "2026-11-01T19:53:45.016Z"
  },
  {
+  "ref": "PDL-552-2025-cd",
+  "casa": "senado",
+  "textoHash": "f383f1d8fc43f53e81c17b5bae37627b0c3f8d22652449cedbad682b79ec1acf",
+  "textoUrl": "https://legis.senado.gov.br/sdleg-getter/dadosabertos/documento/718ec22e-3466-4e3e-aa6d-a1e23a60d7f8",
+  "titulo": "Congresso aprova renovação de permissão de rádio FM em Porto Acre (AC)",
+  "descricao": "A proposta aprova a renovação, por 10 anos, da permissão da Rádio e TV Maíra Ltda. para operar uma rádio FM em Porto Acre (AC). A renovação vale a partir de 31 de março de 2020 e não dá exclusividade à emissora. Na prática, a emissora continua autorizada a explorar a rádio na cidade.",
+  "modelo": "claude-haiku-5-5",
+  "versaoPrompt": "v2",
+  "criadoEm": "2026-11-17T13:59:30.908Z"
+ },
+ {
   "ref": "PDL-553-2023-cd",
   "casa": "senado",
   "textoHash": "98e7d82a80f0c66d3facb8bd7e26c6a2ff57c00bed6f22e213c4bd1cbd515be2",
@@ -2992,6 +3201,17 @@
   "criadoEm": "2026-11-01T19:53:56.886Z"
  },
  {
+  "ref": "PDL-557-2026-cd",
+  "casa": "camara",
+  "textoHash": "b347dedb19f38df2cb94208784e8e024dd0968a0f72467d1a02aa5200ef5923f",
+  "textoUrl": "https://www.camara.leg.br/proposicoesWeb/prop_mostrarintegra?codteor=3139887",
+  "titulo": "Aprova adesão do Brasil a acordo sobre desmanche seguro de navios",
+  "descricao": "A proposta aprova a Convenção de Hong Kong, acordo internacional para reciclar navios com segurança e sem danos ao meio ambiente. Com isso, o Brasil poderá aderir ao acordo, e qualquer ato que leve à sua saída ou revisão precisará de aprovação do Congresso. O texto não detalha as regras do acordo.",
+  "modelo": "claude-haiku-5-5",
+  "versaoPrompt": "v2",
+  "criadoEm": "2026-11-17T13:59:36.214Z"
+ },
+ {
   "ref": "PDL-558-2021-cd",
   "casa": "senado",
   "textoHash": "75ea9d4bd6b98292d9e3479c8964d3e4191ef175a6b9f0a294842030175c4998",
@@ -3034,6 +3254,17 @@
   "modelo": "claude-haiku-5-5",
   "versaoPrompt": "v2",
   "criadoEm": "2026-11-01T19:54:06.725Z"
+ },
+ {
+  "ref": "PDL-568-2021-cd",
+  "casa": "senado",
+  "textoHash": "6a673a58de7195350f8769452efec482729b312270823ac98257ec416839e79c",
+  "textoUrl": "https://legis.senado.gov.br/sdleg-getter/dadosabertos/documento/e2e2ab50-f3a4-433f-8e63-5d8ccba041a4",
+  "titulo": "Renova por 10 anos a autorização de rádio comunitária em Divinolândia (SP)",
+  "descricao": "A proposta aprova a renovação da autorização para a Associação Verde Vale de Rádio, Educação e Cultura operar uma rádio comunitária em Divinolândia, no interior de São Paulo. A renovação vale por 10 anos, contados a partir de 18 de agosto de 2013. A autorização não dá exclusividade à associação.",
+  "modelo": "claude-haiku-5-5",
+  "versaoPrompt": "v2",
+  "criadoEm": "2026-11-17T13:59:33.769Z"
  },
  {
   "ref": "PDL-569-2024-cd",
@@ -3179,6 +3410,28 @@
   "criadoEm": "2026-11-01T19:54:48.061Z"
  },
  {
+  "ref": "PDL-591-2025-cd",
+  "casa": "senado",
+  "textoHash": "b8fe54efd59fbf280d1c5b58f4f9ed93ac301b0185dd195bff889948b5ebffe2",
+  "textoUrl": "https://legis.senado.gov.br/sdleg-getter/dadosabertos/documento/4f803251-7fa1-4618-ba24-45360a7b0638",
+  "titulo": "Renova concessão de rádio em Nova Friburgo (RJ) por 10 anos",
+  "descricao": "A proposta aprova a renovação, por 10 anos, da concessão da Rádio Sociedade de Friburgo para explorar o serviço de rádio em Nova Friburgo (RJ). O prazo vale desde 1º de novembro de 2023. O serviço é de onda média (AM), adaptado para FM (frequência modulada).",
+  "modelo": "claude-haiku-5-5",
+  "versaoPrompt": "v2",
+  "criadoEm": "2026-11-17T13:59:38.802Z"
+ },
+ {
+  "ref": "PDL-593-2025-cd",
+  "casa": "senado",
+  "textoHash": "c029322a4e582e28a33b725bfeeb5d4e2dc10cec50d10639aec66b25522244f8",
+  "textoUrl": "https://legis.senado.gov.br/sdleg-getter/dadosabertos/documento/1023fd46-d8a8-4e81-a4f1-6d54ad7c5965",
+  "titulo": "Renova por 10 anos a autorização de rádio comunitária em Brunópolis (SC)",
+  "descricao": "A proposta aprova a renovação por 10 anos da autorização da Associação Comunitária de Comunicação e Cultura de Brunópolis para operar uma rádio comunitária na cidade. Rádio comunitária é serviço de rádio voltado à comunidade local, operado por associação. Os 10 anos contam a partir de 30 de julho de 2022, sem direito de exclusividade.",
+  "modelo": "claude-haiku-5-5",
+  "versaoPrompt": "v2",
+  "criadoEm": "2026-11-17T13:59:45.599Z"
+ },
+ {
   "ref": "PDL-594-2024-cd",
   "casa": "senado",
   "textoHash": "88c63fc4e50183865e4c56d739f305db88a36286b465e35d475056fc6bdbd5bd",
@@ -3256,6 +3509,17 @@
   "criadoEm": "2026-11-01T19:55:17.656Z"
  },
  {
+  "ref": "PDL-610-2024-cd",
+  "casa": "senado",
+  "textoHash": "15f934fe55384acaed61f5ffa03d3fea94ebe2a19018075c278eb36feb10fc3b",
+  "textoUrl": "https://legis.senado.gov.br/sdleg-getter/dadosabertos/documento/f62d8a94-59d4-4881-8aa8-e9072b415c5c",
+  "titulo": "Renova por 10 anos a permissão de rádio FM em Araxá (MG)",
+  "descricao": "A proposta renova por 10 anos, desde 19 de junho de 2018, a permissão da Rádio Imbiara de Araxá para operar uma rádio FM (frequência modulada) em Araxá, Minas Gerais. A permissão não dá exclusividade à emissora. O Congresso aprova a renovação por meio de decreto legislativo.",
+  "modelo": "claude-haiku-5-5",
+  "versaoPrompt": "v2",
+  "criadoEm": "2026-11-17T13:59:44.295Z"
+ },
+ {
   "ref": "PDL-612-2024-cd",
   "casa": "senado",
   "textoHash": "c96c217f9a6614f69d0b5ad2887473ccc2490e7037d0eb6b82b55e6d43795f17",
@@ -3265,6 +3529,17 @@
   "modelo": "claude-haiku-5-5",
   "versaoPrompt": "v2",
   "criadoEm": "2026-11-01T19:55:20.141Z"
+ },
+ {
+  "ref": "PDL-613-2025-cd",
+  "casa": "senado",
+  "textoHash": "5060899f616d197eb7a30513e1f8c14e40b2c23c5f6e5d058b152ec4d3cfc3bc",
+  "textoUrl": "https://legis.senado.gov.br/sdleg-getter/dadosabertos/documento/418d575b-7f3e-4ade-99fd-0eee552bf992",
+  "titulo": "Renova por 10 anos a rádio educativa FM de Rio Branco (AC)",
+  "descricao": "A proposta aprova a renovação, por 10 anos, da permissão para a Fundação Cultural de Radiodifusão Educativa Costa Dourada operar uma rádio FM (frequência modulada) em Rio Branco (AC). A renovação vale a partir de 3 de maio de 2016. A rádio deve ter fins exclusivamente educativos e não tem direito de exclusividade sobre a frequência.",
+  "modelo": "claude-haiku-5-5",
+  "versaoPrompt": "v2",
+  "criadoEm": "2026-11-17T13:59:48.467Z"
  },
  {
   "ref": "PDL-618-2024-cd",
@@ -3287,6 +3562,17 @@
   "modelo": "claude-haiku-5-5",
   "versaoPrompt": "v2",
   "criadoEm": "2026-11-01T19:55:34.153Z"
+ },
+ {
+  "ref": "PDL-620-2021-cd",
+  "casa": "senado",
+  "textoHash": "9838d09e3602be4b02e51f38e3b1c9252486a93cd63d0437ba01f83dfdf9f147",
+  "textoUrl": "https://legis.senado.gov.br/sdleg-getter/dadosabertos/documento/e668a4b5-4a41-4bcc-af94-701a3bbfccf0",
+  "titulo": "Renova por 10 anos a rádio comunitária de Arealva (SP)",
+  "descricao": "A proposta aprova a renovação, por 10 anos, da autorização para a Associação Beneficente Cultural de Comunicação Comunitária Solidariedade operar uma rádio comunitária em Arealva, no estado de São Paulo. A renovação começa a contar em 1º de agosto de 2016. A autorização não dá exclusividade à associação no município.",
+  "modelo": "claude-haiku-5-5",
+  "versaoPrompt": "v2",
+  "criadoEm": "2026-11-17T13:59:51.368Z"
  },
  {
   "ref": "PDL-623-2021-cd",
@@ -3542,6 +3828,17 @@
   "criadoEm": "2026-11-01T19:56:37.049Z"
  },
  {
+  "ref": "PDL-679-2025-cd",
+  "casa": "senado",
+  "textoHash": "e912e070cbea00d8a15f3ca66d3bc7e4361030847924df3ecff892896e04e986",
+  "textoUrl": "https://legis.senado.gov.br/sdleg-getter/dadosabertos/documento/fbc09a95-dfb5-4c23-bb1b-cd4f45a2a7fa",
+  "titulo": "Renova concessão de TV digital da Web Comunicação em Picos (PI)",
+  "descricao": "A proposta aprova a renovação, por 15 anos a partir de 4 de março de 2020, da concessão de TV digital da Web Comunicação Ltda. em Picos, no Piauí. Concessão é a autorização do governo para uma empresa operar um canal de TV. Essa concessão não dá exclusividade para a empresa na cidade.",
+  "modelo": "claude-haiku-5-5",
+  "versaoPrompt": "v2",
+  "criadoEm": "2026-11-17T13:59:54.392Z"
+ },
+ {
   "ref": "PDL-680-2024-cd",
   "casa": "senado",
   "textoHash": "f7fe3ddfa75683ad19e3ad8af9f7c6c7187e55049c9af0817301077372abcf14",
@@ -3606,6 +3903,17 @@
   "modelo": "claude-haiku-5-5",
   "versaoPrompt": "v2",
   "criadoEm": "2026-11-01T19:57:02.103Z"
+ },
+ {
+  "ref": "PDL-710-2024-cd",
+  "casa": "senado",
+  "textoHash": "cde61a1de781ef624bb1c7a4e1b6ee56edbcdcaec12ba790cd68bd65f73f05b6",
+  "textoUrl": "https://legis.senado.gov.br/sdleg-getter/dadosabertos/documento/727345d3-76bc-43d5-b6ac-bb9ac621eeba",
+  "titulo": "Renova por 10 anos a rádio FM Bel de Ouro Branco (MG)",
+  "descricao": "O Congresso aprova a renovação, por 10 anos, da permissão dada à empresa Rádio Bel Ltda. para explorar uma rádio FM (frequência modulada) em Ouro Branco, Minas Gerais. A renovação começa a contar em 16 de fevereiro de 2015. A permissão não dá direito de exclusividade.",
+  "modelo": "claude-haiku-5-5",
+  "versaoPrompt": "v2",
+  "criadoEm": "2026-11-17T13:59:57.770Z"
  },
  {
   "ref": "PDL-720-2024-cd",
@@ -3685,6 +3993,17 @@
   "criadoEm": "2026-11-01T19:57:27.916Z"
  },
  {
+  "ref": "PDL-743-2025-cd",
+  "casa": "senado",
+  "textoHash": "872ebd6ae97d8d0b7fac0460e1254c899f4eda737b1d12083b6ca62875eff043",
+  "textoUrl": "https://legis.senado.gov.br/sdleg-getter/dadosabertos/documento/66eb919c-0c15-42c7-9736-f8f991194445",
+  "titulo": "Congresso aprova renovação de rádio AM/FM em Santa Cecília (SC) por 10 anos",
+  "descricao": "A proposta aprova a renovação, por 10 anos a partir de 21 de junho de 2022, da concessão da Rádio Alvorada, de Santa Cecília (SC). A emissora continua autorizada a transmitir programas de rádio, em onda média e, depois, em frequência modulada (FM). A renovação foi feita pelo Ministério das Comunicações e agora passa pelo Congresso Nacional.",
+  "modelo": "claude-haiku-5-5",
+  "versaoPrompt": "v2",
+  "criadoEm": "2026-11-17T13:59:54.158Z"
+ },
+ {
   "ref": "PDL-751-2021-cd",
   "casa": "senado",
   "textoHash": "99765f4d7338d0bbdb9a5288e77db500dada6ea1c478a88b51a9a561f2e354f4",
@@ -3705,6 +4024,28 @@
   "modelo": "claude-haiku-5-5",
   "versaoPrompt": "v2",
   "criadoEm": "2026-11-01T19:57:31.955Z"
+ },
+ {
+  "ref": "PDL-780-2021-cd",
+  "casa": "senado",
+  "textoHash": "f0d0f165806ae9cc1b61f2364e0ea986e41f550750ab0183f7955a8009f4ab23",
+  "textoUrl": "https://legis.senado.gov.br/sdleg-getter/dadosabertos/documento/97ede32a-06a3-4145-87d4-928f4073b974",
+  "titulo": "Renova por 10 anos a autorização de rádio comunitária em Massapê (CE)",
+  "descricao": "A proposta aprova a renovação, por 10 anos, da autorização para a Fundação de Cooperação e Desenvolvimento operar uma rádio comunitária em Massapê, no Ceará. A renovação conta a partir de 9 de maio de 2012. A autorização não dá exclusividade à fundação.",
+  "modelo": "claude-haiku-5-5",
+  "versaoPrompt": "v2",
+  "criadoEm": "2026-11-17T14:00:00.976Z"
+ },
+ {
+  "ref": "PDL-782-2021-cd",
+  "casa": "senado",
+  "textoHash": "5fc6efa790285d7a5d07d39044a1464a3d52c737e4db0adbb1b4b478e8cfd26b",
+  "textoUrl": "https://legis.senado.gov.br/sdleg-getter/dadosabertos/documento/c71ea8ef-cb71-4f6a-bcc9-b988c967c1aa",
+  "titulo": "Renova por 10 anos autorização de rádio comunitária em Caucaia (CE)",
+  "descricao": "A proposta renova por 10 anos a autorização para a Associação Beneficente Maria Pinto operar uma rádio comunitária em Caucaia, no Ceará. O prazo começa em 1º de julho de 2012. A autorização não dá exclusividade à associação.",
+  "modelo": "claude-haiku-5-5",
+  "versaoPrompt": "v2",
+  "criadoEm": "2026-11-17T14:00:02.888Z"
  },
  {
   "ref": "PDL-787-2025-cd",
@@ -3751,6 +4092,17 @@
   "criadoEm": "2026-11-01T19:57:41.713Z"
  },
  {
+  "ref": "PDL-799-2025-cd",
+  "casa": "senado",
+  "textoHash": "475abfefb8ee6d920c7fcd444224c9d4f37e1004f211e7bcf8d8d9862844f463",
+  "textoUrl": "https://legis.senado.gov.br/sdleg-getter/dadosabertos/documento/00e31c3c-46de-4874-b816-8a6895361914",
+  "titulo": "Renovação da concessão de TV digital educativa em Florianópolis para a Fundação Educar Sul Brasil",
+  "descricao": "A proposta aprova a renovação, por 15 anos, da concessão da Fundação Educar Sul Brasil para explorar um canal de TV digital em Florianópolis (SC). A emissora pode transmitir apenas conteúdo educativo e não tem exclusividade sobre o serviço. A renovação começa em 9 de fevereiro de 2020, data de início da concessão original.",
+  "modelo": "claude-haiku-5-5",
+  "versaoPrompt": "v2",
+  "criadoEm": "2026-11-17T14:00:00.332Z"
+ },
+ {
   "ref": "PDL-80-2024-cd",
   "casa": "senado",
   "textoHash": "df6d5e22fc8db5f5c660574e0ecdff66ce5284a1c515ea9b3718ca2143a972c0",
@@ -3793,6 +4145,17 @@
   "modelo": "claude-haiku-5-5",
   "versaoPrompt": "v2",
   "criadoEm": "2026-11-01T19:57:52.137Z"
+ },
+ {
+  "ref": "PDL-844-2021-cd",
+  "casa": "senado",
+  "textoHash": "903ad88033dbeeeba1d187f1cacc3ad7f0edf060fd061b8600f8ddb2e1ef6f32",
+  "textoUrl": "https://legis.senado.gov.br/sdleg-getter/dadosabertos/documento/15fd54f3-5b4d-41c5-9116-03db03ee60e8",
+  "titulo": "Renova por 10 anos a rádio comunitária de Lima Campos, no Maranhão",
+  "descricao": "A proposta aprova a renovação, por 10 anos, da autorização para a Associação Comunitária Cultural Lima Campense operar uma rádio comunitária em Lima Campos, no Maranhão. A renovação conta a partir de 24 de dezembro de 2012. A autorização não dá exclusividade à associação.",
+  "modelo": "claude-haiku-5-5",
+  "versaoPrompt": "v2",
+  "criadoEm": "2026-11-17T14:00:08.392Z"
  },
  {
   "ref": "PDL-845-2025-sf",
@@ -3936,6 +4299,17 @@
   "modelo": "claude-haiku-5-5",
   "versaoPrompt": "v2",
   "criadoEm": "2026-11-01T19:58:30.350Z"
+ },
+ {
+  "ref": "PDL-90-2026-cd",
+  "casa": "senado",
+  "textoHash": "ceafc8c4c6ab0945f541457fa9f22c245f669e55883503194317afae4deb6a46",
+  "textoUrl": "https://legis.senado.gov.br/sdleg-getter/dadosabertos/documento/c158209d-0813-4258-8fdb-daf769f67887",
+  "titulo": "Congresso aprova renovação de rádio FM em João Pinheiro (MG)",
+  "descricao": "A proposta aprova a renovação, por 10 anos, da permissão para a rádio FM (frequência modulada) da Frequência Brasileira de Comunicações Ltda. em João Pinheiro (MG). A contagem dos 10 anos começa em 25 de fevereiro de 2019. A permissão é dada sem exclusividade de uso da frequência.",
+  "modelo": "claude-haiku-5-5",
+  "versaoPrompt": "v2",
+  "criadoEm": "2026-11-17T14:00:09.067Z"
  },
  {
   "ref": "PDL-909-2021-cd",
@@ -4136,6 +4510,17 @@
   "criadoEm": "2026-11-01T19:59:17.217Z"
  },
  {
+  "ref": "PL-1059-2024",
+  "casa": "camara",
+  "textoHash": "82a7fb8e63e4b4fb7243502495b9b0cc93b55e907905230fcc24d70c01ad5825",
+  "textoUrl": "https://www.camara.leg.br/proposicoesWeb/prop_mostrarintegra?codteor=2402251",
+  "titulo": "Escolas passam a incluir no currículo o tema bem-estar animal",
+  "descricao": "A proposta torna obrigatório, nas escolas públicas e privadas de educação básica, o ensino sobre bem-estar animal. O conteúdo inclui guarda responsável, maus-tratos e zoonoses, doenças que podem passar dos animais para as pessoas. Também fica prevista a relação desses temas com a saúde pública, ou seja, a saúde de toda a população.",
+  "modelo": "claude-haiku-5-5",
+  "versaoPrompt": "v2",
+  "criadoEm": "2026-11-17T14:00:10.392Z"
+ },
+ {
   "ref": "PL-1076-2023",
   "casa": "senado",
   "textoHash": "2979aeb0ea14295a9cac60abd8fdba21154fcd4373a137168261d18a8f98f25f",
@@ -4244,6 +4629,17 @@
   "modelo": "claude-haiku-5-5",
   "versaoPrompt": "v2",
   "criadoEm": "2026-11-01T19:59:51.078Z"
+ },
+ {
+  "ref": "PL-1181-2015",
+  "casa": "camara",
+  "textoHash": "58210b0ad57efdd750fab6a15080e8d0f4ea3f63725721d41162a33e878d0ccf",
+  "textoUrl": "https://www.camara.leg.br/proposicoesWeb/prop_mostrarintegra?codteor=1322070",
+  "titulo": "Água e uso sustentável passam a ser tema da educação ambiental",
+  "descricao": "A proposta inclui o manejo sustentável da água entre os temas da educação ambiental. Na prática, esse assunto passa a ser tratado de forma transversal, ou seja, em diversas matérias e não só em uma. A regra vale para as atividades educativas previstas na lei que criou a Política Nacional de Educação Ambiental, de 1999.",
+  "modelo": "claude-haiku-5-5",
+  "versaoPrompt": "v2",
+  "criadoEm": "2026-11-17T14:00:17.508Z"
  },
  {
   "ref": "PL-1252-2023",
@@ -4444,6 +4840,17 @@
   "criadoEm": "2026-11-01T20:00:52.739Z"
  },
  {
+  "ref": "PL-1572-2026",
+  "casa": "camara",
+  "textoHash": "51265dea995800bb04057145ea349292586b1844ffdac89383befb417396c15e",
+  "textoUrl": "https://www.camara.leg.br/proposicoesWeb/prop_mostrarintegra?codteor=3107800",
+  "titulo": "Dá o nome de Prefeito Antônio Carlos Barbosa a trecho da BR-146 em Minas Gerais",
+  "descricao": "A proposta dá o nome \"Rodovia Prefeito Antônio Carlos Barbosa\" ao trecho da BR-146 entre os municípios de Guaxupé e São Pedro da União, em Minas Gerais. Na prática, a estrada passa a ser identificada por esse nome, sem mudança no número da rodovia. O texto não explica se haverá placas ou outras providências para isso.",
+  "modelo": "claude-haiku-5-5",
+  "versaoPrompt": "v2",
+  "criadoEm": "2026-11-17T14:00:11.671Z"
+ },
+ {
   "ref": "PL-162-2024",
   "casa": "senado",
   "textoHash": "006b08314882831be39b1b1500e9c006325068991ed418b3e470419efed69303",
@@ -4620,6 +5027,17 @@
   "criadoEm": "2026-11-01T20:01:41.984Z"
  },
  {
+  "ref": "PL-1932-2021",
+  "casa": "camara",
+  "textoHash": "d27e659e290680b35998aa399833b23497cc2233c01874350175743c7e02c773",
+  "textoUrl": "https://www.camara.leg.br/proposicoesWeb/prop_mostrarintegra?codteor=2100771",
+  "titulo": "Cria sistema em tempo real para controlar estoque de remédios públicos",
+  "descricao": "A proposta cria um sistema que acompanha, em tempo real, o estoque e o consumo de remédios e produtos de saúde nos entes da federação. A gestão é compartilhada por todas as esferas do SUS (sistema público de saúde). As esferas do SUS passam a divulgar na internet os estoques das farmácias e depósitos sob sua responsabilidade.",
+  "modelo": "claude-haiku-5-5",
+  "versaoPrompt": "v2",
+  "criadoEm": "2026-11-17T14:00:22.547Z"
+ },
+ {
   "ref": "PL-1960-2022",
   "casa": "senado",
   "textoHash": "f3d3e0dd9444ffc0721460b5420b8c5ee757727eb7a602077451049779f826b2",
@@ -4686,6 +5104,17 @@
   "criadoEm": "2026-11-01T20:02:06.351Z"
  },
  {
+  "ref": "PL-2032-2020",
+  "casa": "senado",
+  "textoHash": "b53a5409cc14e1aa713983a387a4eb4ca85a654362f841509194cbd22e885eb9",
+  "textoUrl": "https://legis.senado.gov.br/sdleg-getter/dadosabertos/documento/b47b51bf-8533-4750-8d23-effeb33e0ca1",
+  "titulo": "Proposta quer ligações gratuitas de celular para atendimento ao cidadão",
+  "descricao": "A proposta obriga os serviços de atendimento ao cidadão da administração pública a atender ligações gratuitas feitas de celular, além das de telefone fixo. Hoje, a lei já prevê atendimento por telefone para manifestações, como reclamações e pedidos. Com a mudança, quem liga do celular também não paga pela chamada.",
+  "modelo": "claude-haiku-5-5",
+  "versaoPrompt": "v2",
+  "criadoEm": "2026-11-17T14:00:14.222Z"
+ },
+ {
   "ref": "PL-2034-2020",
   "casa": "senado",
   "textoHash": "962ceeca8f8fe1089ca669b2008cf8e08f99e5a5a60647b79ef6e565097e27b1",
@@ -4728,6 +5157,17 @@
   "modelo": "claude-haiku-5-5",
   "versaoPrompt": "v2",
   "criadoEm": "2026-11-06T15:23:25.113Z"
+ },
+ {
+  "ref": "PL-2168-2021",
+  "casa": "camara",
+  "textoHash": "0b0e06e59e3e143c8c9c3029a18518950fbb32633cf0c7cf688966b8b58d89ec",
+  "textoUrl": "https://www.camara.leg.br/proposicoesWeb/prop_mostrarintegra?codteor=2026925",
+  "titulo": "Irrigação e água para animais passam a ser utilidade pública",
+  "descricao": "A proposta coloca obras de irrigação e de água para animais como de utilidade pública no Código Florestal (Lei 12.651/2012). Isso inclui represas em rios, mesmo quando retiram mata nativa em área de preservação permanente (faixa protegida às margens de rios e nascentes). O objetivo declarado é garantir segurança alimentar e hídrica do país.",
+  "modelo": "claude-haiku-5-5",
+  "versaoPrompt": "v2",
+  "criadoEm": "2026-11-17T14:00:24.505Z"
  },
  {
   "ref": "PL-2220-2024",
@@ -4807,6 +5247,17 @@
   "criadoEm": "2026-11-06T15:23:06.554Z"
  },
  {
+  "ref": "PL-2335-2025",
+  "casa": "senado",
+  "textoHash": "85d8320a0244761a9798b5b62d3044c8a216eb5b6cbcdba52f587760bae1df9b",
+  "textoUrl": "https://legis.senado.gov.br/sdleg-getter/dadosabertos/documento/fa11cb96-4ca7-4cae-972c-3d0cb35a2b32",
+  "titulo": "Cria um dia nacional para lembrar a cultura polonesa no Brasil",
+  "descricao": "A proposta cria o Dia Nacional da Herança Cultural dos Poloneses no Brasil, celebrado todo ano em 11 de novembro. A data lembra a independência da Polônia, ocorrida em 11 de novembro de 1918. Governos e órgãos públicos passam a divulgar a data e a fazer solenidades em homenagem a ela.",
+  "modelo": "claude-haiku-5-5",
+  "versaoPrompt": "v2",
+  "criadoEm": "2026-11-17T14:00:23.276Z"
+ },
+ {
   "ref": "PL-2336-2022",
   "casa": "senado",
   "textoHash": "53f042a28bdfa6e8515f480b5e6cb25509376ad601f22e4c5a1c18e2cd32c67e",
@@ -4840,6 +5291,17 @@
   "criadoEm": "2026-11-01T20:02:26.158Z"
  },
  {
+  "ref": "PL-2368-2021",
+  "casa": "camara",
+  "textoHash": "d23dd7a5e633010755a5cf6e14a064c0257ecab592e9bbcf949d10c9611f852f",
+  "textoUrl": "https://www.camara.leg.br/proposicoesWeb/prop_mostrarintegra?codteor=2035600",
+  "titulo": "Dá prioridade de matrícula em escola de tempo integral a alunos vulneráveis",
+  "descricao": "A proposta cria, na rede pública, prioridade de matrícula em tempo integral para alunos em situação de vulnerabilidade. Vale para todas as etapas da educação básica, da creche ao ensino médio. Cada estado ou município define os critérios que caracterizam a vulnerabilidade.",
+  "modelo": "claude-haiku-5-5",
+  "versaoPrompt": "v2",
+  "criadoEm": "2026-11-17T14:00:28.345Z"
+ },
+ {
   "ref": "PL-2374-2019",
   "casa": "senado",
   "textoHash": "175509bb8af704c163bf2a598ec692f0ee95228143e584ffb9965c8486c86ed0",
@@ -4862,6 +5324,17 @@
   "criadoEm": "2026-11-01T20:02:39.458Z"
  },
  {
+  "ref": "PL-2423-2026",
+  "casa": "senado",
+  "textoHash": "cb621ee5ad266ff299d28ddd8a90b08ac83f98ed2a7bc359d127402d0452f1c9",
+  "textoUrl": "https://legis.senado.gov.br/sdleg-getter/dadosabertos/documento/9f1f3d33-4279-4875-b2bd-944203308ad1",
+  "titulo": "Romaria do Divino Pai Eterno, em Trindade (GO), passa a ser reconhecida como cultura nacional",
+  "descricao": "A proposta reconhece a Romaria do Divino Pai Eterno, realizada todo ano em Trindade, Goiás, como manifestação da cultura nacional. Na prática, o evento religioso e popular passa a ter esse reconhecimento oficial do país. O texto não detalha quais ações ou apoios decorrem desse reconhecimento.",
+  "modelo": "claude-haiku-5-5",
+  "versaoPrompt": "v2",
+  "criadoEm": "2026-11-17T14:00:25.852Z"
+ },
+ {
   "ref": "PL-2465-2026",
   "casa": "senado",
   "textoHash": "76d734bf355238ccf9cec0715dee169d5a81255780db064ef8ea9728b03222e8",
@@ -4871,6 +5344,17 @@
   "modelo": "claude-haiku-5-5",
   "versaoPrompt": "v2",
   "criadoEm": "2026-11-01T20:02:56.289Z"
+ },
+ {
+  "ref": "PL-2475-2025",
+  "casa": "camara",
+  "textoHash": "8b63bacfa5e45efbbc690ccf286cd82c68cae1a433c70aed00e53aad12273efc",
+  "textoUrl": "https://www.camara.leg.br/proposicoesWeb/prop_mostrarintegra?codteor=2916380",
+  "titulo": "Maus-tratos que matam animais passam a ser crime hediondo",
+  "descricao": "A proposta torna crime hediondo os maus-tratos a animais quando o animal morre. Crime hediondo é aquele que a lei trata como especialmente grave. Os maus-tratos já estão previstos como crime na Lei de Crimes Ambientais (Lei 9.605/1998).",
+  "modelo": "claude-haiku-5-5",
+  "versaoPrompt": "v2",
+  "criadoEm": "2026-11-17T14:00:33.424Z"
  },
  {
   "ref": "PL-2480-2021",
@@ -4915,6 +5399,17 @@
   "modelo": "claude-haiku-5-5",
   "versaoPrompt": "v2",
   "criadoEm": "2026-11-01T20:03:08.612Z"
+ },
+ {
+  "ref": "PL-2561-2024",
+  "casa": "camara",
+  "textoHash": "89390185987da53f9a357c8a4c8c6d8c2b72d746ec9fe14b802b744e787c29ee",
+  "textoUrl": "https://www.camara.leg.br/proposicoesWeb/prop_mostrarintegra?codteor=2442404",
+  "titulo": "Governo fica dispensado de seleção pública em parcerias com entidades credenciadas",
+  "descricao": "A proposta permite que o governo faça parcerias com organizações da sociedade civil, entidades privadas sem fins lucrativos, sem chamamento público, ou seja, sem seleção pública aberta. Vale para atividades de educação, saúde, assistência social, pessoas com deficiência, meio ambiente, cultura e esporte. A organização precisa já estar credenciada pelo órgão responsável pela política.",
+  "modelo": "claude-haiku-5-5",
+  "versaoPrompt": "v2",
+  "criadoEm": "2026-11-17T14:00:35.957Z"
  },
  {
   "ref": "PL-2563-2021",
@@ -4972,6 +5467,28 @@
   "criadoEm": "2026-11-01T20:03:17.931Z"
  },
  {
+  "ref": "PL-259-2023",
+  "casa": "camara",
+  "textoHash": "ad310def26c9be14058113d8bbc2faa89f635452b0cb6574300fce0ce1b76aed",
+  "textoUrl": "https://www.camara.leg.br/proposicoesWeb/prop_mostrarintegra?codteor=2232655",
+  "titulo": "Proposta torna obrigatório o ensino de direitos dos animais nas escolas",
+  "descricao": "A proposta torna obrigatório que escolas de ensino fundamental e médio ensinem direitos dos animais e proteção animal. Esse conteúdo inclui noções de leis e de direitos básicos dos animais. A mudança passa a valer no ano letivo seguinte ao da publicação da lei.",
+  "modelo": "claude-haiku-5-5",
+  "versaoPrompt": "v2",
+  "criadoEm": "2026-11-17T14:00:35.767Z"
+ },
+ {
+  "ref": "PL-2595-2020",
+  "casa": "camara",
+  "textoHash": "c6eb87684617be6f7c2a4892b88567051b77cb62ee1c6576585f2c1e38a7170d",
+  "textoUrl": "https://www.camara.leg.br/proposicoesWeb/prop_mostrarintegra?codteor=1893214",
+  "titulo": "Ensino fundamental em áreas vulneráveis passa a ser em tempo integral",
+  "descricao": "A proposta obriga o ensino fundamental a funcionar em tempo integral em locais com vulnerabilidade social comprovada, mas não diz como essa comprovação será feita. Ela altera a Lei de Diretrizes e Bases da Educação (LDB) e prevê recursos no orçamento da União. A lei passa a valer 180 dias após a publicação, e o Ministério da Educação a regulamentará.",
+  "modelo": "claude-haiku-5-5",
+  "versaoPrompt": "v2",
+  "criadoEm": "2026-11-17T14:00:47.203Z"
+ },
+ {
   "ref": "PL-2614-2024",
   "casa": "senado",
   "textoHash": "4933b351ba8e60c17d81272e699e39c20fe8d6b0228b9b9aee062258f85786c0",
@@ -5025,6 +5542,17 @@
   "modelo": "claude-haiku-5-5",
   "versaoPrompt": "v2",
   "criadoEm": "2026-11-01T20:03:45.679Z"
+ },
+ {
+  "ref": "PL-2724-2026",
+  "casa": "camara",
+  "textoHash": "6a3249cab85111271c8f85eb39ec042dea6af0d7d19e5d2fa7333312e6233252",
+  "textoUrl": "https://www.camara.leg.br/proposicoesWeb/prop_mostrarintegra?codteor=3139717",
+  "titulo": "Escolas passam a tratar do bem-estar animal e da guarda responsável",
+  "descricao": "A proposta inclui o bem-estar animal e a guarda responsável nos currículos da educação básica, ou seja, nas matérias ensinadas nas escolas. Os temas aparecem em várias disciplinas, sem matéria própria. O texto ainda trata de direitos humanos e da prevenção da violência contra crianças, adolescentes, mulheres e animais. Tudo deve seguir as diretrizes do Conselho Nacional de Educação (CNE).",
+  "modelo": "claude-haiku-5-5",
+  "versaoPrompt": "v2",
+  "criadoEm": "2026-11-17T14:00:51.954Z"
  },
  {
   "ref": "PL-2730-2024",
@@ -5104,6 +5632,39 @@
   "criadoEm": "2026-11-01T20:04:04.326Z"
  },
  {
+  "ref": "PL-2812-2022",
+  "casa": "camara",
+  "textoHash": "457bc45c827567b570c72f44229a1b5334c2bbcc237deb8204cd9c2affaa5fb1",
+  "textoUrl": "https://www.camara.leg.br/proposicoesWeb/prop_mostrarintegra?codteor=2216469",
+  "titulo": "Proposta acaba com a lei que trata de alienação parental",
+  "descricao": "A proposta revoga, ou seja, cancela, a Lei 12.318, de 2010, conhecida como Lei de Alienação Parental. Essa lei trata de casos em que um dos pais ou responsáveis atrapalha a relação da criança com o outro. O texto não diz o que passa a valer no lugar da lei revogada.",
+  "modelo": "claude-haiku-5-5",
+  "versaoPrompt": "v2",
+  "criadoEm": "2026-11-17T14:00:42.638Z"
+ },
+ {
+  "ref": "PL-2829-2024",
+  "casa": "camara",
+  "textoHash": "36909b3c570644980b8dbd8fd3dbdae9efcbd8fa1f8e4d99bdfe59c92f65fd7a",
+  "textoUrl": "https://www.camara.leg.br/proposicoesWeb/prop_mostrarintegra?codteor=2533154",
+  "titulo": "Dá nome de Severo Eulálio Filho a viaduto em Teresina",
+  "descricao": "A proposta dá o nome de “Viaduto Severo Eulálio Filho” ao viaduto da BR-343, rodovia federal, na Ladeira do Uruguai, Zona Leste de Teresina, no Piauí. Na prática, o viaduto passa a ter esse nome oficial.",
+  "modelo": "claude-haiku-5-5",
+  "versaoPrompt": "v2",
+  "criadoEm": "2026-11-17T14:00:49.846Z"
+ },
+ {
+  "ref": "PL-2839-2026",
+  "casa": "camara",
+  "textoHash": "a03fbf035c7332757a152b3a13789ddbe269da992c68147abd0299b4745dbc4e",
+  "textoUrl": "https://www.camara.leg.br/proposicoesWeb/prop_mostrarintegra?codteor=3141573",
+  "titulo": "Escolinhas de futebol com verba federal passam a ter turmas para meninas",
+  "descricao": "A proposta obriga escolinhas e projetos de futebol que recebem verba federal a oferecer turmas para meninas e mulheres. Se não houver alunas suficientes para uma turma só feminina, a escolinha abre turmas mistas com vagas reservadas para elas. Entram como verba federal o dinheiro repassado pela União, pessoal pago com ele, quadras, campos e materiais cedidos pelo governo.",
+  "modelo": "claude-haiku-5-5",
+  "versaoPrompt": "v2",
+  "criadoEm": "2026-11-17T14:00:57.484Z"
+ },
+ {
   "ref": "PL-2864-2025",
   "casa": "senado",
   "textoHash": "bef6977c105a1ebabeaaf3beae0cc157eb3b39506943119427227a1fd699d58b",
@@ -5126,6 +5687,17 @@
   "criadoEm": "2026-11-01T20:04:13.612Z"
  },
  {
+  "ref": "PL-2879-2011",
+  "casa": "camara",
+  "textoHash": "0506cf2c571ed0fa641fe13b3917fdeadc4242f90fcd6be57a640884ef0e8f82",
+  "textoUrl": "https://www.camara.leg.br/proposicoesWeb/prop_mostrarintegra?codteor=948745",
+  "titulo": "Semáforos para pedestres com sinal sonoro e contagem regressiva",
+  "descricao": "A proposta muda o Código de Trânsito Brasileiro. Passa a exigir semáforos para pedestres com sinal sonoro, figura de pessoa e contagem regressiva, se estudos técnicos indicarem. Eles serão instalados aos poucos: 25% do total a cada três anos. Agente público que não cumprir essa regra comete improbidade administrativa. A lei passa a valer 180 dias após a publicação.",
+  "modelo": "claude-haiku-5-5",
+  "versaoPrompt": "v2",
+  "criadoEm": "2026-11-17T14:01:03.256Z"
+ },
+ {
   "ref": "PL-2896-2024",
   "casa": "senado",
   "textoHash": "7202ec4cffa2872c33057278fad9e9d26c4adec885d1ed11bcda014c199bd504",
@@ -5135,6 +5707,28 @@
   "modelo": "claude-haiku-5-5",
   "versaoPrompt": "v2",
   "criadoEm": "2026-11-01T20:04:06.721Z"
+ },
+ {
+  "ref": "PL-2916-2022",
+  "casa": "camara",
+  "textoHash": "4f53190156d1620d9e8f084eacf52b119c7c875747d47a746d0da5fb066b9326",
+  "textoUrl": "https://www.camara.leg.br/proposicoesWeb/prop_mostrarintegra?codteor=2220479",
+  "titulo": "Inclui ação social e esporte entre as áreas das organizações sociais",
+  "descricao": "A proposta inclui ação social e esporte entre as áreas em que o Poder Executivo federal pode qualificar entidades como organizações sociais. Organizações sociais são entidades privadas, sem fins lucrativos, que recebem esse reconhecimento oficial do governo. Para isso, elas precisam atender aos requisitos da Lei 9.637, de 1998, que a proposta altera.",
+  "modelo": "claude-haiku-5-5",
+  "versaoPrompt": "v2",
+  "criadoEm": "2026-11-17T14:01:01.901Z"
+ },
+ {
+  "ref": "PL-2924-2024",
+  "casa": "camara",
+  "textoHash": "714ddb003d251d3c0bbeb1d69bbd7baf2e25e93875a529200236525ea1490be0",
+  "textoUrl": "https://www.camara.leg.br/proposicoesWeb/prop_mostrarintegra?codteor=2455798",
+  "titulo": "Escolas passam a incluir direitos dos animais nos currículos",
+  "descricao": "A proposta inclui os direitos dos animais entre os temas transversais dos currículos da educação básica, que vai da educação infantil ao ensino médio. Temas transversais são assuntos tratados em várias matérias ao mesmo tempo. A lei já prevê esse tipo de conteúdo para direitos humanos e para a prevenção da violência contra crianças, adolescentes e mulheres.",
+  "modelo": "claude-haiku-5-5",
+  "versaoPrompt": "v2",
+  "criadoEm": "2026-11-17T14:01:07.488Z"
  },
  {
   "ref": "PL-2942-2024",
@@ -5159,6 +5753,28 @@
   "criadoEm": "2026-11-01T20:04:19.509Z"
  },
  {
+  "ref": "PL-2964-2023",
+  "casa": "camara",
+  "textoHash": "3a1b93ff4e431b9ed0f75834075fca4b4de3796a43c7a3cd8308bc7110cc224e",
+  "textoUrl": "https://www.camara.leg.br/proposicoesWeb/prop_mostrarintegra?codteor=2284871",
+  "titulo": "Proposta inclui educação climática e medidas de adaptação ao clima nas escolas",
+  "descricao": "A proposta torna a educação climática base da educação escolar. As escolas passam a se adaptar a eventos climáticos, reduzir emissões de gases de efeito estufa e criar hortas e áreas verdes para aulas práticas. Municípios que declararam calamidade por eventos extremos devem proteger a vida dos alunos e podem pedir recursos ao Fundo Nacional sobre Mudança do Clima.",
+  "modelo": "claude-haiku-5-5",
+  "versaoPrompt": "v2",
+  "criadoEm": "2026-11-17T14:01:10.378Z"
+ },
+ {
+  "ref": "PL-2979-2023",
+  "casa": "camara",
+  "textoHash": "18a1e52a4c159787a24f57e9fa4877823597a5c6855f569019ae80a658e8f887",
+  "textoUrl": "https://www.camara.leg.br/proposicoesWeb/prop_mostrarintegra?codteor=2285636",
+  "titulo": "Cria campanha para ensinar educação financeira nas escolas públicas e privadas",
+  "descricao": "A proposta cria a Campanha Nacional Pró Ensino de Educação Financeira nas escolas públicas e privadas de fundamental e médio. As escolas aderentes incluirão o tema nas propostas pedagógicas, com aulas presenciais ou a distância (EAD, ensino a distância). Ao fim do primeiro ano, o Ministério da Educação dá o Selo \"Escola Amiga da Educação Financeira\" à escola aderente.",
+  "modelo": "claude-haiku-5-5",
+  "versaoPrompt": "v2",
+  "criadoEm": "2026-11-17T14:01:20.137Z"
+ },
+ {
   "ref": "PL-2979-2023",
   "casa": "senado",
   "textoHash": "6dea31059ec527fca42420e99689176765a777874a914f4616ce3ee0afab1872",
@@ -5168,6 +5784,17 @@
   "modelo": "claude-haiku-5-5",
   "versaoPrompt": "v2",
   "criadoEm": "2026-11-01T20:04:22.965Z"
+ },
+ {
+  "ref": "PL-300-2019",
+  "casa": "camara",
+  "textoHash": "325e4f4eb01955809106cd4844cdbffe29c7b0e0afd001af021d4e4ece8e8e73",
+  "textoUrl": "https://www.camara.leg.br/proposicoesWeb/prop_mostrarintegra?codteor=1707085",
+  "titulo": "Torna obrigatória a educação ambiental nas escolas e no ensino superior",
+  "descricao": "A proposta torna obrigatória a educação ambiental nas escolas de ensino fundamental e médio e no ensino superior. Ela deve ser tratada como parte permanente do ensino, com temas como equilíbrio ecológico, consumo sustentável e direitos humanos. O texto não diz que a educação ambiental vira uma matéria separada, embora a ementa fale em disciplina.",
+  "modelo": "claude-haiku-5-5",
+  "versaoPrompt": "v2",
+  "criadoEm": "2026-11-17T14:01:15.510Z"
  },
  {
   "ref": "PL-3003-2023",
@@ -5267,6 +5894,17 @@
   "modelo": "claude-haiku-5-5",
   "versaoPrompt": "v2",
   "criadoEm": "2026-11-01T20:05:09.778Z"
+ },
+ {
+  "ref": "PL-3096-2021",
+  "casa": "camara",
+  "textoHash": "30c425f4b9bd5aae074c9e1638a89d0e57fbab5ad5964549e85995c2ff680979",
+  "textoUrl": "https://www.camara.leg.br/proposicoesWeb/prop_mostrarintegra?codteor=2070231",
+  "titulo": "Escolas passam a ensinar bem-estar animal como tema obrigatório",
+  "descricao": "A proposta obriga as escolas a tratar da conscientização sobre o bem-estar animal como tema transversal. Temas transversais são assuntos que aparecem em várias matérias da escola. O tema passa a ser obrigatório na educação infantil, no ensino fundamental e no ensino médio.",
+  "modelo": "claude-haiku-5-5",
+  "versaoPrompt": "v2",
+  "criadoEm": "2026-11-17T14:01:17.549Z"
  },
  {
   "ref": "PL-3099-2019",
@@ -5423,6 +6061,17 @@
   "criadoEm": "2026-11-01T20:05:41.706Z"
  },
  {
+  "ref": "PL-3402-2026",
+  "casa": "camara",
+  "textoHash": "e927a05df77b28921cfbdc2343e58de4cac2197100276570d52cccd2a18faa92",
+  "textoUrl": "https://www.camara.leg.br/proposicoesWeb/prop_mostrarintegra?codteor=3154929",
+  "titulo": "Permite usar TR para financiar inovação e digitalização com dinheiro do FAT",
+  "descricao": "A proposta permite que recursos do FAT (Fundo de Amparo ao Trabalhador) repassados ao BNDES (banco de desenvolvimento) sejam remunerados pela TR (Taxa Referencial, índice de correção). Vale para financiamentos de inovação e digitalização. Até 2029, as aprovações desses financiamentos ficam limitadas a 1,5% do saldo desses recursos por ano, percentual que o Conselho Monetário Nacional pode aumentar.",
+  "modelo": "claude-haiku-5-5",
+  "versaoPrompt": "v2",
+  "criadoEm": "2026-11-17T14:01:30.132Z"
+ },
+ {
   "ref": "PL-3420-2025",
   "casa": "senado",
   "textoHash": "14ca2ff71c6d09fe3cdd0535f2195390e3b690487e6e5f6f91166620548ff27f",
@@ -5577,6 +6226,17 @@
   "criadoEm": "2026-11-01T20:06:32.181Z"
  },
  {
+  "ref": "PL-3687-2023",
+  "casa": "camara",
+  "textoHash": "abcb086eff4331e45fb02a04a58680f983635f6cfd8b9d169af9f6e6b9e0a4ef",
+  "textoUrl": "https://www.camara.leg.br/proposicoesWeb/prop_mostrarintegra?codteor=2304075",
+  "titulo": "Cria o Dia do Lixo Zero em escolas de educação básica",
+  "descricao": "A proposta cria o Dia do Lixo Zero, a ser comemorado todo dia 30 de março em todas as escolas públicas e privadas de educação básica do país. Nesse dia, as escolas deverão realizar atividades sobre reciclagem, compostagem, coleta seletiva e redução do desperdício. O Poder Executivo poderá fazer campanhas nacionais sobre o tema.",
+  "modelo": "claude-haiku-5-5",
+  "versaoPrompt": "v2",
+  "criadoEm": "2026-11-17T14:01:20.192Z"
+ },
+ {
   "ref": "PL-37-2025",
   "casa": "senado",
   "textoHash": "56630d8200e859556ca52cadb5db3d2a61f03cd16b41cff079e31e92c8b81659",
@@ -5641,6 +6301,17 @@
   "modelo": "claude-haiku-5-5",
   "versaoPrompt": "v2",
   "criadoEm": "2026-11-01T20:06:48.806Z"
+ },
+ {
+  "ref": "PL-3768-2026",
+  "casa": "senado",
+  "textoHash": "f7541dc98d451d658d6b6a4639d92ed20d23c170439af173374c6e97410426dd",
+  "textoUrl": "https://legis.senado.gov.br/sdleg-getter/dadosabertos/documento/d82cd51f-8c0d-4a51-babe-773d83c01adf",
+  "titulo": "Cria um prêmio nacional para escolas e estudantes da rede pública que melhoram a aprendizagem",
+  "descricao": "A proposta cria o Prêmio Nacional da Educação Brasileira (PNEB), que reconhece estratégias que melhoram a aprendizagem na educação básica. Premia estados, municípios, escolas e estudantes das redes públicas, em oito categorias, como alfabetização e Enem. Os premiados recebem um troféu e um valor em dinheiro.",
+  "modelo": "claude-haiku-5-5",
+  "versaoPrompt": "v2",
+  "criadoEm": "2026-11-17T14:01:22.590Z"
  },
  {
   "ref": "PL-3799-2019",
@@ -5764,6 +6435,17 @@
   "criadoEm": "2026-11-01T20:07:42.996Z"
  },
  {
+  "ref": "PL-3950-2021",
+  "casa": "camara",
+  "textoHash": "5c0e22362fab6217a0b113913f0e856dace5d5ed45918695ee5dc3a4eeba1915",
+  "textoUrl": "https://www.camara.leg.br/proposicoesWeb/prop_mostrarintegra?codteor=2102120",
+  "titulo": "Escolas passam a incluir mudanças climáticas e direitos humanos nos currículos",
+  "descricao": "A proposta faz com que os currículos da educação básica passem a incluir temas sobre mudanças climáticas, direitos humanos e prevenção de todas as formas de violência contra crianças, adolescentes e mulheres. Esses temas atravessam as matérias, sem virar disciplina separada. A proposta também prevê material didático adequado a cada etapa de ensino.",
+  "modelo": "claude-haiku-5-5",
+  "versaoPrompt": "v2",
+  "criadoEm": "2026-11-17T14:01:32.267Z"
+ },
+ {
   "ref": "PL-3951-2019",
   "casa": "senado",
   "textoHash": "7cc8c63aef31a8dfd034c830b3169e086ef180413286ae424b2ae81cce2afd03",
@@ -5773,6 +6455,17 @@
   "modelo": "claude-haiku-5-5",
   "versaoPrompt": "v2",
   "criadoEm": "2026-11-01T20:07:52.918Z"
+ },
+ {
+  "ref": "PL-3965-2024",
+  "casa": "camara",
+  "textoHash": "b9624ae648444c262b4210c50b18e8c260b940b5d9f425c65260bd9ce60bdade",
+  "textoUrl": "https://www.camara.leg.br/proposicoesWeb/prop_mostrarintegra?codteor=2485562",
+  "titulo": "Cria feriado escolar e Dia Nacional dos Professores em 15 de outubro",
+  "descricao": "A proposta cria o Dia Nacional dos Professores, Professoras e Profissionais de Educação, celebrado todo dia 15 de outubro. No mesmo dia, fica declarado feriado escolar em todo o país. Nas escolas e unidades de ensino, ficam suspensas as atividades normais e não essenciais.",
+  "modelo": "claude-haiku-5-5",
+  "versaoPrompt": "v2",
+  "criadoEm": "2026-11-17T14:01:25.041Z"
  },
  {
   "ref": "PL-3998-2025",
@@ -5806,6 +6499,17 @@
   "modelo": "claude-haiku-5-5",
   "versaoPrompt": "v2",
   "criadoEm": "2026-11-01T20:07:58.594Z"
+ },
+ {
+  "ref": "PL-4159-2025",
+  "casa": "camara",
+  "textoHash": "9e02ebe9668c4bb4e7257b72b8e1899ce9b5a6b8094ef5d580f05f3bdd69c944",
+  "textoUrl": "https://www.camara.leg.br/proposicoesWeb/prop_mostrarintegra?codteor=2982390",
+  "titulo": "Coloca o nome do Padre Inácio de Sousa Rolim no Livro dos Heróis da Pátria",
+  "descricao": "A proposta inscreve o nome do Padre Inácio de Sousa Rolim no Livro dos Heróis e Heroínas da Pátria. Esse livro fica guardado no Panteão da Pátria e da Liberdade Tancredo Neves, em Brasília. Na prática, o nome dele passa a constar oficialmente entre os heróis do país.",
+  "modelo": "claude-haiku-5-5",
+  "versaoPrompt": "v2",
+  "criadoEm": "2026-11-17T14:01:27.316Z"
  },
  {
   "ref": "PL-4161-2025",
@@ -5973,6 +6677,17 @@
   "criadoEm": "2026-11-01T20:09:07.247Z"
  },
  {
+  "ref": "PL-4423-2023",
+  "casa": "camara",
+  "textoHash": "62bafc8ce3b694f0ff7c462188d6a02a63f3370f6e30ea5bbf428c394da1c24b",
+  "textoUrl": "https://www.camara.leg.br/proposicoesWeb/prop_mostrarintegra?codteor=2326829",
+  "titulo": "Proposta torna educação ambiental disciplina obrigatória no ensino fundamental e médio",
+  "descricao": "A proposta cria a regra de que a educação ambiental seja uma disciplina obrigatória nas escolas de ensino fundamental e médio. Hoje, a Lei 9.795, de 1999, que trata da política nacional de educação ambiental, não exige uma matéria específica com esse nome. Assim, as escolas dessas etapas passam a ter que incluir a disciplina em seus currículos.",
+  "modelo": "claude-haiku-5-5",
+  "versaoPrompt": "v2",
+  "criadoEm": "2026-11-17T14:01:29.964Z"
+ },
+ {
   "ref": "PL-4437-2021",
   "casa": "senado",
   "textoHash": "552a627512edf0c7ef4462f546ab3adb5918a47bc277e5c54c31b9a2d5bcd6e9",
@@ -5982,6 +6697,17 @@
   "modelo": "claude-haiku-5-5",
   "versaoPrompt": "v2",
   "criadoEm": "2026-11-01T20:08:58.047Z"
+ },
+ {
+  "ref": "PL-4480-2025",
+  "casa": "camara",
+  "textoHash": "a861084554b2826734852fc0b43a51b0eb22a4beb0456128c47e254c9d47ccf8",
+  "textoUrl": "https://www.camara.leg.br/proposicoesWeb/prop_mostrarintegra?codteor=2994276",
+  "titulo": "Permite que policiais com restrição de crédito comprem imóvel pelo Habite Seguro",
+  "descricao": "A proposta permite que policiais com restrição de crédito financiem imóvel pelo Habite Seguro, programa de moradia para pessoas ameaçadas. Para isso, é preciso comprovar margem consignável, ou seja, parte do salário ou benefício capaz de pagar as parcelas. Se a denúncia sobre a ameaça for rejeitada ou houver absolvição definitiva, o valor recebido deve ser devolvido.",
+  "modelo": "claude-haiku-5-5",
+  "versaoPrompt": "v2",
+  "criadoEm": "2026-11-17T14:01:56.741Z"
  },
  {
   "ref": "PL-4578-2025",
@@ -6004,6 +6730,17 @@
   "modelo": "claude-haiku-5-5",
   "versaoPrompt": "v2",
   "criadoEm": "2026-11-01T20:09:08.265Z"
+ },
+ {
+  "ref": "PL-4593-2020",
+  "casa": "camara",
+  "textoHash": "6479b2727fb02295acdc804c40f5d8f7eab132905e98d4049907b96ef3c04fcc",
+  "textoUrl": "https://www.camara.leg.br/proposicoesWeb/prop_mostrarintegra?codteor=1930479",
+  "titulo": "Torna obrigatório ensinar direitos dos animais nas escolas de ensino fundamental",
+  "descricao": "A proposta torna obrigatório o ensino de Educação em Direito dos Animais em todas as séries do ensino fundamental, a etapa do 1º ao 9º ano. Os alunos dessas séries passam a ter essa matéria, com carga horária de oito horas.",
+  "modelo": "claude-haiku-5-5",
+  "versaoPrompt": "v2",
+  "criadoEm": "2026-11-17T14:01:39.021Z"
  },
  {
   "ref": "PL-4600-2025",
@@ -6039,6 +6776,17 @@
   "criadoEm": "2026-11-01T20:09:18.524Z"
  },
  {
+  "ref": "PL-464-2026",
+  "casa": "camara",
+  "textoHash": "349ba9a9864d80b0b8884c8ec650918cba47ce02d91da793a8224793da5e62d9",
+  "textoUrl": "https://www.camara.leg.br/proposicoesWeb/prop_mostrarintegra?codteor=3081501",
+  "titulo": "Herdeiro que pedir interdição abusiva perde herança; pena de crime sobe",
+  "descricao": "A proposta faz o herdeiro que promover ou tentar promover interdição abusiva perder a herança. Interdição é o processo que tira de alguém a capacidade de decidir sozinho. Considera-se abusiva a interdição reconhecida por decisão judicial definitiva. Também aumenta a pena de crime previsto no Estatuto da Pessoa Idosa, para 2 a 5 anos de prisão e multa.",
+  "modelo": "claude-haiku-5-5",
+  "versaoPrompt": "v2",
+  "criadoEm": "2026-11-17T14:01:49.176Z"
+ },
+ {
   "ref": "PL-4674-2024",
   "casa": "camara",
   "textoHash": "c834ecd8110ee229fbfab8ccca2d9f295c06dd0577cd66a452dcc6361ad4746e",
@@ -6048,6 +6796,17 @@
   "modelo": "claude-haiku-5-5",
   "versaoPrompt": "v2",
   "criadoEm": "2026-11-06T15:23:34.482Z"
+ },
+ {
+  "ref": "PL-4724-2024",
+  "casa": "camara",
+  "textoHash": "c0b360970993eed5e0659a5e9ba281411c4f6cfe32b9a69609b69cfb98dbf3e0",
+  "textoUrl": "https://www.camara.leg.br/proposicoesWeb/prop_mostrarintegra?codteor=2835327",
+  "titulo": "Dobra a pena de crimes eleitorais cometidos por organizações criminosas",
+  "descricao": "A proposta dobra a pena dos crimes eleitorais do artigo 299 do Código Eleitoral, a lei que organiza as eleições, quando forem cometidos por associação ou organização criminosa. Quem cometer esses crimes dentro de um grupo criminoso passa a ter a pena aplicada em dobro.",
+  "modelo": "claude-haiku-5-5",
+  "versaoPrompt": "v2",
+  "criadoEm": "2026-11-17T14:01:47.962Z"
  },
  {
   "ref": "PL-4740-2025",
@@ -6061,6 +6820,17 @@
   "criadoEm": "2026-11-01T20:09:20.644Z"
  },
  {
+  "ref": "PL-4749-2023",
+  "casa": "camara",
+  "textoHash": "bbb4459078edc5d1162f62d49f0311e2725b50ab24b127a28b599b6867129899",
+  "textoUrl": "https://www.camara.leg.br/proposicoesWeb/prop_mostrarintegra?codteor=2337240",
+  "titulo": "Escolas passam a ter ensino obrigatório sobre saúde e meio ambiente",
+  "descricao": "A proposta torna obrigatório, em escolas de ensino fundamental e médio, públicas e particulares, o ensino sobre Educação em Saúde e Ambiente. O conteúdo inclui emergências climáticas, segurança alimentar e hídrica, pandemias, agroecologia e o SUS, o sistema público de saúde. Os temas devem aparecer em todas as disciplinas, especialmente Biologia, Geografia, História e Educação Física.",
+  "modelo": "claude-haiku-5-5",
+  "versaoPrompt": "v2",
+  "criadoEm": "2026-11-17T14:01:50.382Z"
+ },
+ {
   "ref": "PL-4789-2024",
   "casa": "senado",
   "textoHash": "9bb4c273829311ab597eb432844ec1c0e9a2e500888b1b2eaecc966797cfaf9c",
@@ -6070,6 +6840,17 @@
   "modelo": "claude-haiku-5-5",
   "versaoPrompt": "v2",
   "criadoEm": "2026-11-01T20:09:44.211Z"
+ },
+ {
+  "ref": "PL-479-2015",
+  "casa": "camara",
+  "textoHash": "3b8e1a4e8ba816063598fdb3b81d0ea9bc4df1b5adbd3775f5796411cf7c5019",
+  "textoUrl": "https://www.camara.leg.br/proposicoesWeb/prop_mostrarintegra?codteor=1303633",
+  "titulo": "Proposta leva escola de tempo integral para infantil, fundamental e médio",
+  "descricao": "Educação infantil passa a ser preferencialmente em tempo integral, com incentivos aos pais. No ensino fundamental e médio, a escola passa a ser progressivamente em tempo integral, podendo ter outros profissionais além de professores. No médio, pelo menos quatro horas diárias são de aula. A União complementa recursos de estados e municípios, com parte dos royalties do petróleo e gás.",
+  "modelo": "claude-haiku-5-5",
+  "versaoPrompt": "v2",
+  "criadoEm": "2026-11-17T14:02:09.776Z"
  },
  {
   "ref": "PL-4794-2020",
@@ -6171,6 +6952,17 @@
   "criadoEm": "2026-11-01T20:09:52.433Z"
  },
  {
+  "ref": "PL-5072-2026",
+  "casa": "camara",
+  "textoHash": "0a1164e463a81a2d506534786112cf8cf77d4d5c01081e98daab7057c1b7952d",
+  "textoUrl": "https://www.camara.leg.br/proposicoesWeb/prop_mostrarintegra?codteor=3172248",
+  "titulo": "Transporte público gratuito para inscritos no Enem nos dias de prova",
+  "descricao": "A proposta cria o Passe Enem: transporte público gratuito para inscritos no Enem (Exame Nacional do Ensino Médio), nos dias das provas. Não exige matrícula escolar nem comprovação de renda. Cobre ida e volta ao local de prova, incluindo integrações. A União custeia o benefício, com repasses a estados, municípios e empresas. Não inclui táxi, aplicativos nem fretados.",
+  "modelo": "claude-haiku-5-5",
+  "versaoPrompt": "v2",
+  "criadoEm": "2026-11-17T14:02:03.557Z"
+ },
+ {
   "ref": "PL-5078-2016",
   "casa": "senado",
   "textoHash": "c0f43d5a976fd515b67d3f764a002336b3119e7030cc62327e7472af723e26c7",
@@ -6180,6 +6972,17 @@
   "modelo": "claude-haiku-5-5",
   "versaoPrompt": "v2",
   "criadoEm": "2026-11-01T20:10:05.661Z"
+ },
+ {
+  "ref": "PL-5086-2026",
+  "casa": "camara",
+  "textoHash": "b3da17840a3ad295a55cfd564a823e63d8ac77f305d3b4d254d0cd4ff8ec2cb1",
+  "textoUrl": "https://www.camara.leg.br/proposicoesWeb/prop_mostrarintegra?codteor=3172575",
+  "titulo": "Regras próprias para associações que oferecem benefícios mútuos só a seus associados",
+  "descricao": "A proposta cria regime próprio para associações sem fins lucrativos que oferecem benefícios mútuos só a associados e dependentes. A contribuição não pode variar por idade, produto ou serviço, e a assistência à saúde deve ser apenas parte acessória. Cumprindo essas regras, a associação não é considerada operadora de planos de saúde.",
+  "modelo": "claude-haiku-5-5",
+  "versaoPrompt": "v2",
+  "criadoEm": "2026-11-17T14:02:07.900Z"
  },
  {
   "ref": "PL-5099-2023",
@@ -6213,6 +7016,28 @@
   "modelo": "claude-haiku-5-5",
   "versaoPrompt": "v2",
   "criadoEm": "2026-11-01T20:10:19.175Z"
+ },
+ {
+  "ref": "PL-5127-2026",
+  "casa": "camara",
+  "textoHash": "098d2c6c40ed6ef168e11748ccdc308b947406a7b34dd744f5c9a151ca645e66",
+  "textoUrl": "https://www.camara.leg.br/proposicoesWeb/prop_mostrarintegra?codteor=3173788",
+  "titulo": "Reconhece a Romaria do Divino Pai Eterno como cultura nacional",
+  "descricao": "A proposta reconhece a Romaria do Divino Pai Eterno, realizada todo ano em Trindade, Goiás, como manifestação da cultura nacional. Na prática, a festa passa a ter esse reconhecimento oficial do país. O texto não diz quais ações ou apoios decorrem disso.",
+  "modelo": "claude-haiku-5-5",
+  "versaoPrompt": "v2",
+  "criadoEm": "2026-11-17T14:02:10.283Z"
+ },
+ {
+  "ref": "PL-5137-2023",
+  "casa": "camara",
+  "textoHash": "6adb218e4ac5a220d6e7fccd363ca22b1c151394716a47bdc05529f567d59d6e",
+  "textoUrl": "https://www.camara.leg.br/proposicoesWeb/prop_mostrarintegra?codteor=2349234",
+  "titulo": "Alunos das primeiras séries passam a ler para animais de abrigos",
+  "descricao": "A proposta cria o Programa Crianças Amigas dos Animais, para alunos da 1ª à 5ª série da rede de ensino. As escolas levam as crianças a abrigos de animais pelo menos uma vez por bimestre para ler para cães e gatos. O objetivo é socializar os animais, facilitar adoções e ensinar as crianças a proteger bichos.",
+  "modelo": "claude-haiku-5-5",
+  "versaoPrompt": "v2",
+  "criadoEm": "2026-11-17T14:02:18.532Z"
  },
  {
   "ref": "PL-5156-2020",
@@ -6281,6 +7106,17 @@
   "criadoEm": "2026-11-01T20:10:30.437Z"
  },
  {
+  "ref": "PL-542-2015",
+  "casa": "camara",
+  "textoHash": "ff6bfd36281a2cf0bdb05d48a28541569c730ac471aab674bc90c09dac7dc26a",
+  "textoUrl": "https://www.camara.leg.br/proposicoesWeb/prop_mostrarintegra?codteor=1305185",
+  "titulo": "Ensino fundamental passa a ter tempo integral e inclui temas obrigatórios",
+  "descricao": "O ensino fundamental passa a ter jornada em tempo integral, de pelo menos 8 horas por dia. O currículo das escolas passa a incluir, obrigatoriamente, educação ambiental, educação no trânsito, educação moral e cívica, educação esportiva e direitos de crianças e adolescentes. Alguns temas seguem leis já existentes, como o ECA (Estatuto da Criança e do Adolescente).",
+  "modelo": "claude-haiku-5-5",
+  "versaoPrompt": "v2",
+  "criadoEm": "2026-11-17T14:02:22.414Z"
+ },
+ {
   "ref": "PL-5447-2026",
   "casa": "senado",
   "textoHash": "4028f0c157073e98c93c52742112629c40f8f4fe83cf2d3522f8afb6a4f25810",
@@ -6303,6 +7139,17 @@
   "criadoEm": "2026-11-01T20:10:41.204Z"
  },
  {
+  "ref": "PL-5486-2025",
+  "casa": "camara",
+  "textoHash": "d417f008528296b9a070033b990e3c458ec5dd17497ecb8ea8833c58a1b6bc41",
+  "textoUrl": "https://www.camara.leg.br/proposicoesWeb/prop_mostrarintegra?codteor=3034074",
+  "titulo": "Proíbe conteúdo erótico e sexualização precoce em locais com crianças",
+  "descricao": "Em qualquer local público ou privado com crianças menores de 14 anos, a proposta proíbe conteúdo erótico ou pornográfico em shows, músicas, vídeos e anúncios. Também veta a adultização (tratar crianças como adultas) e propagandas que citem drogas, violência ou práticas sexuais. Quem descumprir fica sujeito a multa de R$ 5 mil a R$ 100 mil e suspensão.",
+  "modelo": "claude-haiku-5-5",
+  "versaoPrompt": "v2",
+  "criadoEm": "2026-11-17T14:02:31.004Z"
+ },
+ {
   "ref": "PL-5490-2025",
   "casa": "senado",
   "textoHash": "09c28adf52e969cdc41e2cee909e20ec83d6243dc12932ad3f8cff71eb192041",
@@ -6323,6 +7170,17 @@
   "modelo": "claude-haiku-5-5",
   "versaoPrompt": "v2",
   "criadoEm": "2026-11-01T20:10:45.483Z"
+ },
+ {
+  "ref": "PL-5520-2025",
+  "casa": "senado",
+  "textoHash": "dd90bd73e52f63be09d0f628d043809143288a9be38169f9390bd205ae81d799",
+  "textoUrl": "https://legis.senado.gov.br/sdleg-getter/dadosabertos/documento/87d8ff88-7bd0-4016-aa53-1e6775804721",
+  "titulo": "Cria data anual para eventos sobre investimentos e educação financeira",
+  "descricao": "A proposta cria a Semana Nacional do Pequeno Investidor, celebrada todo ano na segunda semana de outubro. Durante a semana, deverão ocorrer seminários, palestras e debates para incentivar pequenos investidores, facilitar o acesso a investimentos e promover a educação financeira. Esses eventos podem ser organizados por entidades públicas ou privadas.",
+  "modelo": "claude-haiku-5-5",
+  "versaoPrompt": "v2",
+  "criadoEm": "2026-11-17T14:02:26.393Z"
  },
  {
   "ref": "PL-5538-2019",
@@ -6380,6 +7238,28 @@
   "criadoEm": "2026-11-01T20:11:05.881Z"
  },
  {
+  "ref": "PL-5608-2023",
+  "casa": "senado",
+  "textoHash": "7bcbf30dbc38e91c26b8a322902d2b6d2aeceafd5a94d471129bc5379a7294eb",
+  "textoUrl": "https://legis.senado.gov.br/sdleg-getter/dadosabertos/documento/e279c7ac-be78-487d-b3cb-3820d979c2a7",
+  "titulo": "Empresas recebem selo e incentivos para contratar mulheres com câncer de mama",
+  "descricao": "A proposta cria o Programa Empresa Rosa, para incentivar a contratação e a volta ao trabalho de mulheres em tratamento de câncer de mama ou em espera de remissão. As empresas que aderirem poderão receber o Selo Rosa, concedido a quem cumprir requisitos como ter mais de 10 empregados e política específica para essas mulheres. O texto também permite trabalho remoto, jornada reduzida e horário flexível, sem redução de salário.",
+  "modelo": "claude-haiku-5-5",
+  "versaoPrompt": "v2",
+  "criadoEm": "2026-11-17T14:02:25.077Z"
+ },
+ {
+  "ref": "PL-5621-2023",
+  "casa": "camara",
+  "textoHash": "60ab4aa05aecc382b4898e8be8730903ff0e40dbf38aa61e11c467663a5cc7ee",
+  "textoUrl": "https://www.camara.leg.br/proposicoesWeb/prop_mostrarintegra?codteor=2362038",
+  "titulo": "Famílias com crianças ou adolescentes com câncer ganham prioridade no Minha Casa",
+  "descricao": "A proposta cria prioridade no Programa Minha Casa, Minha Vida, de moradia do governo federal, para famílias que incluam crianças ou adolescentes com câncer. Ela altera a Lei 14.620, de 2023, que organiza esse programa. A mudança passa a valer 180 dias após a publicação da lei.",
+  "modelo": "claude-haiku-5-5",
+  "versaoPrompt": "v2",
+  "criadoEm": "2026-11-17T14:02:37.664Z"
+ },
+ {
   "ref": "PL-5649-2026",
   "casa": "camara",
   "textoHash": "0f7d52c6180833be8aea9a66b865a77ef54d4f9fe5633e71d580d7a9b06123ea",
@@ -6400,6 +7280,17 @@
   "modelo": "claude-haiku-5-5",
   "versaoPrompt": "v2",
   "criadoEm": "2026-11-01T20:11:13.232Z"
+ },
+ {
+  "ref": "PL-565-2020",
+  "casa": "camara",
+  "textoHash": "8a097e3e70ca40c22196bc1598c6054108db13f4c0e078ccaca7e58ee56d57a8",
+  "textoUrl": "https://www.camara.leg.br/proposicoesWeb/prop_mostrarintegra?codteor=1864114",
+  "titulo": "Profissionais da atenção básica devem orientar famílias para prevenir doenças",
+  "descricao": "A proposta cria a obrigação de os profissionais que atendem no SUS, o sistema público de saúde, promover ações de educação em saúde. Essas ações são feitas na atenção básica, o primeiro atendimento nos postos e unidades de saúde, e têm foco na família. O objetivo é prevenir doenças e problemas de saúde.",
+  "modelo": "claude-haiku-5-5",
+  "versaoPrompt": "v2",
+  "criadoEm": "2026-11-17T14:02:32.332Z"
  },
  {
   "ref": "PL-565-2022",
@@ -6598,6 +7489,17 @@
   "modelo": "claude-haiku-5-5",
   "versaoPrompt": "v2",
   "criadoEm": "2026-11-01T20:12:14.130Z"
+ },
+ {
+  "ref": "PL-5974-2023",
+  "casa": "camara",
+  "textoHash": "28241e58b9eb27b80b1257c9d66b3b1c0615c6a019a455fe70acefa00d7dde34",
+  "textoUrl": "https://www.camara.leg.br/proposicoesWeb/prop_mostrarintegra?codteor=2374424",
+  "titulo": "Permite copiar obras em linguagem simples para pessoas com deficiência intelectual",
+  "descricao": "A proposta permite reproduzir obras literárias, artísticas ou científicas em linguagem simples, sem precisar de autorização do autor. A cópia só pode ser usada por pessoas com deficiência intelectual. Ela não pode ter fins comerciais.",
+  "modelo": "claude-haiku-5-5",
+  "versaoPrompt": "v2",
+  "criadoEm": "2026-11-17T14:02:37.403Z"
  },
  {
   "ref": "PL-5994-2023",
@@ -6809,6 +7711,17 @@
   "criadoEm": "2026-11-01T20:13:29.794Z"
  },
  {
+  "ref": "PL-724-2003",
+  "casa": "camara",
+  "textoHash": "b91ddc6c08f5de032fa40bce929e4ad76335f4f1d184b0c97422a9137661c7d6",
+  "textoUrl": "https://www.camara.leg.br/proposicoesWeb/prop_mostrarintegra?codteor=124587",
+  "titulo": "Proíbe veículos de tração em rodovias federais após 18h",
+  "descricao": "A proposta proíbe veículos de tração nas rodovias federais após as 18 horas. Quem dirigir sob efeito de álcool ou substância semelhante fica sujeito a um a três anos de reclusão, que é prisão, além de multa. Se houver morte, a pena sobe para seis a vinte anos; se houver lesão corporal, para um a oito anos.",
+  "modelo": "claude-haiku-5-5",
+  "versaoPrompt": "v2",
+  "criadoEm": "2026-11-17T14:02:51.806Z"
+ },
+ {
   "ref": "PL-727-2026",
   "casa": "senado",
   "textoHash": "32896a6c4f99d7e21beccd8b125b0f80ccff77a2cffb8c90496019e7c1e8fc59",
@@ -6886,6 +7799,17 @@
   "criadoEm": "2026-11-01T20:13:50.538Z"
  },
  {
+  "ref": "PL-788-2024",
+  "casa": "camara",
+  "textoHash": "bb7ad84345704b5bf240c1066ef781889f372d96b0a52443c94f2530d55547e3",
+  "textoUrl": "https://www.camara.leg.br/proposicoesWeb/prop_mostrarintegra?codteor=2395747",
+  "titulo": "Proposta define regras para escola em tempo integral na educação básica",
+  "descricao": "A proposta cria parâmetros para a oferta de educação básica em tempo integral. O aluno fica na escola ao menos 7 horas por dia ou 35 por semana, em dois turnos, durante todo o período letivo. Também prevê infraestrutura adequada, currículo integrado, parcerias com esporte, cultura e saúde, e uso de espaços públicos.",
+  "modelo": "claude-haiku-5-5",
+  "versaoPrompt": "v2",
+  "criadoEm": "2026-11-17T14:02:46.873Z"
+ },
+ {
   "ref": "PL-79-2020",
   "casa": "camara",
   "textoHash": "03464f763829c5d6b9fbb59c797c354a7e9890951470d052e71f0d36dcf848ec",
@@ -6906,6 +7830,50 @@
   "modelo": "claude-haiku-5-5",
   "versaoPrompt": "v2",
   "criadoEm": "2026-11-01T20:13:57.584Z"
+ },
+ {
+  "ref": "PL-805-2024",
+  "casa": "senado",
+  "textoHash": "9f57d71ca8a1ee89cba86b8e590a9d26bca9460c512307cf237692f871daa06e",
+  "textoUrl": "https://legis.senado.gov.br/sdleg-getter/dadosabertos/documento/84da1673-8c33-48ee-9235-b33eda33ae57",
+  "titulo": "Proíbe obsolescência programada e cria direito ao conserto de produtos",
+  "descricao": "A proposta proíbe reduzir artificialmente a vida útil dos produtos, a chamada \"obsolescência programada\". Fabricantes e importadores devem garantir peças e ferramentas de reparo por pelo menos cinco anos, e o consumidor pode escolher onde consertar. Desrespeitar o direito ao reparo, como recusar conserto em oficina independente, pode dar multa de R$ 10 mil a R$ 50 milhões.",
+  "modelo": "claude-haiku-5-5",
+  "versaoPrompt": "v2",
+  "criadoEm": "2026-11-17T14:02:54.451Z"
+ },
+ {
+  "ref": "PL-8138-2017",
+  "casa": "camara",
+  "textoHash": "7ba8757e992e55d5280ce235130545773926729ecfc74145e3cd19a3a344b8a3",
+  "textoUrl": "https://www.camara.leg.br/proposicoesWeb/prop_mostrarintegra?codteor=1582066",
+  "titulo": "Estados, Distrito Federal e municípios passam a ter planos de educação ambiental",
+  "descricao": "A proposta obriga estados, Distrito Federal e municípios a criar seus próprios planos de educação ambiental. Os planos devem ter metas e prazos para as ações em cada região. Entre as ações está a formação continuada dos professores da rede pública de ensino.",
+  "modelo": "claude-haiku-5-5",
+  "versaoPrompt": "v2",
+  "criadoEm": "2026-11-17T14:02:49.324Z"
+ },
+ {
+  "ref": "PL-815-2023",
+  "casa": "camara",
+  "textoHash": "f7102f9fc84ee5e76d505b96fb7398d129ccc50cdc1d11abc83379fa8f3041b9",
+  "textoUrl": "https://www.camara.leg.br/proposicoesWeb/prop_mostrarintegra?codteor=2239152",
+  "titulo": "Escolas públicas e privadas passam a ter Direito Animal como disciplina obrigatória",
+  "descricao": "A proposta torna obrigatório o estudo de Direito Animal nas escolas de ensino fundamental e médio, públicas e privadas. A disciplina trata os animais não humanos como sujeitos de direitos, reconhecendo sua natureza biológica e emocional. Os conteúdos são ministrados em todo o currículo escolar, com foco no respeito ao ambiente natural.",
+  "modelo": "claude-haiku-5-5",
+  "versaoPrompt": "v2",
+  "criadoEm": "2026-11-17T14:02:56.031Z"
+ },
+ {
+  "ref": "PL-820-2022",
+  "casa": "camara",
+  "textoHash": "bb9e21b978a8f6812eebad6f274b34ca084f856926a47bffc59e44f63b496017",
+  "textoUrl": "https://www.camara.leg.br/proposicoesWeb/prop_mostrarintegra?codteor=2155398",
+  "titulo": "Cria política de escola em tempo integral, com 7 horas diárias",
+  "descricao": "A proposta cria a Política Nacional de Educação em Tempo Integral: escolas de educação básica com jornada de no mínimo 7 horas por dia. A União passa a apoiar Estados, Municípios e Distrito Federal com verbas do orçamento. As escolas aderem em etapas: ensino médio até 2025, 6º e 7º anos até 2027 e demais anos do fundamental até 2030.",
+  "modelo": "claude-haiku-5-5",
+  "versaoPrompt": "v2",
+  "criadoEm": "2026-11-17T14:03:06.530Z"
  },
  {
   "ref": "PL-888-2025",
@@ -7040,6 +8008,314 @@
   "criadoEm": "2026-11-01T20:14:33.421Z"
  },
  {
+  "ref": "PLN-1-2026",
+  "casa": "senado",
+  "textoHash": "1b434f4f8c13d3948a96c03b47d22edb8f0f2d460831e7610e04b919a6ec6477",
+  "textoUrl": "https://legis.senado.gov.br/sdleg-getter/dadosabertos/documento/7af48bf1-5521-41fe-a3c5-6ac41c0f3589",
+  "titulo": "Muda a tabela anexa da Lei do Orçamento de 2026",
+  "descricao": "A proposta troca o Anexo V (tabela) da Lei 15.346/2026, o Orçamento da União de 2026. O texto enviado não traz o conteúdo dessa nova tabela, então não dá para saber quais valores mudam.",
+  "modelo": "claude-haiku-5-5",
+  "versaoPrompt": "v2",
+  "criadoEm": "2026-11-17T14:03:03.804Z"
+ },
+ {
+  "ref": "PLN-10-2026",
+  "casa": "senado",
+  "textoHash": "865d37af9e85771cf4488574b7f07e9e8733ae6c7ad757a6e34d4b69fc1305d3",
+  "textoUrl": "https://legis.senado.gov.br/sdleg-getter/dadosabertos/documento/580f2b05-8126-4243-a8b6-c6b55ed1efec",
+  "titulo": "Libera R$ 24,9 milhões para Educação, Justiça e Advocacia-Geral da União",
+  "descricao": "A proposta abre crédito extra de R$ 24,9 milhões no Orçamento da União para Educação, Justiça e Advocacia-Geral da União (AGU). O dinheiro vem de doações acima do previsto e do corte de outras verbas. Os programas beneficiados estão num anexo que não veio no texto. A ementa oficial cita outro valor e outros ministérios.",
+  "modelo": "claude-haiku-5-5",
+  "versaoPrompt": "v2",
+  "criadoEm": "2026-11-17T14:03:14.194Z"
+ },
+ {
+  "ref": "PLN-11-2026",
+  "casa": "senado",
+  "textoHash": "5d911f4e1e0b2f02db3088a9f301c028d80757a4806b74dfa6f4ebe283d57a8b",
+  "textoUrl": "https://legis.senado.gov.br/sdleg-getter/dadosabertos/documento/8244101d-6920-4487-aa16-fdfbac85ed76",
+  "titulo": "Reforço de R$ 56 milhões para Justiça Federal, do Trabalho e MPU",
+  "descricao": "A proposta libera R$ 56,25 milhões extras para despesas já previstas no orçamento da Justiça Federal, da Justiça do Trabalho e do Ministério Público da União (MPU). O dinheiro vem do corte de outras despesas do orçamento. O texto não traz a lista dessas despesas cortadas.",
+  "modelo": "claude-haiku-5-5",
+  "versaoPrompt": "v2",
+  "criadoEm": "2026-11-17T14:03:14.603Z"
+ },
+ {
+  "ref": "PLN-12-2026",
+  "casa": "senado",
+  "textoHash": "b68ea848a9cd896e7032b64231f8575024a59f2f6106ae3199ea7b797e609af5",
+  "textoUrl": "https://legis.senado.gov.br/sdleg-getter/dadosabertos/documento/83c2f82d-74cd-4414-b7d8-778c307839cb",
+  "titulo": "Governo propõe R$ 563 milhões extras para reforçar verbas de ministérios",
+  "descricao": "A proposta abre crédito extra de R$ 563 milhões no orçamento federal para reforçar verbas de quatro ministérios e de Operações Oficiais de Crédito. O dinheiro vem de sobras de 2025, de acordos para reparar danos de desastres e do cancelamento de verbas de outras áreas. A ementa cita R$ 168 milhões, valor diferente do texto dos artigos.",
+  "modelo": "claude-haiku-5-5",
+  "versaoPrompt": "v2",
+  "criadoEm": "2026-11-17T14:03:20.160Z"
+ },
+ {
+  "ref": "PLN-13-2026",
+  "casa": "senado",
+  "textoHash": "5e9624ca8eeb7ff1b136d4ded084674636a3d8f3368da7748a5d6cda1e76aa5c",
+  "textoUrl": "https://legis.senado.gov.br/sdleg-getter/dadosabertos/documento/ac555895-28c3-4341-96b6-dde273a6b082",
+  "titulo": "Remaneja R$ 488 milhões de outros gastos para encargos financeiros da União",
+  "descricao": "A proposta abre um crédito extra de R$ 488.112.855,00 no Orçamento da União para o órgão Encargos Financeiros da União. Esse crédito reforça uma despesa já prevista na lei do orçamento de 2026 (Lei 15.346). O dinheiro sai do corte de outros gastos previstos no orçamento, listados no Anexo II do texto.",
+  "modelo": "claude-haiku-5-5",
+  "versaoPrompt": "v2",
+  "criadoEm": "2026-11-17T14:03:26.613Z"
+ },
+ {
+  "ref": "PLN-14-2026",
+  "casa": "senado",
+  "textoHash": "e76bf5565ac2b19f24b1472e3f0323b2978539e42a4208e5801fe7fa3cdb24e7",
+  "textoUrl": "https://legis.senado.gov.br/sdleg-getter/dadosabertos/documento/5b174253-77fe-4a90-903b-31fc3d41a0e7",
+  "titulo": "Governo abre crédito de R$ 3 milhões para o Ministério da Saúde",
+  "descricao": "A proposta libera R$ 3 milhões a mais para o Ministério da Saúde, que cuida do SUS, o sistema público de saúde. O dinheiro vem do cancelamento de outro valor já previsto no orçamento. Para quais ações será usado, o texto não diz: a informação está em anexos que não constam aqui.",
+  "modelo": "claude-haiku-5-5",
+  "versaoPrompt": "v2",
+  "criadoEm": "2026-11-17T14:03:23.148Z"
+ },
+ {
+  "ref": "PLN-15-2026",
+  "casa": "senado",
+  "textoHash": "332450f956b92cc6df90201187f31a48ecf1b7001a23e72c4162a77232cabad6",
+  "textoUrl": "https://legis.senado.gov.br/sdleg-getter/dadosabertos/documento/b4995a33-8dda-4e17-9dd7-c014d73cbceb",
+  "titulo": "Libera R$ 24,4 milhões extras para quatro ministérios, tirados de outras despesas",
+  "descricao": "A proposta libera R$ 24,4 milhões a mais no Orçamento de 2026 para quatro ministérios: Minas e Energia, Saúde, Integração e Desenvolvimento Regional, e Portos e Aeroportos. O dinheiro sai do cancelamento de outras verbas já previstas no mesmo orçamento. Os programas beneficiados e os valores cortados estão em anexos que não aparecem no texto.",
+  "modelo": "claude-haiku-5-5",
+  "versaoPrompt": "v2",
+  "criadoEm": "2026-11-17T14:03:30.230Z"
+ },
+ {
+  "ref": "PLN-16-2026",
+  "casa": "senado",
+  "textoHash": "39585f85e0c2850fa2e90207161a1054f5cced3e4813b7dbda4885993d5bf74b",
+  "textoUrl": "https://legis.senado.gov.br/sdleg-getter/dadosabertos/documento/08d55e34-03f5-488a-923f-7bf49fd4dbd6",
+  "titulo": "Transfere R$ 45.369 de outras verbas para o Ministério da Educação",
+  "descricao": "A proposta abre crédito extra de R$ 45.369 no Orçamento da Seguridade Social, que reúne saúde, previdência e assistência social. O crédito é para o Ministério da Educação, e o dinheiro vem do cancelamento de outras verbas, indicadas em anexo. Os anexos que dizem em que o dinheiro será gasto não constam do texto enviado.",
+  "modelo": "claude-haiku-5-5",
+  "versaoPrompt": "v2",
+  "criadoEm": "2026-11-17T14:03:38.261Z"
+ },
+ {
+  "ref": "PLN-17-2026",
+  "casa": "senado",
+  "textoHash": "f0137d018c2d748621d03beabdbc366fbe2359d1593e982f37effdd2160eff4d",
+  "textoUrl": "https://legis.senado.gov.br/sdleg-getter/dadosabertos/documento/d923de65-8da5-47d0-a9b8-ebfa2a9d03c6",
+  "titulo": "Libera R$ 1,3 milhão extra ao Ministério do Planejamento e Orçamento",
+  "descricao": "A proposta abre um crédito especial de R$ 1,3 milhão para o Ministério do Planejamento e Orçamento. O dinheiro sai do corte de outras despesas do orçamento federal, listadas no Anexo II. Ele vai para os gastos previstos no Anexo I, que o texto não descreve.",
+  "modelo": "claude-haiku-5-5",
+  "versaoPrompt": "v2",
+  "criadoEm": "2026-11-17T14:03:36.851Z"
+ },
+ {
+  "ref": "PLN-18-2026",
+  "casa": "senado",
+  "textoHash": "60fb298cf609d9fce29636e43b0d7a5370a07532cedf4bafdf6ad93d9206120a",
+  "textoUrl": "https://legis.senado.gov.br/sdleg-getter/dadosabertos/documento/9b67a33b-950a-4f7d-8c66-69abc25c8c06",
+  "titulo": "Acrescenta novos tipos de despesa à lista do Orçamento de 2026",
+  "descricao": "A proposta acrescenta novos tipos de despesa à lista do artigo 4º da Lei do Orçamento de 2026. Entram gastos determinados por decisão judicial, gastos no exterior do Ministério das Relações Exteriores, projetos estratégicos de defesa e ações ambientais. Também cita o PRONAF, crédito para agricultura familiar, e o PROEX, financiamento de exportações. O texto não explica qual regra deixa de valer para essas despesas.",
+  "modelo": "claude-haiku-5-5",
+  "versaoPrompt": "v2",
+  "criadoEm": "2026-11-17T14:03:44.106Z"
+ },
+ {
+  "ref": "PLN-19-2026",
+  "casa": "senado",
+  "textoHash": "a8f5242d56ea21541d2b14b7e02ea86dc2cbbda276fa195e39fcbf21f22fd5b4",
+  "textoUrl": "https://legis.senado.gov.br/sdleg-getter/dadosabertos/documento/9831be28-773b-40c3-8b5c-bdea7f59944a",
+  "titulo": "Libera R$ 80 milhões extras para Educação, Justiça e Transportes do governo",
+  "descricao": "A proposta libera R$ 80.041.737,00 extras no orçamento da União para os ministérios da Educação, da Justiça e Segurança Pública e dos Transportes. O dinheiro vem do cancelamento de outras verbas do orçamento. A ementa fala em R$ 130 milhões, mas o artigo 1º diz R$ 80 milhões. Os programas estão em anexos que não vieram no texto.",
+  "modelo": "claude-haiku-5-5",
+  "versaoPrompt": "v2",
+  "criadoEm": "2026-11-17T14:03:47.983Z"
+ },
+ {
+  "ref": "PLN-20-2026",
+  "casa": "senado",
+  "textoHash": "843cc689bfbeea92b6bd922632efe6b5ea8b1b6fed71e5431dc7c72edcf15c5f",
+  "textoUrl": "https://legis.senado.gov.br/sdleg-getter/dadosabertos/documento/7fc19f99-9412-4ebb-bc49-2854890efe3a",
+  "titulo": "Proposta libera R$ 520 milhões extras para ministérios no Orçamento de 2026",
+  "descricao": "A proposta libera R$ 520,5 milhões para reforçar despesas previstas no Orçamento de 2026. O dinheiro vai para os ministérios da Justiça e Segurança Pública, da Cultura, da Integração e Desenvolvimento Regional e dos Direitos Humanos e da Cidadania. Os recursos vêm de sobras financeiras de 2025 (R$ 507,3 milhões) e do corte de outras despesas (R$ 13,3 milhões).",
+  "modelo": "claude-haiku-5-5",
+  "versaoPrompt": "v2",
+  "criadoEm": "2026-11-17T14:03:49.569Z"
+ },
+ {
+  "ref": "PLN-22-2026",
+  "casa": "senado",
+  "textoHash": "3d8555db46359bd122350575ed385ab444eb36cc4b9a72c9d9368366f57886ee",
+  "textoUrl": "https://legis.senado.gov.br/sdleg-getter/dadosabertos/documento/1bade414-4ba4-4439-8dfa-733a899cf962",
+  "titulo": "Dá R$ 34,9 milhões a mais para o Serpro",
+  "descricao": "A proposta libera R$ 34.941.713,00 a mais para o Serviço Federal de Processamento de Dados (Serpro), empresa pública federal de tecnologia. O valor reforça gastos já previstos no orçamento de investimento da União e sai da própria receita do Serpro.",
+  "modelo": "claude-haiku-5-5",
+  "versaoPrompt": "v2",
+  "criadoEm": "2026-11-17T14:03:51.712Z"
+ },
+ {
+  "ref": "PLN-23-2026",
+  "casa": "senado",
+  "textoHash": "aae3706af4d02a60bc9bfd9a1a27d27b20b8c51406955712ca4dbea7c3163ff9",
+  "textoUrl": "https://legis.senado.gov.br/sdleg-getter/dadosabertos/documento/74a0c6fb-f038-4b2b-9378-3c93ad054d26",
+  "titulo": "Abre crédito extra de R$ 185,5 bilhões para Previdência e assistência social",
+  "descricao": "A proposta abre crédito extra de R$ 185,5 bilhões para os ministérios da Previdência Social e do Desenvolvimento e Assistência Social, Família e Combate à Fome. O dinheiro vem do cancelamento de outras despesas previstas no orçamento. Também autoriza a emissão de títulos da dívida pública, ou seja, empréstimo do governo, até o mesmo valor.",
+  "modelo": "claude-haiku-5-5",
+  "versaoPrompt": "v2",
+  "criadoEm": "2026-11-17T14:03:59.344Z"
+ },
+ {
+  "ref": "PLN-25-2026",
+  "casa": "senado",
+  "textoHash": "bfa740eed3cb8480e1c14f29e2b4814d9df51011ac22e0f93f145d791feff387",
+  "textoUrl": "https://legis.senado.gov.br/sdleg-getter/dadosabertos/documento/ac769b11-b604-477e-a876-32dbc3101e70",
+  "titulo": "Dá à Eletronuclear R$ 290 milhões extras para investimentos",
+  "descricao": "A proposta abre crédito suplementar de R$ 290.058.339,00 no Orçamento de Investimento da União para a Eletronuclear S.A., empresa estatal federal. Crédito suplementar é dinheiro extra somado a uma verba que já existe no orçamento. Esse dinheiro vem da própria geração de recursos da empresa, segundo o texto. A programação de gastos está detalhada em um anexo.",
+  "modelo": "claude-haiku-5-5",
+  "versaoPrompt": "v2",
+  "criadoEm": "2026-11-17T14:03:59.560Z"
+ },
+ {
+  "ref": "PLN-26-2026",
+  "casa": "senado",
+  "textoHash": "27f13d5612c8467411bdc2e6292f931ede94207d5d2a8413fedd57c9c8c7eaa4",
+  "textoUrl": "https://legis.senado.gov.br/sdleg-getter/dadosabertos/documento/a37dd15d-80fc-429a-8f1d-62dcaa952f42",
+  "titulo": "Destina R$ 4,8 milhões a órgãos da Justiça, Presidência, Saúde e Meio Ambiente",
+  "descricao": "A proposta libera R$ 4.856.104,00 extras no Orçamento da União. O dinheiro vai à Justiça Federal, à Justiça do Trabalho, à Presidência e aos ministérios da Saúde e do Meio Ambiente e Mudança do Clima. O dinheiro sai do cancelamento de outras verbas já previstas; os gastos detalhados estão em anexos não incluídos.",
+  "modelo": "claude-haiku-5-5",
+  "versaoPrompt": "v2",
+  "criadoEm": "2026-11-17T14:04:07.552Z"
+ },
+ {
+  "ref": "PLN-27-2026",
+  "casa": "senado",
+  "textoHash": "b7290589425f9f37409ee11e9dacb10de846a16937edc934293a9466e2e56ec0",
+  "textoUrl": "https://legis.senado.gov.br/sdleg-getter/dadosabertos/documento/8f06ab9b-0f00-4cd2-bc21-7a3f86d8a567",
+  "titulo": "Proposta destina R$ 115 milhões a ministérios de Educação, Justiça e Saúde",
+  "descricao": "A proposta abre R$ 115 milhões extras no orçamento para os Ministérios da Educação, da Justiça e Segurança Pública e da Saúde. O dinheiro sai do corte de outras verbas do orçamento federal, indicadas no Anexo II. Quais programas vão receber os recursos está nos anexos, que não fazem parte do texto.",
+  "modelo": "claude-haiku-5-5",
+  "versaoPrompt": "v2",
+  "criadoEm": "2026-11-17T14:04:09.143Z"
+ },
+ {
+  "ref": "PLN-28-2026",
+  "casa": "senado",
+  "textoHash": "42d29ac49f9b488041310fc4bab9a1ed9ac79417fd8258f82bb106f7fcf8d298",
+  "textoUrl": "https://legis.senado.gov.br/sdleg-getter/dadosabertos/documento/88052c4b-aed8-4070-9dcc-b95054977575",
+  "titulo": "Crédito de R$ 39 milhões para órgãos federais, estados e municípios",
+  "descricao": "A proposta libera R$ 39.002.919,00 a mais no Orçamento da União de 2026, para reforçar gastos já previstos na lei orçamentária, que organiza os gastos do ano. O dinheiro vem do cancelamento de outras verbas do mesmo orçamento. Os beneficiados são diversos órgãos do governo federal e repasses a estados, Distrito Federal e municípios.",
+  "modelo": "claude-haiku-5-5",
+  "versaoPrompt": "v2",
+  "criadoEm": "2026-11-17T14:04:10.577Z"
+ },
+ {
+  "ref": "PLN-29-2026",
+  "casa": "senado",
+  "textoHash": "838dcca01f5fc102459242b5398591b0e66e2e10e3b363185c4a7916c25054dd",
+  "textoUrl": "https://legis.senado.gov.br/sdleg-getter/dadosabertos/documento/2a16af88-414a-4931-9018-f402cc6eabeb",
+  "titulo": "Reforça em R$ 11,8 milhões o orçamento de tribunais federais e militares",
+  "descricao": "A proposta libera R$ 11.785.853,00 a mais para o Superior Tribunal de Justiça (STJ), a Justiça Federal e a Justiça Militar da União. O valor reforça gastos já previstos na Lei Orçamentária em vigor, que é o orçamento anual do governo federal. O dinheiro sai de outras verbas do orçamento federal, indicadas em anexo.",
+  "modelo": "claude-haiku-5-5",
+  "versaoPrompt": "v2",
+  "criadoEm": "2026-11-17T14:04:16.993Z"
+ },
+ {
+  "ref": "PLN-3-2026",
+  "casa": "senado",
+  "textoHash": "ac1ea04aa84809449f1afcbd95d319270961e5ed4651b78be5e06de550e0de44",
+  "textoUrl": "https://legis.senado.gov.br/sdleg-getter/dadosabertos/documento/6fcfc37f-10a4-48b4-b7fb-45dd1856f241",
+  "titulo": "Libera R$ 13,2 milhões a mais para o Ministério da Ciência",
+  "descricao": "A proposta libera R$ 13,2 milhões extras para o Ministério da Ciência, Tecnologia e Inovação (MCTI), no orçamento do governo federal. O dinheiro vem do corte de outras verbas já previstas no orçamento, listadas em anexo. O texto não diz em quais programas o valor será gasto, porque os anexos com essas listas não foram incluídos.",
+  "modelo": "claude-haiku-5-5",
+  "versaoPrompt": "v2",
+  "criadoEm": "2026-11-17T14:04:18.009Z"
+ },
+ {
+  "ref": "PLN-30-2026",
+  "casa": "senado",
+  "textoHash": "b6ca56e0d002bfc601e8e3ba688ad04f71c072917462e61d985f45df5ad475ff",
+  "textoUrl": "https://legis.senado.gov.br/sdleg-getter/dadosabertos/documento/acbb9a00-7fd7-4e66-a28b-8a47f1138ecf",
+  "titulo": "Libera R$ 420 milhões extras para reforçar gastos de ministérios federais",
+  "descricao": "A proposta abre R$ 420,7 milhões extras para reforçar gastos de ministérios como Fazenda, Justiça, Transportes e Cultura. Os recursos vêm de R$ 413,3 milhões de outras despesas cortadas e de R$ 7,5 milhões de arrecadação acima do previsto.",
+  "modelo": "claude-haiku-5-5",
+  "versaoPrompt": "v2",
+  "criadoEm": "2026-11-17T14:04:19.077Z"
+ },
+ {
+  "ref": "PLN-33-2026",
+  "casa": "senado",
+  "textoHash": "aa2886399c1c39817e6162fd4dcff8224d675f58cc92bed83fa5c31382f2bb70",
+  "textoUrl": "https://legis.senado.gov.br/sdleg-getter/dadosabertos/documento/3a83b3c5-6bb4-4cfc-bf78-593592724339",
+  "titulo": "Destina R$ 700 mil à Companhia das Docas da Bahia",
+  "descricao": "A proposta abre um crédito especial de R$ 700 mil para a Companhia das Docas do Estado da Bahia (CODEBA). O dinheiro sai do cancelamento parcial de outras verbas do Orçamento de Investimento da União, parte do orçamento federal voltada a investimentos. A finalidade exata do dinheiro está no Anexo I, que não consta no texto analisado.",
+  "modelo": "claude-haiku-5-5",
+  "versaoPrompt": "v2",
+  "criadoEm": "2026-11-17T14:04:28.801Z"
+ },
+ {
+  "ref": "PLN-35-2026",
+  "casa": "senado",
+  "textoHash": "e21d71383710befa677ee4a78d8fddd04fe1fcd7d8801fd8fc1b52f5ea76a40d",
+  "textoUrl": "https://legis.senado.gov.br/sdleg-getter/dadosabertos/documento/553cdcf7-c02d-4875-b089-6229d17493ba",
+  "titulo": "Mais quase R$ 115 milhões para Justiça e órgãos de controle federais",
+  "descricao": "A proposta abre R$ 114.969.959,00 no orçamento federal para o Tribunal de Contas da União (TCU), as Justiças Federal, Eleitoral e do Trabalho, a Defensoria Pública da União (DPU) e o Ministério Público da União (MPU). O dinheiro vem do cancelamento de outras verbas do orçamento. A finalidade de cada valor está em anexos não incluídos no texto.",
+  "modelo": "claude-haiku-5-5",
+  "versaoPrompt": "v2",
+  "criadoEm": "2026-11-17T14:04:32.418Z"
+ },
+ {
+  "ref": "PLN-4-2026",
+  "casa": "senado",
+  "textoHash": "7f59471941756e2ebc1e56fad324250cae5f47b650b93fbfe774a3ea0d32e45b",
+  "textoUrl": "https://legis.senado.gov.br/sdleg-getter/dadosabertos/documento/08f28fdc-7f42-4a22-bcca-7f13470c59a8",
+  "titulo": "Governo libera R$ 240 milhões extras para o Ministério da Fazenda",
+  "descricao": "A proposta abre crédito extra de R$ 240 milhões para o Ministério da Fazenda, que cuida das finanças federais. O dinheiro sai do corte de outras despesas já previstas no orçamento deste ano. Também autoriza empréstimo do exterior para modernizar a gestão fiscal, dependente de autorização do Senado. A ementa oficial cita R$ 34 milhões, valor diferente.",
+  "modelo": "claude-haiku-5-5",
+  "versaoPrompt": "v2",
+  "criadoEm": "2026-11-17T14:04:32.677Z"
+ },
+ {
+  "ref": "PLN-6-2026",
+  "casa": "senado",
+  "textoHash": "db4b974d4963ea3322754241b2d11ab8c7ea735656be77e4e3877497c9b302a3",
+  "textoUrl": "https://legis.senado.gov.br/sdleg-getter/dadosabertos/documento/06728d89-d60c-4494-b2e4-c63865b97df1",
+  "titulo": "Dá R$ 543,7 milhões extras à Justiça e a Minas e Energia",
+  "descricao": "A proposta abre R$ 543,7 milhões extras no Orçamento da União para reforçar gastos dos ministérios da Justiça e Segurança Pública e de Minas e Energia. O dinheiro vem da sobra financeira de 2025 (R$ 416,5 milhões) e do corte de outras despesas (R$ 127,2 milhões). O texto não diz quais programas recebem o dinheiro.",
+  "modelo": "claude-haiku-5-5",
+  "versaoPrompt": "v2",
+  "criadoEm": "2026-11-17T14:04:39.014Z"
+ },
+ {
+  "ref": "PLN-7-2026",
+  "casa": "senado",
+  "textoHash": "f337d6d4a5dddb4276fe378cdd5b038fe0da379dd65b955b306d866314b74f8a",
+  "textoUrl": "https://legis.senado.gov.br/sdleg-getter/dadosabertos/documento/fabb0284-3447-4e86-917f-ea738b3a3c92",
+  "titulo": "Altera regras do orçamento de 2026 para Copa Feminina e hospital",
+  "descricao": "A proposta deixa fora das restrições do artigo 29 da LDO de 2026, a lei que orienta o Orçamento, as medidas para a Copa do Mundo Feminina de 2027 no Brasil. Também dispensa a declaração de três anos de funcionamento contínuo para repasses ao Primeiro Hospital Inteligente do Brasil. O texto não diz quais são essas restrições.",
+  "modelo": "claude-haiku-5-5",
+  "versaoPrompt": "v2",
+  "criadoEm": "2026-11-17T14:04:49.556Z"
+ },
+ {
+  "ref": "PLN-8-2026",
+  "casa": "senado",
+  "textoHash": "e53f24fada0b4564e769dddcbb3d34ffeda713752fa3d9134e3e1e6fc8d8b5d8",
+  "textoUrl": "https://legis.senado.gov.br/sdleg-getter/dadosabertos/documento/0009b756-4976-41f2-b6ef-0fbdf7576dac",
+  "titulo": "Libera R$ 21,5 milhões extras para as Justiças Federal e do Trabalho",
+  "descricao": "A proposta abre R$ 21,5 milhões de verba extra no Orçamento da Seguridade Social da União, para as Justiças Federal e do Trabalho. O dinheiro sai do cancelamento de outras verbas do mesmo orçamento, listadas em anexo. Para quais gastos será usado, o texto remete a outro anexo, que não aparece aqui.",
+  "modelo": "claude-haiku-5-5",
+  "versaoPrompt": "v2",
+  "criadoEm": "2026-11-17T14:04:42.177Z"
+ },
+ {
+  "ref": "PLP-109-2025",
+  "casa": "senado",
+  "textoHash": "b079fec9ff16b723b24c89107e3123ade97e10a8ce38fd5047c26ab30750a483",
+  "textoUrl": "https://legis.senado.gov.br/sdleg-getter/dadosabertos/documento/eb348dd9-ff82-4568-bc1e-2377ae5b00a7",
+  "titulo": "Agência do petróleo passa a acessar notas fiscais de empresas reguladas",
+  "descricao": "A proposta cria acesso permanente da Agência Nacional do Petróleo (ANP) às notas fiscais eletrônicas das empresas do setor de petróleo, gás e biocombustíveis. Para receber ou manter autorizações, as empresas terão de permitir esse acesso. A ANP também poderá consultar dados fiscais de órgãos federais, estaduais e do Distrito Federal, que continuam sigilosos.",
+  "modelo": "claude-haiku-5-5",
+  "versaoPrompt": "v2",
+  "criadoEm": "2026-11-17T14:04:49.334Z"
+ },
+ {
   "ref": "PLP-11-2026",
   "casa": "senado",
   "textoHash": "93952cf192d2cc707681feda090acb7019e606b72f181f01205554d01ab8e84b",
@@ -7082,6 +8358,17 @@
   "modelo": "claude-haiku-5-5",
   "versaoPrompt": "v2",
   "criadoEm": "2026-11-01T20:14:55.542Z"
+ },
+ {
+  "ref": "PLP-131-2026",
+  "casa": "camara",
+  "textoHash": "f9b0f91928f0b1d7209095d57ce69e4391b90d782c3a422cafc56b9b480d3557",
+  "textoUrl": "https://www.camara.leg.br/proposicoesWeb/prop_mostrarintegra?codteor=3127088",
+  "titulo": "Estende a loteamentos com parceria regime de transição do IBS e CBS",
+  "descricao": "Quem vende terreno de loteamento com contrato de parceria registrado na matrícula do imóvel pode aderir ao regime de transição do IBS e CBS, novos impostos sobre consumo. A adesão deve ser feita até 2028, é irretratável para o imóvel e veda créditos de IBS e CBS. Quem não pedir o registro do loteamento até 2032 paga tributos pelo regime comum.",
+  "modelo": "claude-haiku-5-5",
+  "versaoPrompt": "v2",
+  "criadoEm": "2026-11-17T14:04:55.513Z"
  },
  {
   "ref": "PLP-137-2026",
@@ -7128,6 +8415,28 @@
   "criadoEm": "2026-11-01T18:58:39.225Z"
  },
  {
+  "ref": "PLP-226-2025",
+  "casa": "camara",
+  "textoHash": "0a2118e5de99ab5d14dfb77b22def366e8c20659bab3595d656cdaca802bdb6a",
+  "textoUrl": "https://www.camara.leg.br/proposicoesWeb/prop_mostrarintegra?codteor=3034664",
+  "titulo": "Proíbe emendas que enviem dinheiro para mais de um governo ou entidade",
+  "descricao": "A proposta proíbe emendas que possam levar dinheiro a mais de um governo ou entidade privada, por meio de repasses e convênios. Emendas são pedidos de deputados e senadores para destinar verbas do orçamento federal. Os repasses para fundos municipais de saúde e de assistência social ficam de fora da proibição.",
+  "modelo": "claude-haiku-5-5",
+  "versaoPrompt": "v2",
+  "criadoEm": "2026-11-17T14:04:59.733Z"
+ },
+ {
+  "ref": "PLP-230-2025",
+  "casa": "senado",
+  "textoHash": "92e4f7658b611d8aa3cd903ae845b7148061949cfce3f6ca2365f3b4abd8b3ac",
+  "textoUrl": "https://legis.senado.gov.br/sdleg-getter/dadosabertos/documento/f466c187-f334-41f3-b640-fa342518f855",
+  "titulo": "Protege verbas do Fust de bloqueio e garante internet em escolas públicas",
+  "descricao": "A proposta impede o governo de bloquear verbas do Fust, o Fundo de Universalização dos Serviços de Telecomunicações, para projetos aprovados pelo seu Conselho Gestor. Escolas públicas de educação básica, sobretudo as rurais, passam a ter direito a internet de qualidade. A prestação de contas do fundo passa a incluir indicadores de qualidade, desempenho e disponibilidade.",
+  "modelo": "claude-haiku-5-5",
+  "versaoPrompt": "v2",
+  "criadoEm": "2026-11-17T14:05:03.892Z"
+ },
+ {
   "ref": "PLP-281-2019",
   "casa": "camara",
   "textoHash": "fc592ec687c8eae5a0f558e9a4d95f5b99582b2c682d3963fd624fb1b62c081e",
@@ -7137,6 +8446,17 @@
   "modelo": "claude-haiku-5-5",
   "versaoPrompt": "v2",
   "criadoEm": "2026-11-01T18:58:28.454Z"
+ },
+ {
+  "ref": "PLP-299-2026",
+  "casa": "senado",
+  "textoHash": "40fc2c1d50d7f4db47d49a45c9a88c902403e3464f728f1ee35304ea0716a2f8",
+  "textoUrl": "https://legis.senado.gov.br/sdleg-getter/dadosabertos/documento/38df22dd-1022-46cf-ac9d-d24f038d1d0d",
+  "titulo": "Dá ao governo novas formas de cortar gastos e controlar as contas públicas",
+  "descricao": "O governo ganha ferramentas para bloquear gastos e reduzir o uso de créditos para pagar impostos quando as contas ficam na faixa inferior da meta fiscal. A partir de 2027, o crescimento real das despesas nesses casos fica limitado a 2% ao ano. Também reduz alguns benefícios fiscais e permite usar parte de fundos para obrigações constitucionais, como aposentadorias.",
+  "modelo": "claude-haiku-5-5",
+  "versaoPrompt": "v2",
+  "criadoEm": "2026-11-17T14:05:11.656Z"
  },
  {
   "ref": "PLP-55-2026",
