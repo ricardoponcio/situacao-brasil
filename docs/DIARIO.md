@@ -7,6 +7,29 @@ Formato de cada entrada: data · o que foi feito · decisões (com o porquê) ·
 
 ---
 
+## 2026-11-17 · Sessão 23: resumos novos e apensados agrupados na lista da Câmara
+
+### O que foi feito
+- Resumos: 121 textos novos (10 PDFs sem texto), 120 resumos com Haiku (US$ 0,17 equivalente), commit `bad489d`.
+- Pergunta do autor: "tudo tem Requerimento de Urgência (Art. 155)". Não era erro do front: nos últimos 30 dias,
+  57 das 82 propostas na lista tinham votação de urgência. Grande parte é um caso só: a urgência do PL 479/2015
+  valeu para 63 projetos apensados, e a Câmara registra uma votação em cada um ("Alteração do Regime de Tramitação
+  desta proposição em virtude da alteração do regime do PL 479/2015...").
+- Coleta da Câmara (0.5.0): o texto da votação diz qual é a proposta principal; ela vai em `attributes.principalRef`
+  (só quando é diferente da própria proposta).
+- Front (`SubjectFeed`): caixa "Agrupar apensados", ligada por padrão. Ligada, os apensados entram na principal
+  ("Anda junto com N projetos apensados", com a lista). Desligada, fica solto como antes. Só aparece quando há algo
+  para agrupar. Nos dados locais: 82 → 60 propostas; 110 de 112 votações sem proposta ligada (404 no detalhe) entram
+  na principal, contadas pelo id do projeto (começo do id da votação).
+
+### Decisões
+- Só agrupa quando a principal também está na lista; senão o apensado fica solto (ex.: PL 479/2025).
+- A escolha do leitor fica só na tela (não é guardada), padrão ligado (pedido do autor).
+
+### Próximos passos
+- Explicar "urgência" em linguagem simples no lugar de "Art. 155 do RICD" (ideia levantada, não feita).
+- Conferir a caixa no navegador (nesta sessão só foi conferido pelos dados da API e pelo build).
+
 ## 2026-11-16 · Sessão 22: servidor ainda caía, tudo mais leve (mesmo que mais lento)
 
 ### O que foi feito

@@ -195,6 +195,77 @@ export function EventList({ events }: { events: Event[] }) {
 interface Group {
   subject: NonNullable<Event['subject']>;
   events: Event[]; // mais recente primeiro
+  /** Projetos apensados a este (anexados, andam junto), quando o agrupamento está ligado. */
+  apensados?: Group[];
+  /** Apensados que a Câmara não detalha (a votação não diz qual é o projeto, só o número interno). */
+  apensadosSemDetalhe?: number;
+}
+
+/** Chave da proposta principal, se a votação é de um projeto apensado (gravada pela coleta da Câmara). */
+const principalOf = (e: Event) => (typeof e.attributes.principalRef === 'string' ? e.attributes.principalRef : undefined);
+
+/** Junta os apensados na proposta principal. Só junta quando a principal também está na lista. */
+function agruparApensados(groups: Group[], loose: Event[]): { groups: Group[]; loose: Event[] } {
+  const byRef = new Map<string, Group>();
+  for (const g of groups) if (g.subject.ref) byRef.set(g.subject.ref, { ...g, apensados: [], apensadosSemDetalhe: 0 });
+  const principalDe = (evs: Event[]) => {
+    for (const e of evs) {
+      const ref = principalOf(e);
+      if (ref && byRef.has(ref)) return byRef.get(ref)!;
+    }
+    return undefined;
+  };
+  const out: Group[] = [];
+  for (const g of groups) {
+    const p = principalDe(g.events);
+    if (p && p.subject.ref !== g.subject.ref) p.apensados!.push(g);
+    else out.push(g.subject.ref ? byRef.get(g.subject.ref)! : g);
+  }
+  // Votações sem proposta ligada: o começo do id da votação é o id do projeto na Câmara.
+  const semDetalhe = new Map<Group, Set<string>>();
+  const rest: Event[] = [];
+  for (const e of loose) {
+    const p = principalDe([e]);
+    if (!p) {
+      rest.push(e);
+      continue;
+    }
+    const ids = semDetalhe.get(p) ?? new Set<string>();
+    ids.add(String(e.attributes.idVotacao ?? e.id).split('-')[0]!);
+    semDetalhe.set(p, ids);
+  }
+  for (const [p, ids] of semDetalhe) p.apensadosSemDetalhe = ids.size;
+  return { groups: out, loose: rest };
+}
+
+/** "Anda junto com 63 projetos apensados", com a lista de cada um. */
+function ApensadosNote({ g }: { g: Group }) {
+  const comDetalhe = g.apensados ?? [];
+  const total = comDetalhe.length + (g.apensadosSemDetalhe ?? 0);
+  if (!total) return null;
+  return (
+    <details className="vote-more">
+      <summary>
+        Anda junto com {total === 1 ? '1 projeto apensado' : `${total.toLocaleString('pt-BR')} projetos apensados`}
+      </summary>
+      <p>Projetos apensados foram anexados a este porque tratam do mesmo assunto. São votados junto com ele.</p>
+      <ul className="apensados">
+        {comDetalhe.map((a) => (
+          <li key={a.subject.id}>
+            {a.subject.ref ? <a href={href.proposta(a.subject.ref)}>{a.subject.label}</a> : a.subject.label}
+            {' '}
+            <span className="muted">{ementaGist(a.subject.title) ?? a.subject.title}</span>
+          </li>
+        ))}
+        {(g.apensadosSemDetalhe ?? 0) > 0 && (
+          <li className="muted">
+            {g.apensadosSemDetalhe === 1 ? 'Mais 1 projeto' : `Mais ${g.apensadosSemDetalhe} projetos`} que a Câmara
+            não detalha nos dados abertos.
+          </li>
+        )}
+      </ul>
+    </details>
+  );
 }
 
 /** Um assunto (ex.: um projeto de lei) na lista: o resumo e onde está. O resto fica na página de detalhes. */
@@ -224,6 +295,7 @@ function SubjectGroup({ g, vetos, resumos }: { g: Group; vetos?: Event[]; resumo
       {resumo && <ResumoIA resumo={resumo} />}
       {status && <SubjectProgress status={status} />}
       {!isVeto && vetos && <VetoNote events={vetos} />}
+      <ApensadosNote g={g} />
       {(gist || resumo) && (
         <details className="vote-more">
           <summary>Texto oficial (ementa)</summary>
@@ -254,23 +326,35 @@ const PAGE = 8;
 /** Agrupa por assunto; eventos sem assunto ficam numa lista à parte. */
 export function SubjectFeed({ events }: { events: Event[] }) {
   const [shown, setShown] = useState(PAGE);
+  const [agrupar, setAgrupar] = useState(true);
   const groups = new Map<string, Group>();
-  const loose: Event[] = [];
+  const solto: Event[] = [];
   for (const e of [...events].sort((a, b) => b.occurredAt.localeCompare(a.occurredAt))) {
     if (!e.subject) {
-      loose.push(e);
+      solto.push(e);
       continue;
     }
     const g = groups.get(e.subject.id) ?? { subject: e.subject, events: [] };
     g.events.push(e);
     groups.set(e.subject.id, g);
   }
-  const all = [...groups.values()];
+  const separado = { groups: [...groups.values()], loose: solto };
+  const junto = agruparApensados(separado.groups, separado.loose);
+  const temApensados = junto.groups.length < separado.groups.length || junto.loose.length < separado.loose.length;
+  const { groups: all, loose } = agrupar ? junto : separado;
   const vetos = useVetosByRef(all.some((g) => g.subject.ref && g.subject.kind !== 'VET'));
   const resumos = useResumos(all.flatMap((g) => (g.subject.ref && g.subject.kind !== 'VET' ? [g.subject.ref] : [])));
   if (!groups.size) return <EventList events={loose} />;
   return (
     <>
+      {temApensados && (
+        <label className="feed-toggle">
+          <input type="checkbox" checked={agrupar} onChange={(e) => setAgrupar(e.target.checked)} />
+          <span>
+            Agrupar apensados <span className="muted">(projetos anexados a outro, que andam junto com ele)</span>
+          </span>
+        </label>
+      )}
       <ul className="vote-groups">
         {all.slice(0, shown).map((g) => (
           <SubjectGroup
@@ -281,9 +365,9 @@ export function SubjectFeed({ events }: { events: Event[] }) {
           />
         ))}
       </ul>
-      {groups.size > shown && (
+      {all.length > shown && (
         <button className="show-more" onClick={() => setShown((n) => n + PAGE * 2)}>
-          Mostrar mais {Math.min(PAGE * 2, groups.size - shown)} (de {groups.size - shown} restantes)
+          Mostrar mais {Math.min(PAGE * 2, all.length - shown)} (de {all.length - shown} restantes)
         </button>
       )}
       {loose.length > 0 && (

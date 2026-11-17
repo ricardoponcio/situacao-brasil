@@ -65,6 +65,18 @@ interface Page<T> {
 
 const isoDate = (d: Date) => d.toISOString().slice(0, 10);
 
+/**
+ * Proposta principal citada no texto da votação de um projeto apensado (anexado a outro, andam juntos).
+ * Ex.: "...em virtude da alteração do regime do PL 479/2015..." ou "...solicita urgência (art. 155) para o PL 479/2015."
+ */
+const PRINCIPAL = /(?:alteração do regime d[oa]|urgência \(art\. 155\) para [oa]) ([A-Z]+) (\d[\d.]*)\/(\d{4})/i;
+
+function principalRefFrom(descricao: string): string | undefined {
+  const m = PRINCIPAL.exec(descricao);
+  if (!m || !COM_REF.has(m[1]!.toUpperCase())) return undefined;
+  return propositionRef(m[1]!.toUpperCase(), m[2]!.replace(/\./g, ''), m[3]!, 'CD');
+}
+
 /** Votações do Plenário da Câmara dos Deputados (eventos). */
 class CamaraVotacoesProcessor extends BaseProcessor {
   constructor() {
@@ -88,7 +100,7 @@ class CamaraVotacoesProcessor extends BaseProcessor {
           'Projetos que começaram no Senado antes de 2019 têm outro número na Câmara; a página da proposta não junta as duas partes.',
         ],
       },
-      '0.4.0',
+      '0.5.0',
     );
   }
 
@@ -219,6 +231,10 @@ class CamaraVotacoesProcessor extends BaseProcessor {
         }
       : undefined;
 
+    // Votação herdada da principal (projeto apensado): o site pode mostrar o apensado junto da principal.
+    const principal = principalRefFrom(v.descricao);
+    const principalRef = principal && principal !== subject?.ref ? principal : undefined;
+
     return this.emit(DATASET, origin, {
       kind: 'event',
       id: `camara-votacao:${v.id}`,
@@ -229,7 +245,12 @@ class CamaraVotacoesProcessor extends BaseProcessor {
       subject,
       decidedBy: 'camara',
       links,
-      attributes: { idVotacao: v.id, idEvento: idEvento ?? null, orgao: v.siglaOrgao },
+      attributes: {
+        idVotacao: v.id,
+        idEvento: idEvento ?? null,
+        orgao: v.siglaOrgao,
+        ...(principalRef ? { principalRef } : {}),
+      },
     });
   }
 }

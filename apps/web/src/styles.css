@@ -337,6 +337,9 @@ button.link { font: inherit; background: none; border: 0; padding: 0; color: var
 .vote-more > p { margin: 6px 0 0; color: var(--text-secondary); }
 .vote-more .feed li { padding: 8px 0; }
 .vote-link { font-size: 14px; }
+.feed-toggle { display: flex; align-items: flex-start; gap: 10px; font-size: 15px; cursor: pointer; margin-bottom: 12px; }
+.feed-toggle input { width: 20px; height: 20px; margin: 1px 0 0; accent-color: var(--accent); flex: none; }
+.apensados { margin: 8px 0 0; padding-left: 18px; display: grid; gap: 6px; color: var(--text-secondary); }
 .vote-links { display: flex; flex-wrap: wrap; gap: 6px 18px; }
 .vote-progress + .veto-note { margin-top: 12px; }
 .proposta-ementa { margin: 0 0 24px; }
