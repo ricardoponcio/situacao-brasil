@@ -187,6 +187,11 @@ export function feedPorProposta(events: Event[], agrupar: boolean) {
   const comApensados = junto.groups.filter((g) => totalApensados(g) > 0);
   return {
     ...(agrupar ? junto : separado),
+    /**
+     * Propostas que podem ter resumo ou veto, da lista solta: não muda ao ligar ou desligar o agrupamento,
+     * então trocar a opção não dispara busca nova (a tela piscava sem os resumos enquanto carregava).
+     */
+    refs: refsComResumo(separado.groups),
     /** Há algo para agrupar? (senão, a opção nem aparece) */
     temApensados: junto.groups.length < separado.groups.length || junto.loose.length < separado.loose.length,
     juntados: comApensados.reduce((n, g) => n + totalApensados(g), 0),

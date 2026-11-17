@@ -35,6 +35,11 @@ Formato de cada entrada: data · o que foi feito · decisões (com o porquê) ·
   apensados, período + comparação no gráfico, busca na tabela, aba do assunto) no Chrome headless, antes e depois:
   idênticas (só muda o "há N min" das fontes). Console sem erros. Script em scratch, não versionado.
 
+- Piscada ao desmarcar "Agrupar apensados" pela primeira vez: a lista pedia os resumos só das propostas visíveis;
+  desmarcar mudava a lista, disparava busca nova e os cartões ficavam sem resumo até ela voltar (da segunda vez em
+  diante vinha do cache). Agora os resumos e vetos são pedidos para a lista solta inteira, que não muda com a caixa.
+  Conferido no Chrome headless: o código antigo fazia 1 busca no primeiro clique; o novo, nenhuma.
+
 ### Decisões
 - Refatoração sem mudar nada visível: a régua foi a tela igual, não o código "mais bonito".
 - Hooks separados dos controllers: o controller não sabe de onde vêm os dados, então dá para testar sem API.

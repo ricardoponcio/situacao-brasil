@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import type { Event } from '@sb/core';
-import { feedPorProposta, refsComResumo } from '../../controllers/propostas.ts';
+import { feedPorProposta } from '../../controllers/propostas.ts';
 import { useResumos, useVetosByRef } from '../../hooks/usePropostas.ts';
 import { ApensadosToggle } from './Apensados.tsx';
 import { EventList } from './Eventos.tsx';
@@ -14,8 +14,7 @@ export function PropostasFeed({ events }: { events: Event[] }) {
   const [shown, setShown] = useState(PAGE);
   const [agrupar, setAgrupar] = useState(true);
   const feed = feedPorProposta(events, agrupar);
-  const { groups, loose } = feed;
-  const refs = refsComResumo(groups);
+  const { groups, loose, refs } = feed;
   const vetos = useVetosByRef(refs.length > 0);
   const resumos = useResumos(refs);
   if (!groups.length) return <EventList events={loose} />;
