@@ -9,6 +9,12 @@ services:
     restart: unless-stopped
     volumes:
       - data:/data
+    # Em uso normal a API fica em ~100 MB. O teto protege a máquina se algo fugir do controle.
+    mem_limit: 256m
+    memswap_limit: 256m
+    environment:
+      NODE_OPTIONS: --max-old-space-size=160 --max-semi-space-size=2
+      MALLOC_ARENA_MAX: "2"
 
   # Mesma imagem da API (construída uma vez só, pelo serviço api).
   # Coleta todas as fontes ao subir e depois a cada INGEST_INTERVAL segundos (padrão 6 h).
@@ -22,16 +28,21 @@ services:
     volumes:
       - data:/data
     # O servidor tem 1 GB de RAM. Com teto, se a coleta passar do limite só ela é derrubada (e volta sozinha),
-    # não a máquina inteira. O Node 24 ajusta o próprio heap a esse limite. Meia CPU deixa a API respirar.
-    mem_limit: 512m
-    memswap_limit: 512m
-    cpus: 0.5
+    # não a máquina inteira. O heap fica bem abaixo do teto (o pico medido da coleta é ~190 MB), senão o Node
+    # cresce até perto do limite antes de limpar a memória. Prioridade: ser leve, mesmo que demore. Um quarto de
+    # CPU e prioridade mínima de CPU e disco (nice/ionice): a API e o sistema sempre passam na frente.
+    mem_limit: 320m
+    memswap_limit: 320m
+    cpus: 0.25
     # Opcional: proxy HTTP de saída para a coleta (ex.: fonte que recusa conexão de servidor fora do Brasil).
     # Vazio = conexão direta. O fetch do Node 24 só usa HTTPS_PROXY com NODE_USE_ENV_PROXY=1.
     environment:
+      # Geração jovem pequena e poucas arenas do malloc: medido, o pico cai de ~200 para ~140 MB num arquivo de 25 MB.
+      NODE_OPTIONS: --max-old-space-size=192 --max-semi-space-size=2
+      MALLOC_ARENA_MAX: "2"
       HTTPS_PROXY: ${INGEST_HTTPS_PROXY:-}
       NODE_USE_ENV_PROXY: ${INGEST_HTTPS_PROXY:+1}
-    command: ["sh", "-c", "while true; do node_modules/.bin/tsx apps/ingest/src/cli.ts; sleep $${INGEST_INTERVAL:-21600}; done"]
+    command: ["sh", "-c", "while true; do nice -n 19 ionice -c 3 node --import tsx apps/ingest/src/cli.ts; sleep $${INGEST_INTERVAL:-21600}; done"]
 
   web:
     build:

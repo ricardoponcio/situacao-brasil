@@ -247,7 +247,7 @@ class Datasus extends BaseProcessor {
         await ftp.baixar(c.caminho, tmp);
         const modificado = await ftp.modificado(c.caminho).catch(() => new Date().toISOString());
         const ag = new Agregador(c.sistema, c.ano);
-        await lerDbc(tmp, (reg) => ag.somar(reg), { respiroMs: 50 });
+        await lerDbc(tmp, (reg) => ag.somar(reg), { respiroMs: 100 });
         const r = ag.resultado();
         const url = ftp.url(c.caminho);
         const anterior = repo.arquivo(c.caminho);

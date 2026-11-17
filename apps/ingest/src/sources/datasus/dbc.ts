@@ -93,7 +93,7 @@ export async function lerDbc(
       // Copia a sobra: um subarray seguraria o pedaço inteiro na memória.
       sobra = lidos < registros ? Buffer.from(buf.subarray(p)) : Buffer.alloc(0);
       desdeRespiro += chunk.length;
-      if (respiroMs > 0 && desdeRespiro > 8 << 20) {
+      if (respiroMs > 0 && desdeRespiro > 1 << 20) {
         desdeRespiro = 0;
         setTimeout(done, respiroMs);
       } else done();

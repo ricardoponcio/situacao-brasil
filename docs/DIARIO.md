@@ -7,6 +7,30 @@ Formato de cada entrada: data · o que foi feito · decisões (com o porquê) ·
 
 ---
 
+## 2026-11-16 · Sessão 22: servidor ainda caía, tudo mais leve (mesmo que mais lento)
+
+### O que foi feito
+- Mesmo com a leitura em fluxo, o servidor (1 GB, sem swap) voltou a cair. Medido localmente: a soma não fechava.
+  API ~150 MB + coleta até 512 MB (o Node cresce até perto do teto antes de limpar) + build no próprio servidor a
+  cada push (typecheck ~410 MB). O pior arquivo (DENGBR24, 288 MB, 6,5 milhões de registros) chegava a 353 MB.
+- `node --import tsx` no lugar do binário `tsx` (API e coleta): o binário abria um segundo processo Node só para
+  repassar. A API no container caiu de ~150 para ~54 MB.
+- Coleta: teto 320 MB, heap 192 MB, `--max-semi-space-size=2`, `MALLOC_ARENA_MAX=2`, ¼ de CPU, `nice -n 19` e
+  `ionice -c 3`. Pausa de 100 ms a cada 1 MB descomprimido (antes 50 ms a cada 8 MB). Pico medido no DENGBR24:
+  244 MB (antes 353), mesmas contagens.
+- API: teto 256 MB, heap 160 MB, mesmas opções de memória.
+- Build (`check` no Dockerfile): mesmas opções; o typecheck caiu de ~410 para ~270 MB.
+
+### Decisões
+- **Leve antes de rápido** (pedido do autor): a coleta do DATASUS fica bem mais lenta, e tudo bem. O histórico
+  vai entrar em mais coletas.
+
+### Próximos passos
+- Se ainda cair: ter swap no servidor (1–2 GB) e/ou construir as imagens fora dele, deixando o servidor só baixar.
+- Acompanhar a primeira coleta depois do deploy.
+
+---
+
 ## 2026-11-15 · Sessão 21: coleta do DATASUS derrubava o servidor (falta de RAM)
 
 ### O que foi feito
